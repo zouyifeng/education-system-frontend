@@ -4,11 +4,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 
-
 import App from './App'
+import Index from './components/Index'
+import Login from './components/Login'
 import Home from './components/Home'
 import store from './store'
-import TimeEntries from './components/TimeEntries.vue'
+import TimeEntries from './components/TimeEntries'
 import 'bootstrap/dist/css/bootstrap.css'
 
 Vue.use(VueRouter)
@@ -16,10 +17,10 @@ Vue.use(VueResource)
 
 const routes = [{
   path : '/',
-  component : Home
+  component : Login
 },{
-  path : '/home',
-  component : Home
+  path : '/index',
+  component : Index
 },{
   path : '/time-entries',
   component : TimeEntries,
@@ -40,5 +41,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  ...App
+  ...Login
 });
