@@ -3,12 +3,12 @@
     <nav class="navbar navbar-default">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <i class="glyphicon glyphicon-time"></i>
-          计划板
+          <i class="glyphicon glyphicon-time"></i>  基于微信教务系统
         </a>
-        <ul class="nav navbar-nav">
-          <li><router-link to="/home">首页</router-link></li>
-          <li><router-link to="/time-entries">计划列表</router-link></li>
+        <ul class="nav navbar-nav navbar-right">
+          <li>  
+            <a href="#">退出</a>
+          </li>
         </ul>
       </div>
     </nav>
