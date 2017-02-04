@@ -6,7 +6,7 @@ import VueResource from 'vue-resource'
 
 import App from './App'
 import Index from './components/Index'
-import Login from './components/Login'
+// import Login from './components/Login'
 import Home from './components/Home'
 import store from './store'
 import TimeEntries from './components/TimeEntries'
@@ -17,7 +17,7 @@ Vue.use(VueResource)
 
 const routes = [{
   path : '/',
-  component : Login
+  component : Index
 },{
   path : '/index',
   component : Index
@@ -41,5 +41,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  ...Login
+  ...Index
 });

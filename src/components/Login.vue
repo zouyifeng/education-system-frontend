@@ -3,7 +3,7 @@
         <form class="form-signin">
             <h2 class="form-signin-heading">{{title}}</h2>
             <label for="username" class="sr-only">用户名</label>
-            <input type="email" v-model="username" id="username" class="form-control" placeholder="用户名" required autofocus>
+            <input type="text" v-model="username" id="username" class="form-control" placeholder="用户名" required autofocus>
             <label for="password" class="sr-only">密码</label>
             <input type="password" v-model="password" id="password" class="form-control" placeholder="密码" required>
             <div class="checkbox">
