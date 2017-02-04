@@ -7,7 +7,9 @@ import VueResource from 'vue-resource'
 import App from './App'
 import Index from './components/Index'
 // import Login from './components/Login'
-import Home from './components/Home'
+// import Home from './components/Home'
+import Home from './components/index/home/Home'
+import TeacherInfo from './components/index/teacherInfo/TeacherInfo'
 import store from './store'
 import TimeEntries from './components/TimeEntries'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -16,12 +18,20 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 
 const routes = [{
-  path : '/',
-  component : Index
-},{
   path : '/index',
   component : Index
 },{
+  path: '/index/home',
+  component: Home
+},{
+  path: '/index/teacherInfo',
+  component: TeacherInfo
+},
+// {
+//   path: '/teacherInfo',
+//   component: TeacherInfo
+// },
+{
   path : '/time-entries',
   component : TimeEntries,
   children : [{

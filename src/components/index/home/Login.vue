@@ -32,8 +32,8 @@
                         'password': this.password
                     }
                 };
-                this.$http.post('/url', data).then((resp) => {
-                    console.log(resp);
+                this.$http.post('http://localhost:8081/wechat-education-system/admin/login.action', data).then((resp) => {
+                    console.log(resp.body);
                 },() => {
                     console.log('error');
                 });
