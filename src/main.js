@@ -23,6 +23,9 @@ import LiteratureInfo from './components/index/classInfo/LiteratureInfo'
 import SportInfo from './components/index/classInfo/SportInfo'
 import ActivityInfo from './components/index/classInfo/ActivityInfo'
 
+// 联系我们
+import Contact from './components/index/contact/Contact'
+
 import store from './store'
 import TimeEntries from './components/TimeEntries'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -51,6 +54,9 @@ const routes = [{
   },{
     path: '/index/teacherInfo',
     component: TeacherInfo
+  },{
+    path: '/index/contact',
+    component: Contact
   }
 
 ];
