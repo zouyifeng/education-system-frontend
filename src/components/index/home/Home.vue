@@ -1,5 +1,16 @@
 <template>
     <div class="container">
+      <div class="row">
+      <div class="col-md-9">
+
+      </div>
+      <div class="col-md-3">
+        <login></login>
+      </div>
+      </div>
+      <div class="row">
+        <slide-show></slide-show>
+      </div>
       <div class="col-md-3">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -10,12 +21,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-9">
         <class-activity></class-activity>
       </div>
-      <div class="col-md-3">
-        <login></login>
-      </div>
+      
     </div>
 </template>
 
@@ -23,6 +32,7 @@
 //   import Sidebar from '../Sidebar'
   import Login from './Login'
   import ClassActivity from './ClassActivity'
+  import SlideShow from './SlideShow'
 //   import HeaderComponent from './HeaderComponent'
 
   export default {
@@ -30,10 +40,10 @@
     //   'Sidebar': Sidebar,
       'Login': Login,
       'ClassActivity': ClassActivity,
+      'SlideShow' : SlideShow
     //   'HeaderComponent': HeaderComponent
     }
   }
-
 </script>
 
 <style>
