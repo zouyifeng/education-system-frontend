@@ -1,12 +1,10 @@
 <template>
     <div class="container">
-      <div class="row">
       <div class="col-md-9">
 
       </div>
       <div class="col-md-3">
         <login></login>
-      </div>
       </div>
       <div class="row">
         <slide-show></slide-show>
@@ -24,16 +22,15 @@
       <div class="col-md-9">
         <class-activity></class-activity>
       </div>
-      
     </div>
 </template>
 
 <script>
-//   import Sidebar from '../Sidebar'
+  //   import Sidebar from '../Sidebar'
   import Login from './Login'
   import ClassActivity from './ClassActivity'
   import SlideShow from './SlideShow'
-//   import HeaderComponent from './HeaderComponent'
+  //   import HeaderComponent from './HeaderComponent'
 
   export default {
     components: {
