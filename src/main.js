@@ -10,6 +10,7 @@ import store from './store'
 import TimeEntries from './components/TimeEntries'
 import 'bootstrap/dist/css/bootstrap.css'
 
+
 Vue.use(VueRouter)
 Vue.use(VueResource)
 

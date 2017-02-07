@@ -32,14 +32,12 @@
                 list: [],
             }
         },
+        created() {
+            this.fetchData();
+        },
         methods: {
-            getArticleList: function(){
-                this.$http.get('http://localhost:8081/wechat-education-system/article_list.action').then((resp) => {
-                    console.log(resp.body);
-                    this.list = resp.body.data.list;
-                }, () => {
-                    console.log('get article list error');
-                })
+            fetchData(){
+                this.$store.dispatch('GET_CLASS_ACTIVITY_INFO');
             }
         }
     }
