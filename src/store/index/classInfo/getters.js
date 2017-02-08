@@ -1,4 +1,4 @@
-export const getters = {
+export default {
     classActivityInfo(state) {
         return state.classActivityInfoList;
     },

@@ -37,7 +37,7 @@
         },
         methods: {
             fetchData(){
-                this.$store.dispatch('GET_CLASS_ACTIVITY_INFO');
+                this.$store.dispatch('getClassActivityInfo');
             }
         }
     }
