@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(itemm, index) in list">
+                    <tr v-for="(item, index) in list">
                         <th scope="row">{{index}}</th>
                         <td>{{item.source}}</td>
                         <td>{{item.date}}</td>
@@ -26,19 +26,24 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
-        data() {
-            return {
-                list: [],
-            }
-        },
+
         created() {
-            this.fetchData();
+            this.$store.dispatch('getClassActivityInfo');
+        },
+        computed: {
+            ...mapGetters({
+                list : 'classActivityInfo'
+            }),
+            test: function() {
+                console.log(this.list)
+                return list;
+            }
         },
         methods: {
-            fetchData(){
-                this.$store.dispatch('getClassActivityInfo');
-            }
+
         }
     }
 </script>

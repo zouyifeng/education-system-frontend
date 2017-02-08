@@ -1,13 +1,21 @@
-import Vue from 'vue'
+
+import * as util from '../../util'
 
 import * as types from './mutation-types'
 
-export const actions = {
+export default {
     updateAccount({ commit }, account) {
-        Vue.http.jsonp('http://localhost:8081/wechat-education-system/admin/login.action', account).then((resp) => {
+        const url = '/admin/login.action';
+        console.log(account)
+        util.post({ url }, account).then((resp) => {
+            console.log(resp.body)
             commit(types.UPDATE_ACCOUNT, resp.body);
-        },() => {
-            console.log('error');
         });
+    },
+    getClassActivityInfo({ commit }) {
+        const url = '/article_list.action';
+        util.get({ url }).then((resp) => {
+            console.log(resp.body)
+        })
     }
 };
