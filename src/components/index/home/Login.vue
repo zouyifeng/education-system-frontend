@@ -29,7 +29,7 @@
         },
         methods: {
             login() {
-                this.$store.dispatch('updateAccount', this.login);
+                this.$store.dispatch('updateAccount', this.loginAccount);
                 // var data = { 
                 //     'data': {
                 //         'username': this.username,

@@ -1,4 +1,4 @@
-export const homeGetters = {
+export default {
     classActivityInfo(state) {
         return state.classActivityInfoList;
     },
