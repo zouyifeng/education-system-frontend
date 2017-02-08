@@ -3,21 +3,12 @@ import Vuex from 'vuex'
 // import mutations from './mutations'
 // import actions from './actions'
 
-import { homeModules } from './homeModules'
+import home from './index/home'
 
 Vue.use(Vuex);
 
-const state = {
-    loginAccout: {
-        id: '',
-        username: '',
-        password: ''
-    },
-    classActivityInfoList: []
-};
-
 export default new Vuex.Store({
-    state,
-    mutations,
-    actions
+  modules: {
+    home 
+  }
 })

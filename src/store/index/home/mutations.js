@@ -7,7 +7,7 @@ export default {
     },
 
     // 班级动态列表
-    [types.GET_CLASS_ACTIVITY_INFO](state, classActivityInfoList){
+    [types.GET_CLASS_ACTIVITY_INFO](state, classActivityInfoList) {
         state.classActivityInfoList = classActivityInfoList;
     }
 };
