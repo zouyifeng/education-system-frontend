@@ -7,18 +7,20 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <!--<th>序号</th>-->
+                        <th>序号</th>
                         <th>来源</th>
                         <th>时间</th>
                         <th>标题</th>
+                        <th>详情</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in list.data">
-                        <!--<th scope="row">{{index}}</th>-->
+                    <tr v-for="(item, index) in data.list">
+                        <th scope="row">{{index}}</th>
                         <td>{{item.source}}</td>
                         <td>{{item.date}}</td>
                         <td>{{item.title}}</td>
+                        <td><router-link to="/time-entries">创建一个任务</router-link></td>
                     </tr>
                 </tbody>
             </table>
@@ -30,16 +32,16 @@
 
     export default {
 
-        created() {
+        mounted() {
             this.$store.dispatch('getClassActivityInfo');
         },
         computed: {
             ...mapGetters({
-                list : 'classActivityInfo'
+                data : 'classActivityInfo'
             })
         },
         methods: {
-
+            
         }
     }
 </script>

@@ -7,5 +7,5 @@
     </div>
 </template>
 <script>
-
+    
 </script>

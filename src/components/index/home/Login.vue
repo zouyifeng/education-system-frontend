@@ -18,15 +18,24 @@
 </template>
 <script>
     export default {
-
         data() {
             return {
                 loginAccount: {
                     username: '',
                     password: ''
+                },
+                currentAccount : {
+                    id:'',
+                    username: '',
+                    password: ''
                 }
             }
         },
+        computed :{
+            mapGetters({
+                currentAccount : 'account'
+            })
+        }
         methods: {
             login() {
                 this.$store.dispatch('updateAccount', this.loginAccount);
@@ -41,6 +50,13 @@
                 // },() => {
                 //     console.log('error');
                 // });
+            }
+        },
+        watch: {
+            currentAccount: function(newValue, oldValue){
+                if(newValue.id != ''){
+                    
+                }
             }
         }
     }

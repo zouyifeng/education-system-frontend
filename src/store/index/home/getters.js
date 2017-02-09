@@ -1,7 +1,7 @@
 export default {
     classActivityInfo(state) {
-        console.log(state.classActivityInfoList)
-        return state.classActivityInfoList;
+        console.log(state.classActivityInfo)
+        return state.classActivityInfo;
     },
     account(state) {
         return state.loginAccount;

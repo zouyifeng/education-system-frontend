@@ -15,8 +15,8 @@ export default {
     getClassActivityInfo({ commit }) {
         const url = '/article_list.action';
         util.get({ url }).then((resp) => {
-            console.log(resp.body)
-            commit(types.GET_CLASS_ACTIVITY_INFO, resp.body);
+            console.log(resp.body.data)
+            commit(types.GET_CLASS_ACTIVITY_INFO, resp.body.data);
         })
     }
 };

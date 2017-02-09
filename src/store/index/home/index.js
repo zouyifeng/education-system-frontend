@@ -8,7 +8,11 @@ const state = {
         username: '',
         password: ''
     },
-    classActivityInfoList: []
+    classActivityInfo: {
+        list: [{title: 'title',date: '2017-02-02', source: 'haoa'}],
+        years:[],
+        pageInfo:{}
+    }
 }
 
 export default {
