@@ -9,7 +9,7 @@ const state = {
         password: ''
     },
     classActivityInfo: {
-        list: [{title: 'title',date: '2017-02-02', source: 'haoa'}],
+        list: [],
         years:[],
         pageInfo:{}
     }

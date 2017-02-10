@@ -7,7 +7,7 @@
         <login></login>
       </div>
       <div class="row">
-        <slide-show></slide-show>
+        <!--<slide-show></slide-show>-->
       </div>
       <div class="col-md-3">
         <div class="panel panel-default">
@@ -29,7 +29,7 @@
   //   import Sidebar from '../Sidebar'
   import Login from './Login'
   import ClassActivity from './ClassActivity'
-  import SlideShow from './SlideShow'
+  // import SlideShow from './SlideShow'
   //   import HeaderComponent from './HeaderComponent'
 
   export default {
@@ -37,7 +37,7 @@
     //   'Sidebar': Sidebar,
       'Login': Login,
       'ClassActivity': ClassActivity,
-      'SlideShow' : SlideShow
+      // 'SlideShow' : SlideShow
     //   'HeaderComponent': HeaderComponent
     }
   }

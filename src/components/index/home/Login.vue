@@ -10,53 +10,43 @@
         </div>
         <div class="input-group mb-15">
             <span class="input-group-addon" id="basic-addon1"> 密 码 </span>
-            <input type="text" class="form-control" placeholder="密码" v-model="loginAccount.password">  
+            <input type="text" class="form-control" placeholder="密码" v-model="currentAccount.password">  
         </div>
+        {{currentAccount}}
         <div class="btn btn-primary col-md-12" v-on:click="login">登录</div>
         </div>
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
         data() {
             return {
                 loginAccount: {
                     username: '',
                     password: ''
-                },
-                currentAccount : {
-                    id:'',
-                    username: '',
-                    password: ''
                 }
             }
         },
         computed :{
-            mapGetters({
-                currentAccount : 'account'
+            ...mapGetters({
+                currentAccount : 'getCurrentAccount'
             })
-        }
+        },
         methods: {
             login() {
                 this.$store.dispatch('updateAccount', this.loginAccount);
-                // var data = { 
-                //     'data': {
-                //         'username': this.username,
-                //         'password': this.password
-                //     }
-                // };
-                // this.$http.post('http://localhost:8081/wechat-education-system/admin/login.action', data).then((resp) => {
-                //     console.log(resp.body);
-                // },() => {
-                //     console.log('error');
-                // });
             }
         },
         watch: {
-            currentAccount: function(newValue, oldValue){
-                if(newValue.id != ''){
-                    
-                }
+            currentAccount: {
+                handler: function(newValue, oldValue){
+                    if(newValue.id != ''){
+                        this.$router.push('../admin')
+                    }
+                },
+                deep: true
             }
         }
     }

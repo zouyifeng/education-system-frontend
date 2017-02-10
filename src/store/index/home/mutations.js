@@ -8,8 +8,6 @@ export default {
 
     // 班级动态列表
     [types.GET_CLASS_ACTIVITY_INFO](state, classActivityInfo) {
-        console.log(state)
-        console.log(classActivityInfo)
         state.classActivityInfo = classActivityInfo;
     }
 };
