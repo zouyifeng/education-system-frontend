@@ -10,9 +10,8 @@
         </div>
         <div class="input-group mb-15">
             <span class="input-group-addon" id="basic-addon1"> 密 码 </span>
-            <input type="text" class="form-control" placeholder="密码" v-model="currentAccount.password">  
+            <input type="text" class="form-control" placeholder="密码" v-model="loginAccount.password">  
         </div>
-        {{currentAccount}}
         <div class="btn btn-primary col-md-12" v-on:click="login">登录</div>
         </div>
     </div>
@@ -29,18 +28,16 @@
                 }
             }
         },
-        computed :{
-            ...mapGetters({
-                currentAccount : 'getCurrentAccount'
-            })
-        },
+        computed : mapGetters({
+            currentAccount :  'getCurrentAccount'
+        }),
         methods: {
             login() {
-                this.$store.dispatch('updateAccount', this.loginAccount);
+                this.$store.dispatch('fetchAccount', this.loginAccount);
             }
         },
         watch: {
-            currentAccount: {
+            currentAccount: {   
                 handler: function(newValue, oldValue){
                     if(newValue.id != ''){
                         this.$router.push('../admin')

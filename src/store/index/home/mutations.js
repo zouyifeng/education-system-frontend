@@ -2,8 +2,8 @@ import * as types from './mutation-types'
 
 export default {
     // 动态账户
-    [types.UPDATE_ACCOUNT](state, account) {
-        state.loginAccout = account;
+    [types.FETCH_ACCOUNT](state, account) {
+        state.loginAccount = account;
     },
 
     // 班级动态列表

@@ -4,10 +4,10 @@ import * as util from '../../util'
 import * as types from './mutation-types'
 
 export default {
-    updateAccount({ commit }, account) {
+    fetchAccount({ commit }, account) {
         const url = '/admin/login.action';
         util.post({ url }, account).then((resp) => {
-            commit(types.UPDATE_ACCOUNT, resp.body.data);
+            commit(types.FETCH_ACCOUNT, resp.body.data);
         });
     },
     getClassActivityInfo({ commit }) {
