@@ -3,7 +3,9 @@ export default {
         return state.classActivityInfo;
     },
     getCurrentAccount(state) {
-        console.log(state.loginAccount)
         return state.loginAccount;
+    },
+    getClassActivityInfoDetail(state) {
+        return state.classActivityInfoDetail;
     }
 }

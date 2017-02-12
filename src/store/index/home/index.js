@@ -12,6 +12,8 @@ const state = {
         list: [],
         years:[],
         pageInfo:{}
+    },
+    classActivityInfoDetail: {
     }
 }
 

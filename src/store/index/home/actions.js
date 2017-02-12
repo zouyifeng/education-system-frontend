@@ -13,7 +13,13 @@ export default {
     getClassActivityInfo({ commit }) {
         const url = '/article_list.action';
         util.get({ url }).then((resp) => {
-            commit(types.GET_CLASS_ACTIVITY_INFO, resp.body.data);
+            commit(types.FETCH_CLASS_ACTIVITY_INFO_LIST, resp.body.data);
+        })
+    },
+    getClassActivityDetatil({ commit }, id) {
+        const url = '/article.action';
+        util.post({ url }).then((resp) => {
+            commit(types.GET_CLASS_ACTIVITY_INFO_DETAIL, resp.body.data)
         })
     }
 };

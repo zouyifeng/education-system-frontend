@@ -7,5 +7,9 @@
     </div>
 </template>
 <script>
-    
+    export default {
+        created () {
+            this.$store.dispatch('getClassActivityDetatil',{data: { id : $route.params.id }});
+        }
+    }
 </script>
