@@ -7,12 +7,12 @@ export default {
     },
 
     // 班级动态列表
-    [types.FETCH_CLASS_ACTIVITY_INFO_LIST](state, classActivityInfoList) {
-        state.classActivityInfo = classActivityInfoList;
+    [types.FETCH_CLASS_ACTIVITY_LIST](state, classActivityList) {
+        state.classActivity = classActivityList;
     },
 
     // 班级动态详情
-    [types.FETCH_CLASS_ACTIVITY_INFO_DETAIL](state, classActivityInfoDetail) {
-        state.classActivityInfoDetail = classActivityInfoDetail;
+    [types.FETCH_CLASS_ACTIVITY_DETAIL](state, classActivityDetail) {
+        state.classActivityDetail = classActivityDetail;
     }
 };

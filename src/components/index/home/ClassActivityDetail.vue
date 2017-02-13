@@ -1,17 +1,21 @@
 <template>
     <div class="container">
         <div class="page-header">
-            <h1>Example page header <small>Subtext for header</small></h1>
+            <h1>{{classActivityDetailArticle.title}} <small>{{classActivityDetailArticle.author}} / {{classActivityDetailArticle.date}}</small></h1>
         </div>
-        <p>content content content content content</p>
+        <p>{{classActivityDetailArticle.context}}</p>
     </div>
 </template>
 <script>
+
+    import { mapGetters } from 'vuex'
+
     export default {
+        computed: mapGetters({
+            classActivityDetailArticle: 'getClassActivityDetailArticle'
+        }),
         created () {
-            console.log('template');
-            console.log(this.$route.params.id)
-            this.$store.dispatch('getClassActivityDetatil',{data: { id : this.$route.params.id }});
+            this.$store.dispatch('getClassActivityDetatil', { id : this.$route.params.id });
         }
     }
-</script>
+    </script>

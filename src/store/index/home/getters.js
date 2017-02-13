@@ -1,11 +1,12 @@
 export default {
-    classActivityInfo(state) {
-        return state.classActivityInfo;
+    classActivity(state) {
+        return state.classActivity;
     },
     getCurrentAccount(state) {
         return state.loginAccount;
     },
-    getClassActivityInfoDetail(state) {
-        return state.classActivityInfoDetail;
+    getClassActivityDetailArticle(state) {
+        console.log(state)
+        return state.classActivityDetail.article;
     }
 }

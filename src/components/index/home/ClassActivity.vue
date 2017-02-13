@@ -32,11 +32,11 @@
 
     export default {
         mounted() {
-            this.$store.dispatch('getClassActivityInfo');
+            this.$store.dispatch('getClassActivity');
         },
         computed: {
             ...mapGetters({
-                data : 'classActivityInfo'
+                data : 'classActivity'
             })
         },
         methods: {

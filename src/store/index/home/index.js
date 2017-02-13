@@ -8,12 +8,14 @@ const state = {
         username: '',
         password: ''
     },
-    classActivityInfo: {
+    classActivity: {
         list: [],
         years:[],
         pageInfo:{}
     },
-    classActivityInfoDetail: {
+    classActivityDetail: {
+        article: {},
+        years: []
     }
 }
 
