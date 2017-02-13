@@ -20,7 +20,7 @@
                         <td>{{item.source}}</td>
                         <td>{{item.date}}</td>
                         <td>{{item.title}}</td>
-                        <td><router-link :to="{ path :'/index/classActivityDetail', params: { id : 123 }">详情</router-link></td>
+                        <td><router-link :to="{ path :'/index/classActivityDetail', params: { id: item.id }}">详情</router-link></td>
                     </tr>
                 </tbody>
             </table>
