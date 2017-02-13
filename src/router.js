@@ -50,6 +50,7 @@ export const routes = [{
     path: '/index/contact',
     component: Contact
   },{
+    name: 'classActivityDetail',
     path: '/index/classActivityDetail/:id',
     component: ClassActivityDetail
   },{

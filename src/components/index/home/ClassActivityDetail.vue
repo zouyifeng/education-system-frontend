@@ -9,7 +9,9 @@
 <script>
     export default {
         created () {
-            this.$store.dispatch('getClassActivityDetatil',{data: { id : $route.params.id }});
+            console.log('template');
+            console.log(this.$route.params.id)
+            this.$store.dispatch('getClassActivityDetatil',{data: { id : this.$route.params.id }});
         }
     }
 </script>

@@ -20,7 +20,7 @@
                         <td>{{item.source}}</td>
                         <td>{{item.date}}</td>
                         <td>{{item.title}}</td>
-                        <td><router-link :to="{ path :'/index/classActivityDetail', params: { id: item.id }}">详情</router-link></td>
+                        <td><router-link :to="{ name :'classActivityDetail', params: { id: item.id }}">详情</router-link></td>
                     </tr>
                 </tbody>
             </table>
@@ -31,7 +31,6 @@
     import { mapGetters } from 'vuex'
 
     export default {
-
         mounted() {
             this.$store.dispatch('getClassActivityInfo');
         },
