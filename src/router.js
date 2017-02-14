@@ -2,7 +2,7 @@
 import Home from './components/index/home/Home'
 
 // 作文详情
-import ClassActivityDetail from './components/index/home/ClassActivityDetail'
+import ClassActivityDetail from './components/index/home/NewsDetail'
 
 // 师资力量
 import TeacherInfo from './components/index/teacherInfo/TeacherInfo'
@@ -18,8 +18,8 @@ import Contact from './components/index/contact/Contact'
 
 // admin 
 import Admin from './components/admin/Admin'
-import Article from './components/admin/article/Article'
-import EditArticle from './components/admin/article/EditArticle'
+import Article from './components/admin/news/News'
+import EditArticle from './components/admin/news/EditNews'
 import Teacher from './components/admin/teacher/Teacher'
 import EditTeacher from './components/admin/teacher/EditTeacher'
 import Class from './components/admin/class/Class'

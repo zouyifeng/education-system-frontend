@@ -1,11 +1,11 @@
 export default {
-    classActivity(state) {
-        return state.classActivity;
+    getNews(state) {
+        return state.news;
     },
     getCurrentAccount(state) {
         return state.loginAccount;
     },
-    getClassActivityDetailArticle(state) {
-        return state.classActivityDetail.article;
+    getNewsDetail(state) {
+        return state.newsDetail;
     }
 }

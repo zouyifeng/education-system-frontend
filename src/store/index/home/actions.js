@@ -1,4 +1,3 @@
-
 import * as util from '../../util'
 
 import * as types from './mutation-types'
@@ -10,16 +9,16 @@ export default {
             commit(types.FETCH_ACCOUNT, resp.body.data);
         });
     },
-    getClassActivity({ commit }) {
-        const url = '/article_list.action';
+    getNews({ commit }) {
+        const url = '/news_list.action';
         util.get({ url }).then((resp) => {
-            commit(types.FETCH_CLASS_ACTIVITY_LIST, resp.body.data);
+            commit(types.FETCH_NEWS_LIST, resp.body.data);
         })
     },
-    getClassActivityDetatil({ commit }, id) {
-        const url = '/article.action';
+    getNewsDetail({ commit }, id) {
+        const url = '/news.action';
         util.post({ url }, id).then((resp) => {
-            commit(types.FETCH_CLASS_ACTIVITY_DETAIL, resp.body.data)
+            commit(types.FETCH_NEWS_DETAIL, resp.body.data)
         })
     }
 };

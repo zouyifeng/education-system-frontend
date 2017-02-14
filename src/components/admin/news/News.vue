@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(index, item) in articleList.list">
+                    <tr v-for="(item, index) in newsList.list">
                         <th scope="row">{{index}}</th>
                         <td>{{item.title}}</td>
                         <td>{{item.author}}</td>
@@ -39,10 +39,10 @@
     import { mapGetters } from 'vuex'
     export default {
         computed: mapGetters({
-            articleList: 'getClassActivityDetailArticle'
+            newsList: 'getNews'
         }),
         mounted() {
-            this.$store.dispatch('getClassActivity');
+            this.$store.dispatch('getNews');
         }
     }
 </script>

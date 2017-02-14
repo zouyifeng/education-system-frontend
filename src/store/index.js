@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import home from './index/home'
-import article from './admin/article'
+import article from './admin/news'
 
 Vue.use(Vuex);
 

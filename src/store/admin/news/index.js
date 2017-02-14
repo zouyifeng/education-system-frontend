@@ -4,7 +4,10 @@ import getters from './getters'
 
 
 const state = {
-    articleList: []
+    news: {
+        years: [],
+        article: {}
+    }
 }
 
 export default {

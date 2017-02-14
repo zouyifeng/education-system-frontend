@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="col-md-9">
-        <class-activity></class-activity>
+        <news></news>
       </div>
     </div>
 </template>
@@ -28,7 +28,7 @@
 <script>
   //   import Sidebar from '../Sidebar'
   import Login from './Login'
-  import ClassActivity from './ClassActivity'
+  import News from './News'
   // import SlideShow from './SlideShow'
   //   import HeaderComponent from './HeaderComponent'
 
@@ -36,7 +36,7 @@
     components: {
     //   'Sidebar': Sidebar,
       'Login': Login,
-      'ClassActivity': ClassActivity,
+      'News': News,
       // 'SlideShow' : SlideShow
     //   'HeaderComponent': HeaderComponent
     }
