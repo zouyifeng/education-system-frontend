@@ -24,11 +24,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                    <tr v-for="(index, item) in articleList.list">
+                        <th scope="row">{{index}}</th>
+                        <td>{{item.title}}</td>
+                        <td>{{item.author}}</td>
+                        <td>{{item.date}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -36,5 +36,13 @@
     </div>
 </template>
 <script>
-
+    import { mapGetters } from 'vuex'
+    export default {
+        computed: mapGetters({
+            articleList: 'getClassActivityDetailArticle'
+        }),
+        mounted() {
+            this.$store.dispatch('getClassActivity');
+        }
+    }
 </script>

@@ -6,7 +6,6 @@ export default {
         return state.loginAccount;
     },
     getClassActivityDetailArticle(state) {
-        console.log(state)
         return state.classActivityDetail.article;
     }
 }
