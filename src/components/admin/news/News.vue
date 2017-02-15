@@ -1,18 +1,18 @@
 <template>
     <div class="panel panel-default">
-        <div class="panel-heading">文章管理</div>
+        <div class="panel-heading">新闻管理</div>
         <div class="panel-body">
             <form class="form-inline">
                 <div class="form-group">
                     <label for="title">标题</label>
-                    <input type="text" class="form-control" id="title" placeholder="标题">
+                    <input type="text" class="form-control" id="title" placeholder="标题" v-model="search.title">
                 </div>
                 <div class="form-group">
                     <label for="author">作者</label>
-                    <input type="email" class="form-control" id="author" placeholder="作者">
+                    <input type="email" class="form-control" id="author" placeholder="作者" v-model="search.author">
                 </div>
-                <button type="submit" class="btn btn-default">查询</button>
-                <router-link to="/admin/editArticle" class="btn btn-primary">新增</router-link>                    
+                <button type="submit" class="btn btn-default" v-on:click="searchNews()">查询</button>
+                <router-link to="/admin/editNews" class="btn btn-primary">新增</router-link>                    
             </form>
             <table class="table">
                 <thead>
@@ -29,6 +29,8 @@
                         <td>{{item.title}}</td>
                         <td>{{item.author}}</td>
                         <td>{{item.date}}</td>
+                        <td><button type="button" class="btn btn-default" v-on:click="deleteNews(item.id)">删除</button></td>
+                        <td><button type="button" class="btn btn-default" v-on:click="edit(item.id)">编辑</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -38,11 +40,38 @@
 <script>
     import { mapGetters } from 'vuex'
     export default {
+        data() {
+            return {
+                search: {
+                    name: '',
+                    author: ''
+                }
+            }
+        },
         computed: mapGetters({
             newsList: 'getNews'
         }),
         mounted() {
-            this.$store.dispatch('getNews');
+            this.$store.dispatch('fetchAdminNews');
+        },
+        methods: {
+            deleteNews(id) {
+                this.$store.dispatch('deleteNews', { id: id}).then((resp) => {
+                    this.$store.dispatch('getNews');
+                }, () => {
+                    console.log('Delete news error!');
+                });
+            },
+            edit(id) {
+
+            },
+            searchNews() {
+                this.$store.dispatch('searchNews', this.search).then((resp) => {
+                    console.log(resp)
+                }, () => {
+                    console.log('Search news error!');                    
+                });
+            }
         }
     }
 </script>

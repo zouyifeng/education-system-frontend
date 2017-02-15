@@ -18,8 +18,8 @@ import Contact from './components/index/contact/Contact'
 
 // admin 
 import Admin from './components/admin/Admin'
-import Article from './components/admin/news/News'
-import EditArticle from './components/admin/news/EditNews'
+import News from './components/admin/news/News'
+import EditNews from './components/admin/news/EditNews'
 import Teacher from './components/admin/teacher/Teacher'
 import EditTeacher from './components/admin/teacher/EditTeacher'
 import Class from './components/admin/class/Class'
@@ -58,11 +58,11 @@ export const routes = [{
     component: Admin,
     children: [
       {
-        path: 'article',
-        component: Article
+        path: 'news',
+        component: News
       },{
-        path: 'editArticle',
-        component: EditArticle
+        path: 'editNews',
+        component: EditNews
       },{
         path: 'teacher',
         component: Teacher

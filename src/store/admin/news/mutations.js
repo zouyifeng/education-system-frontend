@@ -6,4 +6,11 @@ export default {
         state.news = news;
     },
 
+    [types.SEARCH_NEWS](state, news) {
+        state.news = news;
+    },
+
+    [types.FETCH_ADMIN_NEWS](state, news){
+        state.news = news;
+    }
 };

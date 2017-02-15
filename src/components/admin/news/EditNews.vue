@@ -1,6 +1,6 @@
 <template>
     <div class="panel panel-default">
-        <div class="panel-heading">新增文章</div>
+        <div class="panel-heading">新增新闻</div>
         <div class="panel-body">
             <form>
                 <div class="form-group">
@@ -19,7 +19,7 @@
                     <label for="content">内容</label>
                     <textarea id="content" type="text" class="form-control" placeholder="内容" v-model="news.context"></textarea>
                 </div>
-                <button type="submit" class="btn btn-default" v-on:click="submit">提交</button>
+                <button type="button" class="btn btn-default" v-on:click="submit">提交</button>
             </form>
         </div>
     </div>
@@ -38,8 +38,12 @@
         },
         methods: {
             submit () {
-                console.log('submit')
-                this.$store.dispatch('editNews', this.news);
+                this.$store.dispatch('editNews', this.news).then((resp) => {
+                    console.log(resp)
+                    this.$router.push({path : 'news'});
+                }, () => {
+                    console.log('error')
+                });
             }
         }
     }

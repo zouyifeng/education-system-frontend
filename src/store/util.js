@@ -1,7 +1,6 @@
 import vue from 'vue'
 
-// const _urlPrefix = 'http://localhost:8081/wechat-education-system';
-const _urlPrefix = '';
+const _urlPrefix = 'http://localhost:8090';
 
 export const get = ({ url }) => {
     return vue.http.get( _urlPrefix + url );
