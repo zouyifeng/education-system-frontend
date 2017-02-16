@@ -23,7 +23,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:8081/wechat-education-system',
+        target: 'http://localhost:8081',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

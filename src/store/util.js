@@ -2,6 +2,8 @@ import vue from 'vue'
 
 const _urlPrefix = 'http://localhost:8090';
 
+// const _urlPrefix = 'http://localhost:8081';
+
 export const get = ({ url }) => {
     return vue.http.get( _urlPrefix + url );
 }
