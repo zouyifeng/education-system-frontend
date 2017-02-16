@@ -9,9 +9,9 @@
                 </div>
                 <div class="form-group">
                     <label for="author">作者</label>
-                    <input type="email" class="form-control" id="author" placeholder="作者" v-model="search.author">
+                    <input type="text" class="form-control" id="author" placeholder="作者" v-model="search.author">
                 </div>
-                <button type="submit" class="btn btn-default" v-on:click="searchNews()">查询</button>
+                <button type="button" class="btn btn-default" v-on:click="searchNews()">查询</button>
                 <router-link to="/admin/editNews" class="btn btn-primary">新增</router-link>                    
             </form>
             <table class="table">
@@ -20,17 +20,22 @@
                         <th>序号</th>
                         <th>标题</th>
                         <th>作者</th>
+                        <th>来源</th>
                         <th>发布时间</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in newsList.list">
-                        <th scope="row">{{index}}</th>
+                        <th scope="row">{{index + 1}}</th>
                         <td>{{item.title}}</td>
                         <td>{{item.author}}</td>
+                        <td>{{item.source}}</td>
                         <td>{{item.date}}</td>
-                        <td><button type="button" class="btn btn-default" v-on:click="deleteNews(item.id)">删除</button></td>
-                        <td><button type="button" class="btn btn-default" v-on:click="edit(item.id)">编辑</button></td>
+                        <td>
+                            <button type="button" class="btn btn-xs btn-default" v-on:click="deleteNews(item.id)">删除</button>
+                            <button type="button" class="btn btn-xs btn-default" v-on:click="edit(item.id)">编辑</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -43,7 +48,7 @@
         data() {
             return {
                 search: {
-                    name: '',
+                    title: '',
                     author: ''
                 }
             }
@@ -51,7 +56,7 @@
         computed: mapGetters({
             newsList: 'getNews'
         }),
-        mounted() {
+        created() {
             this.$store.dispatch('fetchAdminNews');
         },
         methods: {
@@ -67,7 +72,7 @@
             },
             searchNews() {
                 this.$store.dispatch('searchNews', this.search).then((resp) => {
-                    console.log(resp)
+                    console.log(resp);
                 }, () => {
                     console.log('Search news error!');                    
                 });

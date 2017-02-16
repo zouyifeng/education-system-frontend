@@ -9,7 +9,6 @@ export default {
             fetchNewsPromise = util.get({ url });
 
         fetchNewsPromise.then((resp) => {
-        console.log(resp.body)
             commit(types.FETCH_ADMIN_NEWS, resp.body);
         }, () => {
             console.error('Fetch admin news error!');            
@@ -21,7 +20,6 @@ export default {
         const url = '/api/admin/news_add.action',
             editNewsPromise = util.post({ url }, news);
         editNewsPromise.then((resp) => {
-            console.log(resp.body)
             commit(types.EDIT_NEWS, resp.body);
         },() => {
             console.error('Edit news error!');
@@ -29,7 +27,6 @@ export default {
         return editNewsPromise;
     },
     deleteNews({ commit }, news) {
-        console.log(news)
         const url = '/api/admin/news_delete.action',
             deleteNewsPromise = util.post({ url }, news);
         
