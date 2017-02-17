@@ -44,6 +44,9 @@
 </template>
 <script>
     import { mapGetters } from 'vuex'
+
+    import { MessageBox } from 'element-ui'
+
     export default {
         data() {
             return {
@@ -78,6 +81,9 @@
                     console.log('Search news error!');                    
                 });
             }
+        },
+        components: {
+            messageBox: messagebox 
         }
     }
 </script>
