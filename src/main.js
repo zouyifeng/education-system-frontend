@@ -7,13 +7,16 @@ import { routes } from './router'
 import App from './App'
 
 import store from './store'
-import TimeEntries from './components/TimeEntries'
 import 'bootstrap/dist/css/bootstrap.css'
+
+import ElementUI from 'element-ui' 
+import 'element-ui/lib/theme-default/index.css'
 
 Vue.config.devtools = true;
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.use(ElementUI)
 
 const router = new VueRouter({
   routes
