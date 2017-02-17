@@ -24,13 +24,23 @@
                     </tr>
                 </tbody>
             </table>
+            <page :cur="cur" :all="all" ></page>
         </div>
     </div>
 </template>
 <script>
     import { mapGetters } from 'vuex'
+    import page from '../../common/page'
 
     export default {
+        data() {
+            return {
+                pageInfo: {
+                    cur: 1,
+                    all: 6
+                }
+            }
+        },
         mounted() {
             this.$store.dispatch('getNews');
         },
@@ -39,8 +49,10 @@
                 data : 'getNews'
             })
         },
-        methods: {
-            
-        }
+        components: {
+            'page': page
+        },
     }
 </script>
+
+https://github.com/cycgit/vue-pagination
