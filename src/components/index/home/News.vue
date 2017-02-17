@@ -24,35 +24,29 @@
                     </tr>
                 </tbody>
             </table>
-            <page :cur="cur" :all="all" ></page>
+            <page :cur="data.pageInfo.pageNum" :all="data.pageInfo.pages" :callback="nextPage"></page>
         </div>
     </div>
 </template>
 <script>
     import { mapGetters } from 'vuex'
-    import page from '../../common/page'
+    import page from '../../common/Page'
 
     export default {
-        data() {
-            return {
-                pageInfo: {
-                    cur: 1,
-                    all: 6
-                }
-            }
-        },
         mounted() {
             this.$store.dispatch('getNews');
         },
-        computed: {
-            ...mapGetters({
-                data : 'getNews'
-            })
-        },
+        computed: mapGetters({
+            data : 'getNews'
+        }),
         components: {
             'page': page
         },
+        methods: {
+            nextPage(page) {
+                this.data.pageInfo.pageNum = page;  //不规范
+                this.$store.dispatch('getNewsByPage', {data: {}, pageInfo: this.data.pageInfo})
+            }
+        }
     }
 </script>
-
-https://github.com/cycgit/vue-pagination

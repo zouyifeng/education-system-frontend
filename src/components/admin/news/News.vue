@@ -61,7 +61,8 @@
         },
         methods: {
             deleteNews(id) {
-                this.$store.dispatch('deleteNews', { id: id}).then((resp) => {
+                var data = {id: id};
+                this.$store.dispatch('deleteNews', {data: data}).then((resp) => {
                     this.$store.dispatch('getNews');
                 }, () => {
                     console.log('Delete news error!');

@@ -6,13 +6,18 @@ export default {
         state.loginAccount = account;
     },
 
-    // 班级动态列表
+    // 新闻列表
     [types.FETCH_NEWS_LIST](state, news) {
         state.news = news;
     },
 
-    // 班级动态详情
+    // 新闻详情
     [types.FETCH_NEWS_DETAIL](state, newsDetail) {
         state.newsDetail = newsDetail;
+    },
+
+    // 新闻列表
+    [types.FETCH_NEWS_BY_PAGE](state, news){
+        state.news = news;
     }
 };

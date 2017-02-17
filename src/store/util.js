@@ -9,5 +9,5 @@ export const get = ({ url }) => {
 }
 
 export const post = ({ url }, data) => {
-    return vue.http.post( _urlPrefix + url, { data: data } );
+    return vue.http.post( _urlPrefix + url, data );
 }

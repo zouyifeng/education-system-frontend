@@ -20,5 +20,11 @@ export default {
         util.post({ url }, id).then((resp) => {
             commit(types.FETCH_NEWS_DETAIL, resp.body.data)
         })
+    },
+    getNewsByPage({ commit }, data) {
+        const url = '/api/news_page.action';
+        util.post({ url }, data).then((resp) => {
+            commit(types.FETCH_NEWS_BY_PAGE, resp.body.data);
+        });
     }
 };

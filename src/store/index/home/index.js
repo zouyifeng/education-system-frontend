@@ -11,7 +11,13 @@ const state = {
     news: {
         list: [],
         years:[],
-        pageInfo:{}
+        pageInfo:{
+            pageNum:'',
+            pageSize:'',
+            pages:'',
+            size:'',
+            total:''
+        }
     },
     newsDetail: {
         article: {},

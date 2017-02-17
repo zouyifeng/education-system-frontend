@@ -33,7 +33,7 @@
         }),
         methods: {
             login() {
-                this.$store.dispatch('fetchAccount', this.loginAccount);
+                this.$store.dispatch('fetchAccount', {'data': this.loginAccount});
             }
         },
         watch: {

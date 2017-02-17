@@ -15,7 +15,8 @@
             news: 'getNewsDetail'
         }),
         created () {
-            this.$store.dispatch('getNewsDetail', { id : this.$route.params.id });
+            var data = { id : this.$route.params.id };
+            this.$store.dispatch('getNewsDetail', {data: data});
         }
     }
     </script>

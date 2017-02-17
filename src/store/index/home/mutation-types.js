@@ -1,10 +1,14 @@
 // 更新账户
 export const FETCH_ACCOUNT = 'FETCH_ACCOUNT';
 
-// 班级活动列表
+// 新闻列表
 export const FETCH_NEWS_LIST = 'FETCH_NEWS_LIST';
 
-// 班级活动详情
+// 新闻详情
 export const FETCH_NEWS_DETAIL = 'FETCH_NEWS_DETAIL';
 
+// 根据分页参数获取新闻列表
+export const FETCH_NEWS_BY_PAGE = 'FETCH_NEWS_BY_PAGE';
 
+
+    
