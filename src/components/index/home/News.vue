@@ -20,7 +20,9 @@
                         <td>{{item.source}}</td>
                         <td>{{item.date}}</td>
                         <td>{{item.title}}</td>
-                        <td><router-link :to="{ name :'classActivityDetail', params: { id: item.id }}">详情</router-link></td>
+                        <td>
+                            <router-link :to="{ name :'classActivityDetail', params: { id: item.id }}">详情</router-link>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -37,7 +39,7 @@
             this.$store.dispatch('getNews');
         },
         computed: mapGetters({
-            data : 'getNews'
+            data: 'getNews'
         }),
         components: {
             'page': page
@@ -45,8 +47,9 @@
         methods: {
             nextPage(page) {
                 this.data.pageInfo.pageNum = page;  //不规范
-                this.$store.dispatch('getNewsByPage', {data: {}, pageInfo: this.data.pageInfo})
+                this.$store.dispatch('getNewsByPage', { data: {}, pageInfo: this.data.pageInfo })
             }
         }
     }
+
 </script>

@@ -45,7 +45,7 @@
 <script>
     import { mapGetters } from 'vuex'
 
-    import { MessageBox } from 'element-ui'
+    // import { MessageBox } from 'element-ui'
 
     export default {
         data() {
@@ -83,7 +83,7 @@
             }
         },
         components: {
-            messageBox: messagebox 
+            // messageBox: messagebox 
         }
     }
 </script>
