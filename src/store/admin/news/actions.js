@@ -4,12 +4,12 @@ import * as util from '../../util'
 import * as types from './mutation-types'
 
 export default {
-    fetchAdminNews({ commit }){
+    fetchAdminNews({ commit },data){
         const url = '/api/admin/news_list.action',
-            fetchNewsPromise = util.get({ url });
+            fetchNewsPromise = util.post({ url }, data);
 
         fetchNewsPromise.then((resp) => {
-            commit(types.FETCH_ADMIN_NEWS, resp.body);
+            commit(types.FETCH_ADMIN_NEWS, resp.body.data);
         }, () => {
             console.error('Fetch admin news error!');            
         });
@@ -38,7 +38,7 @@ export default {
             searchNewsPromise = util.post({ url }, search);
 
         searchNewsPromise.then((resp) => {
-            commit(types.SEARCH_NEWS, resp.body);
+            commit(types.SEARCH_NEWS, resp.body.data);
         }, () => {
             console.error('Search news error!');
         });

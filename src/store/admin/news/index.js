@@ -6,7 +6,11 @@ import getters from './getters'
 const state = {
     news: {
         years: [],
-        article: {}
+        list: [],
+        pageInfo: {
+            pages: '',
+            pageNum: ''
+        }
     }
 }
 

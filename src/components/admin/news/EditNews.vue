@@ -38,8 +38,8 @@
         },
         methods: {
             submit () {
-                this.$store.dispatch('editNews', this.news).then((resp) => {
-                    console.log(resp)
+                this.$store.dispatch('editNews', {data: this.news}).then((resp) => {
+                    // console.log(resp)
                     this.$router.push({path : 'news'});
                 }, () => {
                     console.log('error')

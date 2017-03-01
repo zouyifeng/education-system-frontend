@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item, index) in newsList.list">
+                    <tr v-for="(item, index) in data.list">
                         <th scope="row">{{index + 1}}</th>
                         <td>{{item.title}}</td>
                         <td>{{item.author}}</td>
@@ -39,11 +39,14 @@
                     </tr>
                 </tbody>
             </table>
+            <page :cur="data.pageInfo.pageNum" :all="data.pageInfo.pages" :callback="nextPage"></page>
         </div>
     </div>
 </template>
 <script>
     import { mapGetters } from 'vuex'
+
+    import page from '../../common/Page'
 
     // import { MessageBox } from 'element-ui'
 
@@ -57,33 +60,40 @@
             }
         },
         computed: mapGetters({
-            newsList: 'getNews'
+            data: 'getAdminNews'
         }),
         created() {
-            this.$store.dispatch('fetchAdminNews');
+            this.$store.dispatch('fetchAdminNews', {data: {}, pageInfo: {pageNum: 1}});
         },
         methods: {
             deleteNews(id) {
                 var data = {id: id};
                 this.$store.dispatch('deleteNews', {data: data}).then((resp) => {
-                    this.$store.dispatch('getNews');
+                    this.$store.dispatch('fetchAdminNews', {data: {}, pageInfo: {pageNum: 1}});
                 }, () => {
                     console.log('Delete news error!');
                 });
             },
             edit(id) {
+                var data = {id : id};
 
             },
             searchNews() {
-                this.$store.dispatch('searchNews', this.search).then((resp) => {
+                this.$store.dispatch('searchNews', {data: this.search}).then((resp) => {
                     console.log(resp);
+                    // this.$store.dispatch('getAdminNews');
                 }, () => {
                     console.log('Search news error!');                    
                 });
+            },
+            nextPage(page) {
+                this.data.pageInfo.pageNum = page;  //不规范
+                this.$store.dispatch('fetchAdminNews', { data: {}, pageInfo: this.data.pageInfo })
             }
         },
         components: {
             // messageBox: messagebox 
+            'page': page
         }
     }
 </script>
