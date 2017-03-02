@@ -12,13 +12,13 @@
                     <input type="text" class="form-control" id="author" placeholder="作者" v-model="search.author">
                 </div>
                 <button type="button" class="btn btn-default" v-on:click="searchNews()">查询</button>
-                <router-link to="/admin/editNews" class="btn btn-primary">新增</router-link>                    
+                <router-link class="btn btn-primary" :to="{ name :'editNews'}">编辑</router-link>                    
             </form>
             <table class="table">
                 <thead>
                     <tr>
                         <th>序号</th>
-                        <th>标题</th>
+                        <th>标题</th> 
                         <th>作者</th>
                         <th>来源</th>
                         <th>发布时间</th>
@@ -34,7 +34,8 @@
                         <td>{{item.date}}</td>
                         <td>
                             <button type="button" class="btn btn-xs btn-default" v-on:click="deleteNews(item.id)">删除</button>
-                            <button type="button" class="btn btn-xs btn-default" v-on:click="edit(item.id)">编辑</button>
+                            <router-link class="btn btn-xs btn-default" :to="{ name :'editNews', params: { id: item.id }}">编辑</router-link>
+                            <!-- <button type="button" class="btn btn-xs btn-default" v-on:click="edit(item.id)">编辑</button> -->
                         </td>
                     </tr>
                 </tbody>
@@ -76,11 +77,12 @@
             },
             edit(id) {
                 var data = {id : id};
-
+                // this.$router.push({path : 'editNews'});
             },
             searchNews() {
                 this.$store.dispatch('searchNews', {data: this.search}).then((resp) => {
                     console.log(resp);
+
                     // this.$store.dispatch('getAdminNews');
                 }, () => {
                     console.log('Search news error!');                    

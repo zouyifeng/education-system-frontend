@@ -20,7 +20,7 @@ const state = {
         }
     },
     newsDetail: {
-        article: {},
+        news: {},
         years: []
     }
 }

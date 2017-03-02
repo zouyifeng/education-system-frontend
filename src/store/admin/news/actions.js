@@ -19,11 +19,11 @@ export default {
     editNews({ commit }, news) {
         const url = '/api/admin/news_add.action',
             editNewsPromise = util.post({ url }, news);
-        editNewsPromise.then((resp) => {
-            commit(types.EDIT_NEWS, resp.body);
-        },() => {
-            console.error('Edit news error!');
-        });
+        // editNewsPromise.then((resp) => {
+        //     commit(types.EDIT_NEWS, resp.body.data);
+        // },() => {
+        //     console.error('Edit news error!');
+        // });
         return editNewsPromise;
     },
     deleteNews({ commit }, news) {

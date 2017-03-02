@@ -61,6 +61,11 @@ export const routes = [{
         path: 'news',
         component: News
       },{
+        name:'editNews',
+        path: 'editNews/:id',
+        component: EditNews
+      },{
+        name:'editNews',
         path: 'editNews',
         component: EditNews
       },{

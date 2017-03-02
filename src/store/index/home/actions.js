@@ -17,9 +17,7 @@ export default {
     },
     getNewsDetail({ commit }, id) {
         const url = '/api/news.action';
-        util.post({ url }, id).then((resp) => {
-            commit(types.FETCH_NEWS_DETAIL, resp.body.data)
-        })
+        return util.post({ url }, id);
     },
     getNewsByPage({ commit }, data) {
         const url = '/api/news_page.action';

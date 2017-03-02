@@ -36,6 +36,15 @@
                 }
             }
         },
+        created () {
+            if(this.$route.params.id !== undefined){
+                var data = { id : this.$route.params.id };
+                this.$store.dispatch('getNewsDetail', {data: data}).then((resp)=>{
+                    console.log(resp.data.data)
+                    this.news = resp.data.data.news;
+                });
+            }
+        },
         methods: {
             submit () {
                 this.$store.dispatch('editNews', {data: this.news}).then((resp) => {
