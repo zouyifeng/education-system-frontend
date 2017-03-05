@@ -4,20 +4,34 @@ import * as util from '../../util'
 import * as types from './mutation-types'
 
 export default {
-    editArticle({ commit }, article) {
-        const url = '/article_list.action';
-        util.post({ url, article }).then((resp) => {
-            commit(types.ADD_ARTICLE, resp.body);
-        },() => {
-            console.log('error');
-        });
+    addTeacher({ commit }, teacher) {
+        const url = '/api/admin/member_add.action';
+        return util.post({ url }, teacher);
     },
-    getArticleList({ commit }) {
-        const url = 'admin/article_add.action';
-        util.get({ url }).then((resp) => {
-            commit(types.GET_ARTICLE_LIST, resp.body);
+    editTeacher({ commit }, teacher) {
+        const url = '/api/admin/member_edit.action';
+        return util.post({ url }, teacher);
+    },
+    fetchAdminTeacherList({ commit }, data) {
+        const url = '/api/admin/member_list.action';
+        util.post({ url }, data).then((resp) => {
+            commit(types.FETCH_ADMIN_TEACHER_LIST, resp.body.data);
         }, () => {
             console.log('error');
         })
+    },
+    deleteTeacher({ commit }, teacher) {
+        const url = '/api/admin/member_delete.action';
+        return util.post({ url }, teacher) ;
+    },
+    searchTeacher({ commit }, teacher ) {
+        const url = '/api/admin/member_select.action';
+        util.post({ url }, teacher).then((resp)=>{
+            commit(types.SEARCH_TEACHER, resp.body.data);
+        });
+    },
+    fetchTeacherDetail({ commit }, teacher){
+        const url = '/api/admin/member_editUI.action';
+        return util.post({ url }, teacher);
     }
 };

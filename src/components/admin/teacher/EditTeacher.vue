@@ -5,30 +5,89 @@
             <form>
                 <div class="form-group">
                     <label for="name">姓名</label>
-                    <input id="name" type="text" class="form-control" placeholder="姓名">
+                    <input id="name" type="text" class="form-control" placeholder="姓名" v-model="teacher.name">
                 </div>
                 <div class="form-group">
                     <label for="email">邮箱</label>
-                    <input id="email" type="text" class="form-control" placeholder="邮箱">
+                    <input id="email" type="text" class="form-control" placeholder="邮箱" v-model="teacher.email">
                 </div>
                 <div class="form-group">
                     <label for="phone">电话</label>
-                    <input id="phone" type="text" class="form-control" placeholder="电话">
+                    <input id="phone" type="text" class="form-control" placeholder="电话" v-model="teacher.telephone">
                 </div>
                 <div class="form-group">
                     <label for="direction">研究方向</label>
-                    <textarea id="direction" type="text" class="form-control" placeholder="研究方向"></textarea>
+                    <textarea id="direction" type="text" class="form-control" placeholder="研究方向" v-model="teacher.direction"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="detail">详细介绍</label>
-                    <textarea id="detail" type="text" class="form-control" placeholder="详细介绍"></textarea>
+                    <textarea id="detail" type="text" class="form-control" placeholder="详细介绍" v-model="teacher.introduction"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="photo">照片</label>
-                    <input id="photo" type="file" class="form-control"></input>
+                    <el-upload name="pic" action="/api/admin/member_pic_upload.action" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-success="handleSuccessUpload">
+                        <i class="el-icon-plus"></i>
+                    </el-upload>
+                    <el-dialog v-model="img.dialogVisible" size="tiny">
+                        <img width="100%" :src="img.dialogImageUrl" alt="">
+                    </el-dialog>
                 </div>
-                <button type="submit" class="btn btn-default">提交</button>
+                <button type="submit" class="btn btn-default" v-on:click="submit">提交</button>
             </form>
         </div>
     </div>
 </template>
+<script>
+    export default {
+        data() {
+            return {
+                teacher: {
+                    'name': '',
+                    'telephone': '',
+                    'email': '',
+                    'direction': '',
+                    'introduction':'',
+                    'face': '',
+                    'type': '1'
+                },
+                img: {
+                    dialogVisible: false,
+                    dialogImageUrl: ''
+                }
+            }
+        },
+        created () {
+            if(this.$route.params.id !== undefined){
+                var data = { id : this.$route.params.id };
+                this.$store.dispatch('fetchTeacherDetail', {data: data}).then((resp)=>{
+                    console.log(resp.data.data)
+                    this.teacher = resp.data.data;
+                });
+            }
+        },
+        methods: {
+            submit () {
+                var actionType = this.teacher.id ? 'editTeacher' : 'addTeacher'; 
+                console.log('editteacher')
+                this.$store.dispatch(actionType, {data: this.teacher}).then((resp) => {
+                    // console.log(resp)
+                    this.$router.push({path : '../teacher'});
+                }, () => {
+                    console.log('error')
+                });
+            },
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePictureCardPreview(file) {
+                console.log(file)
+                this.img.dialogImageUrl = file.url;
+                this.img.dialogVisible = false;
+            },
+            handleSuccessUpload(resp, file, fileList){
+                // var picUrl = resp.data.picUrl;
+                this.teacher.face = resp.data.picUrl;
+            }
+        }
+    }
+</script>

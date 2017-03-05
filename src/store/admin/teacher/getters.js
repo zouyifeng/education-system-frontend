@@ -1,5 +1,5 @@
 export default {
-    getArticleList(state) {
-        return state.articleList;
+    getAdminTeacherList(state) {
+        return state.teacher;
     }
 }

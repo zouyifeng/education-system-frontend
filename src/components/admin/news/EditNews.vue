@@ -40,7 +40,6 @@
             if(this.$route.params.id !== undefined){
                 var data = { id : this.$route.params.id };
                 this.$store.dispatch('getNewsDetail', {data: data}).then((resp)=>{
-                    console.log(resp.data.data)
                     this.news = resp.data.data.news;
                 });
             }
@@ -49,7 +48,7 @@
             submit () {
                 this.$store.dispatch('editNews', {data: this.news}).then((resp) => {
                     // console.log(resp)
-                    this.$router.push({path : 'news'});
+                    this.$router.push({path : '../news'});
                 }, () => {
                     console.log('error')
                 });

@@ -14,7 +14,6 @@
       <router-link class="list-group-item" to="/time-entries">教师管理</router-link>
       <router-link class="list-group-item" to="/time-entries">学生管理</router-link>
     </div>
-
   </div>
 </template>
 

@@ -72,6 +72,11 @@ export const routes = [{
         path: 'teacher',
         component: Teacher
       },{
+        name: 'editTeacher',
+        path: 'editTeacher/:id',
+        component: EditTeacher
+      },{
+        name: 'editTeacher',
         path: 'editTeacher',
         component: EditTeacher
       },{
