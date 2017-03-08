@@ -22,6 +22,8 @@ import News from './components/admin/news/News'
 import EditNews from './components/admin/news/EditNews'
 import Teacher from './components/admin/teacher/Teacher'
 import EditTeacher from './components/admin/teacher/EditTeacher'
+import Student from './components/admin/student/Student'
+import EditStudent from './components/admin/student/EditStudent'
 import Class from './components/admin/class/Class'
 import EditClass from './components/admin/class/EditClass'
 
@@ -79,6 +81,17 @@ export const routes = [{
         name: 'editTeacher',
         path: 'editTeacher',
         component: EditTeacher
+      },{
+        path: 'student',
+        component: Student
+      },{
+        name: 'editStudent',
+        path: 'editStudent/:id',
+        component: EditStudent
+      },{
+        name: 'editStudent',
+        path: 'editStudent',
+        component: EditStudent
       },{
         path: 'class',
         component: Class

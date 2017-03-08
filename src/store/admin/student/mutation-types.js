@@ -1,0 +1,5 @@
+// 新增文章
+export const SEARCH_STUDENT = 'SEARCH_STUDENT';
+
+export const FETCH_ADMIN_STUDENT_LIST = 'FETCH_ADMIN_STUDENT_LIST';
+
