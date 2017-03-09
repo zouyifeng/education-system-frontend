@@ -64,13 +64,13 @@
             data: 'getAdminStudentList'
         }),
         created() {
-            this.$store.dispatch('fetchAdminStudentList', {data: {type: 1}, pageInfo: {pageNum: 1}})
+            this.$store.dispatch('fetchAdminStudentList', {data: {type: 0}, pageInfo: {pageNum: 1}})
         },
         methods: {
             deleteStudent(id) {
                 var data = {id: id};
                 this.$store.dispatch('deleteStudent', {data: data}).then((resp)=>{
-                    this.$store.dispatch('fetchAdminStudentList', {data:{type: 1}, pageInfo: {pageNum: 1}})
+                    this.$store.dispatch('fetchAdminStudentList', {data:{type: 0}, pageInfo: {pageNum: 1}})
                 })
             },
             editStudent(id) {
@@ -81,7 +81,7 @@
             },
             nextPage(page){
                 this.data.pageInfo.pageNum = page;
-                this.$store.dispatch('fetchAdminStudentList',{ data: {type: 1}, pageInfo: this.data.pageInfo })
+                this.$store.dispatch('fetchAdminStudentList',{ data: {type: 0}, pageInfo: this.data.pageInfo })
             }
         },
         components: {

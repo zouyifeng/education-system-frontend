@@ -71,7 +71,7 @@
                 console.log('editteacher')
                 this.$store.dispatch(actionType, {data: this.student}).then((resp) => {
                     // console.log(resp)
-                    this.$router.push({path : '../student'});
+                    this.$router.push({path : './student'});
                 }, () => {
                     console.log('error')
                 });

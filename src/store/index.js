@@ -5,6 +5,7 @@ import home from './index/home'
 import news from './admin/news'
 import teacher from './admin/teacher'
 import student from './admin/student'
+import classes from './admin/classes'
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     home,
     news,
     teacher,
-    student
+    student,
+    classes
   }
 })

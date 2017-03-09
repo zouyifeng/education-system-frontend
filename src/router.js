@@ -24,8 +24,8 @@ import Teacher from './components/admin/teacher/Teacher'
 import EditTeacher from './components/admin/teacher/EditTeacher'
 import Student from './components/admin/student/Student'
 import EditStudent from './components/admin/student/EditStudent'
-import Class from './components/admin/class/Class'
-import EditClass from './components/admin/class/EditClass'
+import Classes from './components/admin/classes/Classes'
+import EditClasses from './components/admin/classes/EditClasses'
 
 export const routes = [{
     path : '/index/home',
@@ -93,11 +93,13 @@ export const routes = [{
         path: 'editStudent',
         component: EditStudent
       },{
-        path: 'class',
-        component: Class
+        name: 'classes',
+        path: 'classes',
+        component: Classes
       },{
-        path: 'editClass',
-        component: EditClass
+        name: 'editClasses',
+        path: 'editClasses',
+        component: EditClasses
       }
     ]
   }

@@ -4,7 +4,13 @@ import getters from './getters'
 
 
 const state = {
-    articleList: []
+    classes: {
+        list:[],
+        pageInfo: {
+            pages: '',
+            pageNum: ''
+        }
+    }
 }
 
 export default {
