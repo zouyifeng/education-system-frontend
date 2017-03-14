@@ -1,43 +1,36 @@
-<template>
-    <div class="panel panel-default">
-        <div class="panel-heading">班级管理</div>
-        <div class="panel-body">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="subject">科目</label>
-                    <input type="text" class="form-control" id="subject" placeholder="科目" v-model="classes.subject">
-                </div>
-                <div class="form-group">
-                    <label for="context">简介</label>
-                    <input type="email" class="form-control" id="context" placeholder="班级地点" v-model="classes.context">
-                </div>
-                <button type="submit" class="btn btn-default" v-on:click="search">查询</button>
-                <router-link to="/admin/editClasses" class="btn btn-primary">新增</router-link>                    
-            </form>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>班级科目</th>
-                        <th>班级简介</th>
-                        <th>创建日期</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item, index) in data.list">
-                        <th scope="row">{{index + 1}}</th>
-                        <td>{{item.subject}}</td>
-                        <td>{{item.context}}</td>
-                        <td>{{item.sumary}}</td>
-                        <td>
-                            <button type="button" class="btn btn-xs btn-default" v-on:click="deleteClasses(item.id)">删除</button>
-                            <router-link class="btn btn-xs btn-default" :to="{ name :'editClasses', params: { id: item.id }}">编辑</router-link>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <page :cur="data.pageInfo.pageNum" :all="data.pageInfo.pages" :callback="nextPage"></page>
+<template>  
+    <div>
+        <el-form :inline="true" :model="classes" class="demo-form-inline" style="width: 100%">
+            <el-form-item label="科目">
+                <el-input v-model="classes.subject" placeholder="科目"></el-input>
+            </el-form-item>
+            <el-form-item label="班级地点">
+                <el-input v-model="classes.context" placeholder="班级地点"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="search">查询</el-button>
+            </el-form-item>
+        </el-form>
+        <el-table :data="data.list" stripe style="width: 100%">
+            <el-table-column type="index"></el-table-column>
+            <el-table-column prop="subject" label="班级科目"></el-table-column>
+            <el-table-column prop="context" label="班级简介"></el-table-column>
+            <el-table-column prop="sumary" label="创建日期"></el-table-column>
+            <el-table-column label="操作">
+                <template scope="scope">
+                    <el-button size="small" type="danger" @click="deleteClasses(scope.row.id)">删除</el-button>
+                    <router-link class="btn btn-default" :to="{ name :'editClasses', params: { id: scope.row.id }}">编辑</router-link>                   
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="block">
+            <el-pagination
+                layout="total,prev, pager, next"
+                :current-page="data.pageInfo.pageNum"
+                :page-size="6"
+                :total="data.pageInfo.total"
+                @current-change="nextPage">
+            </el-pagination>
         </div>
     </div>
 </template>
@@ -63,6 +56,7 @@
         },
         methods: {
             deleteClasses(id) {
+                console.log(id)
                 var data = {id: id};
                 this.$store.dispatch('deleteClasses', {data: data}).then((resp)=>{
                     this.$store.dispatch('fetchAdminClassesList', {data:{}, pageInfo: {pageNum: 1}})
