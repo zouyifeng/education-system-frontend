@@ -1,46 +1,36 @@
 <template>
-    <div class="panel panel-default">
-        <div class="panel-heading">新闻管理</div>
-        <div class="panel-body">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="title">标题</label>
-                    <input type="text" class="form-control" id="title" placeholder="标题" v-model="search.title">
-                </div>
-                <div class="form-group">
-                    <label for="author">作者</label>
-                    <input type="text" class="form-control" id="author" placeholder="作者" v-model="search.author">
-                </div>
-                <button type="button" class="btn btn-default" v-on:click="searchNews()">查询</button>
-                <router-link class="btn btn-primary" :to="{ name :'editNews'}">编辑</router-link>                    
-            </form>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>标题</th> 
-                        <th>作者</th>
-                        <th>来源</th>
-                        <th>发布时间</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item, index) in data.list">
-                        <th scope="row">{{index + 1}}</th>
-                        <td>{{item.title}}</td>
-                        <td>{{item.author}}</td>
-                        <td>{{item.source}}</td>
-                        <td>{{item.date}}</td>
-                        <td>
-                            <button type="button" class="btn btn-xs btn-default" v-on:click="deleteNews(item.id)">删除</button>
-                            <router-link class="btn btn-xs btn-default" :to="{ name :'editNews', params: { id: item.id }}">编辑</router-link>
-                            <!-- <button type="button" class="btn btn-xs btn-default" v-on:click="edit(item.id)">编辑</button> -->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <page :cur="data.pageInfo.pageNum" :all="data.pageInfo.pages" :callback="nextPage"></page>
+    <div>
+        <el-form :inline="true" :model="search" class="demo-form-inline" style="width: 100%">
+            <el-form-item label="标题">
+                <el-input v-model="search.title" placeholder="标题"></el-input>
+            </el-form-item>
+            <el-form-item label="作者">
+                <el-input v-model="search.author" placeholder="作者"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="searchNews">查询</el-button>
+            </el-form-item>
+        </el-form>
+        <el-table :data="data.list" stripe style="width: 100%">
+            <el-table-column type="index" label="序号"></el-table-column>
+            <el-table-column prop="title" label="标题"></el-table-column>
+            <el-table-column prop="author" label="作者"></el-table-column>
+            <el-table-column prop="date" label="创建日期"></el-table-column>
+            <el-table-column label="操作">
+                <template scope="scope">
+                    <el-button size="small" type="danger" @click="deleteNews(scope.row.id)">删除</el-button>
+                    <router-link class="btn btn-default" :to="{ name :'editNews', params: { id: scope.row.id }}">编辑</router-link>                   
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="block">
+            <el-pagination
+                layout="total,prev, pager, next"
+                :current-page="data.pageInfo.pageNum"
+                :page-size="6"
+                :total="data.pageInfo.total"
+                @current-change="nextPage">
+            </el-pagination>
         </div>
     </div>
 </template>

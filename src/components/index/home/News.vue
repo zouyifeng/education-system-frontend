@@ -1,34 +1,15 @@
 <template>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">班级动态</h3>
-        </div>
-        <div class="panel-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>来源</th>
-                        <th>时间</th>
-                        <th>标题</th>
-                        <th>详情</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item, index) in data.list">
-                        <th scope="row">{{index}}</th>
-                        <td>{{item.source}}</td>
-                        <td>{{item.date}}</td>
-                        <td>{{item.title}}</td>
-                        <td>
-                            <router-link :to="{ name :'classActivityDetail', params: { id: item.id }}">详情</router-link>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <page :cur="data.pageInfo.pageNum" :all="data.pageInfo.pages" :callback="nextPage"></page>
-        </div>
-    </div>
+     <el-table :data="data.list" stripe style="width: 100%">
+        <el-table-column type="index" label="序号" width="100"></el-table-column>
+        <el-table-column prop="source" label="来源" width="180"></el-table-column>
+        <el-table-column prop="date" label="时间" width="180"></el-table-column>
+        <el-table-column prop="title" label="标题" width="180"></el-table-column>
+        <el-table-column>
+            <template scope="scope">
+                <router-link :to="{ name :'classActivityDetail', params: { id: scope.row.id }}">详情</router-link>            
+            </template>
+        </el-table-column>
+    </el-table>
 </template>
 <script>
     import { mapGetters } from 'vuex'

@@ -1,28 +1,22 @@
 <template>
-    <div class="container">
-      <div class="col-md-9">
-
-      </div>
-      <div class="col-md-3">
-        <login></login>
-      </div>
-      <div class="row">
-        <!--<slide-show></slide-show>-->
-      </div>
-      <div class="col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">日 历</h3>
-          </div>
-          <div class="panel-body">
-            Panel content
-          </div>
-        </div>
-      </div>
-      <div class="col-md-9">
-        <news></news>
-      </div>
-    </div>
+  <div class="container">
+      <el-row :gutter="20">
+          <el-col :span="16">
+            <div>轮播图</div>
+          </el-col>
+          <el-col :span="8">
+            <login></login>
+          </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="6">
+        <div>日历</div>
+        </el-col>
+        <el-col :span="18">
+          <news></news>
+        </el-col>
+      </el-row>
+  </div>
 </template>
 
 <script>

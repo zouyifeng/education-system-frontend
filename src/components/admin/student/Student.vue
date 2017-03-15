@@ -1,48 +1,37 @@
 <template>
-    <div class="panel panel-default">
-        <div class="panel-heading">成员管理</div>
-        <div class="panel-body">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="title">姓名</label>
-                    <input type="text" class="form-control" id="name" placeholder="姓名" v-model="search.name">
-                </div>
-                <div class="form-group">
-                    <label for="direction">研究方向</label>
-                    <input type="email" class="form-control" id="direction" placeholder="研究方向" v-model="search.direction">
-                </div>
-                <button type="submit" class="btn btn-default" v-on:click="searchStudent">查询</button>
-                <router-link to="/admin/editStudent" class="btn btn-primary">新增</router-link>                    
-            </form>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>姓名</th>
-                        <th>邮箱</th>
-                        <th>电话</th>
-                        <th>研究方向</th>
-                        <th>文本</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item, index) in data.list">
-                        <th scope="row">{{index + 1}}</th>
-                        <td>{{item.name}}</td>
-                        <td>{{item.email}}</td>
-                        <td>{{item.telephone}}</td>
-                        <td>{{item.direction}}</td>
-                        <td>{{item.introduction}}</td>
-                        <td>
-                            <button type="button" class="btn btn-xs btn-default" v-on:click="deleteStudent(item.id)">删除</button>
-                            <router-link class="btn btn-xs btn-default" :to="{ name :'editStudent', params: { id: item.id }}">编辑</router-link>
-                            <!-- <button type="button" class="btn btn-xs btn-default" v-on:click="edit(item.id)">编辑</button> -->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <page :cur="data.pageInfo.pageNum" :all="data.pageInfo.pages" :callback="nextPage"></page>
+    <div>
+        <el-form :inline="true" :model="search" class="demo-form-inline" style="width: 100%">
+            <el-form-item label="姓名">
+                <el-input v-model="search.name" placeholder="姓名"></el-input>
+            </el-form-item>
+            <el-form-item label="研究方向">
+                <el-input v-model="search.direction" placeholder="研究方向"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="searchStudent">查询</el-button>
+            </el-form-item>
+        </el-form>
+        <el-table :data="data.list" stripe style="width: 100%">
+            <el-table-column type="index" label="序号"></el-table-column>
+            <el-table-column prop="name" label="姓名"></el-table-column>
+            <el-table-column prop="email" label="邮箱"></el-table-column>
+            <el-table-column prop="telephone" label="联系方式"></el-table-column>
+            <el-table-column prop="direction" label="介绍"></el-table-column>
+            <el-table-column label="操作">
+                <template scope="scope">
+                    <el-button size="small" type="danger" @click="deleteStudent(scope.row.id)">删除</el-button>
+                    <router-link class="btn btn-default" :to="{ name :'editStudent', params: { id: scope.row.id }}">编辑</router-link>                   
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="block">
+            <el-pagination
+                layout="total,prev, pager, next"
+                :current-page="data.pageInfo.pageNum"
+                :page-size="6"
+                :total="data.pageInfo.total"
+                @current-change="nextPage">
+            </el-pagination>
         </div>
     </div>
 </template>

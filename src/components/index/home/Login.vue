@@ -1,30 +1,60 @@
 <template>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-        <h3 class="panel-title">管理员入口</h3>
-        </div>
-        <div class="panel-body">
-        <div class="input-group mb-15">
-            <span class="input-group-addon" id="basic-addon1">用户名</span>
-            <input type="text" class="form-control" placeholder="用户名" v-model="loginAccount.username">
-        </div>
-        <div class="input-group mb-15">
-            <span class="input-group-addon" id="basic-addon1"> 密 码 </span>
-            <input type="text" class="form-control" placeholder="密码" v-model="loginAccount.password">  
-        </div>
-        <div class="btn btn-primary col-md-12" v-on:click="login">登录</div>
-        </div>
+    <div class="login"> 
+        <el-form :model="loginAccount" :rules="rule" ref="loginAccount" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="用户名" prop="username">
+                <el-input type="text" v-model="loginAccount.username" auto-complete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+                <el-input type="password" v-model="loginAccount.password" auto-complete="off"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="login">登录</el-button>
+                <el-button @click="resetForm('loginAccount')">重置</el-button>
+            </el-form-item>
+        </el-form>
     </div>
 </template>
+<style>
+    .login{
+        border-left: 1px solid #ddd;
+    }
+</style>
 <script>
     import { mapGetters } from 'vuex'
 
     export default {
         data() {
-            return {
+            var validatePass = (rule, value, callback) => {
+                if(value === ''){
+                    callback(new Error('please enter password!'));
+                } else {
+                    if(this.loginAccount.password !== '') {
+                        this.$refs.loginAccount.validateField('password');
+                    }
+                    callback();
+                }
+            };
+            var validateUsername = (rule, value, callback) => {
+                if(value === ''){
+                    callback(new Error('please enter username!'));
+                } else {
+                    if(this.loginAccount.username !== ''){
+                        this.$ref.loginAccount.validateField('username');
+                    }
+                }
+            }
+            return { 
                 loginAccount: {
                     username: '',
                     password: ''
+                },
+                rule: {
+                    password: [
+                        {validator: validatePass, trigger: 'blur'}
+                    ],
+                    username: [
+                        {validator: validateUsername, trigger: 'blur'}
+                    ]
                 }
             }
         },
@@ -34,6 +64,9 @@
         methods: {
             login() {
                 this.$store.dispatch('fetchAccount', {'data': this.loginAccount});
+            },
+            resetForm(formName){
+                this.$refs[formName].resetFields();
             }
         },
         watch: {
@@ -44,7 +77,7 @@
                     }
                 },
                 deep: true
-            }
+            },
         }
     }
 </script>
