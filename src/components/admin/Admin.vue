@@ -1,31 +1,44 @@
 <template>
     <div>
-        <el-row>
+        <el-row :gutter="24">
             <el-col :span="4">
                 <el-menu class="el-menu-vertical-demo" theme="dark">
-                    <el-menu-item-group title="分组一">
+                    <router-link to="/admin/news">
                         <el-menu-item index="1">
                             <i class="el-icon-message"></i>
-                            <router-link to="/admin/news">新闻管理</router-link>
+                            新闻管理
                         </el-menu-item>
+                    </router-link>
+                    <router-link to="/admin/teacher">
                         <el-menu-item index="2">
                             <i class="el-icon-message"></i>
-                            <router-link to="/admin/teacher">教师管理</router-link>
+                            教师管理
                         </el-menu-item>
+                    </router-link>
+                    <router-link to="/admin/student">
                         <el-menu-item index="3">
                             <i class="el-icon-message"></i>
-                            <router-link to="/admin/student">学生管理</router-link>
+                            学生管理
                         </el-menu-item>
+                    </router-link>
+                    <router-link to="/admin/classes">
                         <el-menu-item index="4">
                             <i class="el-icon-message"></i>
-                            <router-link to="/admin/classes">班级管理</router-link>
+                            班级管理
                         </el-menu-item>
-                    </el-menu-item-group>
+                    </router-link>
                 </el-menu>
             </el-col>
             <el-col :span="18">
-                <router-view></router-view>    
+                <el-row :gutter="20">    
+                    <router-view></router-view>    
+                </el-row>
             </el-col>
         </el-row>
     </div>
 </template>
+<style>
+    .form-container {
+        width: 500px;
+    }
+</style>

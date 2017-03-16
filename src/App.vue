@@ -1,4 +1,5 @@
 <template>
+
     <div id="app">  
         <el-menu theme="dark" mode="horizontal">
             <el-row :gutter="18">
@@ -8,10 +9,10 @@
                     </el-menu-item>
                 </el-col>
                 <el-col :span="8">    
-                    <el-menu-item index="1"><router-link to="/index/home">首页</router-link></el-menu-item>
-                    <el-menu-item index="2"><router-link to="/index/teacherInfo">师资力量</router-link></el-menu-item>
-                    <el-menu-item index="3"><router-link to="/index/classInfo">班级风采</router-link></el-menu-item>
-                    <el-menu-item index="4"><router-link to="/index/contact">联系方式</router-link></el-menu-item>
+                    <router-link to="/index/home"><el-menu-item index="1">首页</el-menu-item></router-link>
+                    <router-link to="/index/teacherInfo"><el-menu-item index="2">师资力量</el-menu-item></router-link>
+                    <router-link to="/index/classInfo"><el-menu-item index="3">班级风采</el-menu-item></router-link>
+                    <router-link to="/index/contact"><el-menu-item index="4">联系方式</el-menu-item></router-link>
                 </el-col>
             </el-row>
         </el-menu>

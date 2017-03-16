@@ -1,28 +1,21 @@
 <template>
-    <div class="panel panel-default">
-        <div class="panel-heading">新增新闻</div>
-        <div class="panel-body">
-            <form>
-                <div class="form-group">
-                    <label for="title">标题</label>
-                    <input id="title" type="text" class="form-control" placeholder="标题" v-model="news.title">
-                </div>
-                <div class="form-group">
-                    <label for="author">作者</label>
-                    <input id="author" type="text" class="form-control" placeholder="作者" v-model="news.author">
-                </div>
-                <div class="form-group">
-                    <label for="author">来源</label>
-                    <input id="author" type="text" class="form-control" placeholder="来源" v-model="news.source">
-                </div>
-                <div class="form-group">
-                    <label for="content">内容</label>
-                    <textarea id="content" type="text" class="form-control" placeholder="内容" v-model="news.context"></textarea>
-                </div>
-                <button type="button" class="btn btn-default" v-on:click="submit">提交</button>
-            </form>
-        </div>
-    </div>
+    <el-col :span="12" :offset="4">
+        <el-form :label-position="labelPosition" label-width="80px">
+            <el-form-item label="标题">
+                <el-input v-model="news.title"></el-input>
+            </el-form-item>
+            <el-form-item label="作者">
+                <el-input v-model="news.author"></el-input>
+            </el-form-item>
+            <el-form-item label="来源"> 
+                <el-input v-model="news.source"></el-input>
+            </el-form-item>
+            <el-form-item label="内容"> 
+                <el-input v-model="news.context"></el-input>
+            </el-form-item> 
+            <el-button type="primary" v-on:click="submit">提交</el-button>
+        </el-form>
+    </el-col>
 </template> 
 <script>
     export default {
