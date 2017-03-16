@@ -9,7 +9,6 @@ import App from './App'
 import store from './store'
 // import 'bootstrap/dist/css/bootstrap.css'
 import ElementUI from 'element-ui' 
-import 'element-ui/lib/theme-default/index.css'
 
 import './assets/styles/base.css'
 require('normalize.css')
