@@ -1,5 +1,6 @@
 <template>
-    <el-col :span="12" :offset="4">
+    <el-col :span="12" :offset="2">
+        <h3>编辑新闻</h3><hr>
         <el-form :label-position="labelPosition" label-width="80px">
             <el-form-item label="标题">
                 <el-input v-model="news.title"></el-input>
@@ -11,9 +12,11 @@
                 <el-input v-model="news.source"></el-input>
             </el-form-item>
             <el-form-item label="内容"> 
-                <el-input v-model="news.context"></el-input>
-            </el-form-item> 
-            <el-button type="primary" v-on:click="submit">提交</el-button>
+                <el-input type="textarea" v-model="news.context"></el-input>
+            </el-form-item>             
+            <el-form-item>
+                <el-button type="primary" v-on:click="submit">提交</el-button>   
+            </el-form-item>
         </el-form>
     </el-col>
 </template> 
@@ -41,7 +44,7 @@
             submit () {
                 this.$store.dispatch('editNews', {data: this.news}).then((resp) => {
                     // console.log(resp)
-                    this.$router.push({path : '../news'});
+                    this.$router.push({path : './news'});
                 }, () => {
                     console.log('error')
                 });

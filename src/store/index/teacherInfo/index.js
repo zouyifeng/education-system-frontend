@@ -3,12 +3,7 @@ import mutations from './mutations'
 import getters from './getters'
 
 const state = {
-    loginAccount: {
-        id: '',
-        username: '',
-        password: ''
-    },
-    classActivityInfoList: []
+    teacherList: []
 }
 
 export default {

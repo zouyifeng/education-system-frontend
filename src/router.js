@@ -26,7 +26,9 @@ import Student from './components/admin/student/Student'
 import EditStudent from './components/admin/student/EditStudent'
 import Classes from './components/admin/classes/Classes'
 import EditClasses from './components/admin/classes/EditClasses'
+import Message from './components/admin/message/Message'
 
+ 
 export const routes = [{
     path : '/index/home',
     component : Home
@@ -67,8 +69,8 @@ export const routes = [{
         path: 'editNews/:id',
         component: EditNews
       },{
-        name:'editNews',
-        path: 'editNews',
+        name:'addNews',
+        path: 'addNews',
         component: EditNews
       },{
         path: 'teacher',
@@ -78,8 +80,8 @@ export const routes = [{
         path: 'editTeacher/:id',
         component: EditTeacher
       },{
-        name: 'editTeacher',
-        path: 'editTeacher',
+        name: 'addTeacher',
+        path: 'addTeacher',
         component: EditTeacher
       },{
         path: 'student',
@@ -89,8 +91,8 @@ export const routes = [{
         path: 'editStudent/:id',
         component: EditStudent
       },{
-        name: 'editStudent',
-        path: 'editStudent',
+        name: 'addStudent',
+        path: 'addStudent',
         component: EditStudent
       },{
         name: 'classes',
@@ -100,6 +102,10 @@ export const routes = [{
         name: 'editClasses',
         path: 'editClasses',
         component: EditClasses
+      },{
+        name: 'message',
+        path: 'message',
+        component: Message
       }
     ]
   }

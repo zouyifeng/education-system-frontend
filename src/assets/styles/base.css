@@ -1,5 +1,5 @@
-@import url("//unpkg.com/element-ui/lib/theme-default/index.css");
-a:hover {
+
+a {
     text-decoration: none;
 }
 
@@ -19,4 +19,8 @@ a:hover {
 .inline {
     display: inline-block;
     margin: 10px;
+}
+
+.mt-15 {
+    margin-top: 15px;
 }

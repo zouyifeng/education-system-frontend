@@ -13,7 +13,6 @@
 </template>
 <script>
     import { mapGetters } from 'vuex'
-    import page from '../../common/Page'
 
     export default {
         mounted() {
@@ -22,9 +21,6 @@
         computed: mapGetters({
             data: 'getNews'
         }),
-        components: {
-            'page': page
-        },
         methods: {
             nextPage(page) {
                 this.data.pageInfo.pageNum = page;  //不规范

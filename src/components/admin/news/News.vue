@@ -1,6 +1,6 @@
 <template>
     <el-col :span="22" :offset="1">
-        <el-form :inline="true" :model="search" class="demo-form-inline" style="width: 100%">
+        <el-form :inline="true" :model="search" class="mt-15" style="width: 100%">
             <el-form-item label="标题">
                 <el-input v-model="search.title" placeholder="标题"></el-input>
             </el-form-item>
@@ -10,6 +10,9 @@
             <el-form-item>
                 <el-button type="primary" @click="searchNews">查询</el-button>
             </el-form-item>
+            <el-form-item>                
+                <router-link :to="{ name :'addNews'}"><el-button>新增</el-button></router-link>                   
+            </el-form-item>
         </el-form>
         <el-table :data="data.list" stripe style="width: 100%">
             <el-table-column type="index" label="序号" width="80px"></el-table-column>
@@ -18,8 +21,8 @@
             <el-table-column prop="date" label="创建日期"></el-table-column>
             <el-table-column label="操作">
                 <template scope="scope">
+                    <router-link class="btn btn-default" :to="{ name :'editNews', params: { id: scope.row.id }}"><el-button size="small">编辑</el-button></router-link>                    
                     <el-button size="small" type="danger" @click="deleteNews(scope.row.id)">删除</el-button>
-                    <router-link class="btn btn-default" :to="{ name :'editNews', params: { id: scope.row.id }}">编辑</router-link>                   
                 </template>
             </el-table-column>
         </el-table>
@@ -36,10 +39,6 @@
 </template>
 <script>
     import { mapGetters } from 'vuex'
-
-    import page from '../../common/Page'
-
-    // import { MessageBox } from 'element-ui'
 
     export default {
         data() {
@@ -88,10 +87,6 @@
                 this.data.pageInfo.pageNum = page;  //不规范
                 this.$store.dispatch('fetchAdminNews', { data: {}, pageInfo: this.data.pageInfo })
             }
-        },
-        components: {
-            // messageBox: messagebox 
-            'page': page
         }
     }
 </script>
