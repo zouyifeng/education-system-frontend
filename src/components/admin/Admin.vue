@@ -7,13 +7,13 @@
                     <el-menu-item-group>
                         <router-link to="/admin/news">
                             <el-menu-item index="1-1">
-                                <i class="el-icon-message"></i>
+                                <i class="el-icon-share"></i>
                                 新闻列表
                             </el-menu-item>
                         </router-link>
                         <router-link to="/admin/addNews">
                             <el-menu-item index="1-2">
-                                <i class="el-icon-message"></i>
+                                <i class="el-icon-more"></i>
                                 新增新闻
                             </el-menu-item>
                         </router-link>
@@ -37,14 +37,14 @@
                     <el-menu-item-group>
                         <router-link to="/admin/classes">
                             <el-menu-item index="4-1">
-                                <i class="el-icon-message"></i>
+                                <i class="el-icon-menu"></i>
                                 班级列表
                             </el-menu-item>
                         </router-link>
-                        <router-link to="/admin/editClasses">
+                        <router-link to="/admin/classActivity">
                             <el-menu-item index="4-2">
-                                <i class="el-icon-message"></i>
-                                新增班级
+                                <i class="el-icon-document"></i>
+                                班级活动
                             </el-menu-item>
                         </router-link>
                     </el-menu-item-group>

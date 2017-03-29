@@ -5,7 +5,7 @@ import * as types from './mutation-types'
 
 export default {
     fetchAdminNews({ commit },data){
-        const url = '/api/admin/news_list.action',
+        const url = '/admin/news_list.action',
             fetchNewsPromise = util.post({ url }, data);
 
         fetchNewsPromise.then((resp) => {
@@ -17,7 +17,7 @@ export default {
         return fetchNewsPromise;
     },
     editNews({ commit }, news) {
-        const url = '/api/admin/news_add.action',
+        const url = '/admin/news_add.action',
             editNewsPromise = util.post({ url }, news);
         // editNewsPromise.then((resp) => {
         //     commit(types.EDIT_NEWS, resp.body.data);
@@ -27,14 +27,14 @@ export default {
         return editNewsPromise;
     },
     deleteNews({ commit }, news) {
-        const url = '/api/admin/news_delete.action',
+        const url = '/admin/news_delete.action',
             deleteNewsPromise = util.post({ url }, news);
         
         return deleteNewsPromise;
     },
     searchNews({ commit }, search) {
         
-        const url = '/api/admin/news_select.action',
+        const url = '/admin/news_select.action',
             searchNewsPromise = util.post({ url }, search);
 
         searchNewsPromise.then((resp) => {

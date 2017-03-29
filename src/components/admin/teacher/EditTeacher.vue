@@ -1,7 +1,6 @@
 <template>
-    <el-col :span="12" :offset="2">
-        <h3>编辑学生</h3><hr>
-        <el-form :label-position="labelPosition" label-width="80px">
+    <el-col :span="22">
+        <el-form label-width="80px">
             <el-form-item label="姓名">
                 <el-input v-model="teacher.name"></el-input>
             </el-form-item>
@@ -14,33 +13,45 @@
             <el-form-item label="研究方向"> 
                 <el-input v-model="teacher.direction"></el-input>
             </el-form-item> 
+            <el-form-item label="选择报班">
+                <el-select v-model="teacher.classesId" placeholder="请选择班级">
+                    <el-option v-for="item in classList.list" v-bind:label="item.subject" v-bind:value="item.id">
+                        <span>{{item.subject}}</span>
+                    </el-option>
+                </el-select>
+            </el-form-item>
             <el-form-item label="详细介绍"> 
                 <el-input type="textarea" v-model="teacher.introduction"></el-input>
             </el-form-item> 
-                        <el-form-item label="照片上传">
-                <el-upload name="pic" v-if="imageUrl === ''" action="/api/admin/member_pic_upload.action" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-success="handleSuccessUpload">
+            <el-form-item label="照片上传">
+                <el-upload name="pic" v-if="imageUrl === ''" v-bind:action="urlPrefix + '/admin/member_pic_upload.action'" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-success="handleSuccessUpload">
                     <i class="el-icon-plus"></i>
                 </el-upload>
                 <div class="image-container">
                     <el-card :body-style="{ margin: '0 auto'}" v-if="imageUrl !== ''">
                         <img :src="imageUrl" class="image">
                         <div class="bottom clearfix">
-                            <el-button class="button" v-on:click="dialogVisible=true">删除</el-button>
+                            <el-popover
+                                ref="popover2"
+                                placement="top"
+                                width="160"
+                                v-model="confirmDelete">
+                                <p>确定删除{{teacher.name}}的头像吗？</p>
+                                <div style="text-align: right; margin: 0">
+                                    <el-button size="mini" type="text" @click="pageConfig.confirmDelete = false">取消</el-button>
+                                    <el-button type="primary" size="mini" @click="pageConfig.confirmDelete = false; imageUrl = ''">确定</el-button>
+                                </div>
+                            </el-popover>
+                            <el-button class="button" v-popover:popover2>删除</el-button>
                         </div>
                     </el-card>
                 </div>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" v-on:click="submit">提交</el-button>
+                <el-button type="primary" v-on:click="closeDialog();submit()">提交</el-button>
+                <el-button @click="closeDialog">取 消</el-button>                
             </el-form-item>
         </el-form>
-        <el-dialog title="删除头像" v-model="dialogVisible" size="tiny">
-            <span>确定删除{{teacher.name}}的头像?</span>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false;imageUrl=''">确 定</el-button>
-            </span>
-        </el-dialog>
     </el-col>
 </template>
 <style>
@@ -78,7 +89,13 @@
     }
 </style>
 <script>
+
+    import EditTeacher from './EditTeacher'
+    import { mapGetters } from 'vuex'
+    import * as Util from '../../../store/util'
+
     export default {
+        props: ['teacherId'],
         data() {
             return {
                 teacher: {
@@ -88,20 +105,29 @@
                     'direction': '',
                     'introduction':'',
                     'face': '',
-                    'type': '0'
+                    'type': '2',
+                    'classesId': ''
                 },
-                dialogVisible: false,
-                dialogImageUrl: ''
+                pageConfig:{
+                    confirmDelete: false
+                },
+                imageUrl: '',
+                urlPrefix: Util.urlPrefix
             }
         },
-        created () {
-            console.info(this.$route.params.id)
-            if(this.$route.params.id !== undefined){
-                var data = { id : this.$route.params.id };
-                this.$store.dispatch('fetchTeacherDetail', {data: data}).then((resp)=>{
-                    // this.teacher = resp.data.data;
-                    this.imageUrl = 'api/picture/' + this.student.face;
-                });
+        computed: mapGetters({
+            classList: 'getAdminClassesList'
+        }),
+        watch: {
+            teacherId: function(newValue,oldValue){
+                console.log(newValue !== '')
+                if(newValue !== ''){
+                    var data = { id : newValue };
+                    this.$store.dispatch('fetchTeacherDetail', {data: data}).then((resp)=>{
+                        this.teacher = resp.data.data;
+                        this.imageUrl = 'api/' + this.student.face;
+                    });
+                }
             }
         },
         methods: {
@@ -121,6 +147,9 @@
                         offset: 100
                     });
                 });
+            },
+            closeDialog() {
+                this.$store.dispatch('changeEditDialogVisible');
             },
             handleRemove(file, fileList) {
                 console.log(file, fileList);

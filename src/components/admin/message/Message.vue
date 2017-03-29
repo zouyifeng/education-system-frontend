@@ -70,7 +70,7 @@
         created() {
             this.fetchMessageList();
             this.$watch('search', function(){
-                const url = '/api/admin/message_list.action';
+                const url = Util.urlPrefix + '/admin/message_list.action';
                 Util.post({ url }, {data: this.search, pageInfo: this.data.pageInfo}).then((resp) => {
                     this.data = resp.data.data;
                 });
@@ -81,7 +81,7 @@
         methods: {
             deleteMessage(id) {
                 const data = {id: id},
-                      url = '/api/admin/message_delete.action';
+                      url = Util.urlPrefix + '/admin/message_delete.action';
                 Util.post({ url }, {data: data}).then((resp) => { 
                     this.$message({
                         message: '删除成功！'
@@ -90,13 +90,13 @@
                 });
             },
             fetchMessageList() {
-                const url = '/api/admin/message_list.action';
+                const url = Util.urlPrefix + '/admin/message_list.action';
                 Util.post({ url }, {pageInfo: this.data.pageInfo}).then((resp) => {
                     this.data = resp.data.data;
                 });
             },
             replyMessage()　{
-                const url = '/api/admin/message_edit.action';
+                const url = Util.urlPrefix + '/admin/message_edit.action';
                 var data = {
                     id: this.selectedMessage,
                     reply: this.reply
@@ -117,7 +117,7 @@
         //     'search': {
         //          handler: function(){
         //             console.log('aaa')
-        //             const url = '/api/admin/message_list.action';
+        //             const url = Util.urlPrefix + '/admin/message_list.action';
         //             Util.post({ url }, {data: this.search, pageInfo: this.data.pageInfo}).then((resp) => {
         //                 this.data = resp.data.data;
         //             });

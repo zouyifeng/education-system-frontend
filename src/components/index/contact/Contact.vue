@@ -40,13 +40,13 @@
         },
         methods: {
             ask(){
-                const url = '/api/message_add.action' ;
+                const url = Util.urlPrefix + '/message_add.action' ;
                 Util.post( {url} , {data: this.message} ).then((resp) => { 
                     this.fetchMessageList();
                 })
             },
             fetchMessageList() {
-                const url = '/api/message_list.action' ;
+                const url = Util.urlPrefix + '/message_list.action' ;
                 Util.post( {url} , {} ).then((resp) => {
                     console.log(resp.data.data)
                     this.messageList = resp.data.data;

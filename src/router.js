@@ -27,6 +27,7 @@ import EditStudent from './components/admin/student/EditStudent'
 import Classes from './components/admin/classes/Classes'
 import EditClasses from './components/admin/classes/EditClasses'
 import Message from './components/admin/message/Message'
+import ClassActivity from './components/admin/classes/ClassActivity'
 
  
 export const routes = [{
@@ -76,14 +77,6 @@ export const routes = [{
         path: 'teacher',
         component: Teacher
       },{
-        name: 'editTeacher',
-        path: 'editTeacher/:id',
-        component: EditTeacher
-      },{
-        name: 'addTeacher',
-        path: 'addTeacher',
-        component: EditTeacher
-      },{
         path: 'student',
         component: Student
       },{
@@ -102,6 +95,10 @@ export const routes = [{
         name: 'editClasses',
         path: 'editClasses',
         component: EditClasses
+      },{
+        name: 'classActivity',
+        path: 'classActivity',
+        component: ClassActivity
       },{
         name: 'message',
         path: 'message',

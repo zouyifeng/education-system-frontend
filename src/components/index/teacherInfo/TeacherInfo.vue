@@ -54,7 +54,7 @@
             teacherList: 'getTeacherList'
         }),
         created() {
-            this.$store.dispatch('fetchTeacherList', {data: { type: 0 }})
+            this.$store.dispatch('fetchTeacherList', {data: { type: 2 }})
         }
     }
 </script>

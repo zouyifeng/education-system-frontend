@@ -1,27 +1,28 @@
 <template>
-    <rd-swipe :swipe="swipe">
-        <div 
-            class="rd-swipe-item" 
-            :style="{ 'background-image': `url(${img})` }" 
-            v-for="(img, index) in imgs">
-        </div>
-    </rd-swipe>
+    <el-carousel :interval="5000" arrow="always">
+        <el-carousel-item v-for="item in imgList">
+        <h3>{{ item.path }}</h3>
+        <img :src="urlPrefix + '/resources/' + item.path" alt="">
+        </el-carousel-item>
+    </el-carousel>
 </template>
 <script>
-    // import rdSwipe from 'vue-slide'
+
+    import * as Util from '../../../store/util'
+
     export default {
-    data () {
-        return {
-            swipe: {
-                activeIndex: 0
-            },
-            imgs: [
-                'http://covteam.u.qiniudn.com/test18.jpg',
-                'http://covteam.u.qiniudn.com/test19.jpg',
-                'http://covteam.u.qiniudn.com/test20.jpg',
-                'http://covteam.u.qiniudn.com/test21.jpg'
-            ]
+        data () {
+            return {
+                imgList: [],
+                urlPrefix: Util.urlPrefix
             }
+        },
+        created() {
+            const url = '/news_img.action';
+
+             Util.get({ url }).then((resp) => {
+                this.imgList = resp.data.data;
+            });
         }
     }
 </script>

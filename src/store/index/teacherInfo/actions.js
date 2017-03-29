@@ -5,7 +5,7 @@ import * as types from './mutation-types'
 
 export default {
     fetchTeacherList({ commit }, account) {
-        const url = '/api/member_list.action';
+        const url = '/member_list.action';
         util.post({ url }, account ).then((resp) => {
             console.log(resp.body.data)
             commit((types.GET_TEACHER_LIST), resp.body.data);

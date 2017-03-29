@@ -10,8 +10,8 @@
             <el-form-item>
                 <el-button type="primary" @click="searchStudent">查询</el-button>
             </el-form-item>
-            <el-form-item>                
-                <router-link :to="{ name :'addStudent'}"><el-button>新增</el-button></router-link>                   
+            <el-form-item>         
+                <el-button @click="openDialog()">新增</el-button>              
             </el-form-item>
         </el-form>
         <el-table :data="data.list" stripe style="width: 100%">
@@ -22,7 +22,7 @@
             <el-table-column prop="direction" label="学习科目"></el-table-column>
             <el-table-column label="操作">
                 <template scope="scope">
-                    <router-link class="btn btn-default" :to="{ name :'editStudent', params: { id: scope.row.id }}"><el-button size="small">编辑</el-button></router-link>
+                    <el-button size="small" type="normal" @click="openDialog(scope.row.id)">编辑</el-button>         
                     <el-button size="small" type="danger" @click="deleteStudent(scope.row.id)">删除</el-button>
                 </template>
             </el-table-column>
@@ -36,10 +36,14 @@
                 @current-change="nextPage">
             </el-pagination>
         </div>
+        <el-dialog title="编辑学生" v-model="dialogFormVisible">
+            <editStudent :studentId="selectedId"></editStudent>
+        </el-dialog>
     </el-col>
 </template>
 <script>    
     import { mapGetters } from 'vuex'
+    import EditStudent from './EditStudent'
 
     export default {
         data() {
@@ -48,11 +52,13 @@
                     name: '',
                     direction: '',
                     type: 1
-                } 
+                },
+                selectedId: ''
             }
         },
         computed: mapGetters({
-            data: 'getAdminStudentList'
+            data: 'getAdminStudentList',
+            dialogFormVisible : 'getEditDialogVisible'
         }),
         created() {
             this.$store.dispatch('fetchAdminStudentList', {data: {type: 1}, pageInfo: {pageNum: 1}})
@@ -78,10 +84,17 @@
             searchStudent() {
                 this.$store.dispatch('searchStudent', {data: this.search});
             },
+            openDialog(id){
+                this.selectedId = id || '';
+                this.$store.dispatch('changeEditDialogVisible');
+            },
             nextPage(page){
                 this.data.pageInfo.pageNum = page;
                 this.$store.dispatch('fetchAdminStudentList',{ data: {type: 1}, pageInfo: this.data.pageInfo })
             }
+        },
+        components: {
+            'editStudent':　EditStudent
         }
     }
 </script>

@@ -7,6 +7,7 @@ import news from './admin/news'
 import teacher from './admin/teacher'
 import student from './admin/student'
 import classes from './admin/classes'
+import Common from './admin/common'
 
 Vue.use(Vuex);
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     teacher,
     student,
     classes,
-    teacherInfo
+    teacherInfo,
+    Common
   }
 })
