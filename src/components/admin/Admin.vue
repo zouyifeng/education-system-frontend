@@ -68,4 +68,11 @@
     .form-container {
         width: 500px;
     }
+    .tab-title {
+        color: #444;
+        padding-bottom: 5px;
+    }
+    #editor {
+        min-height: 500px;
+    }
 </style>

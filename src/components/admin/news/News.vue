@@ -1,5 +1,5 @@
 <template>
-    <el-col :span="22" :offset="1">
+    <el-col :span="23" :offset="1">
         <el-form :inline="true" :model="search" class="mt-15" style="width: 100%">
             <el-form-item label="标题">
                 <el-input v-model="search.title" placeholder="标题"></el-input>

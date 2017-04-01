@@ -4,8 +4,8 @@ var path = require('path')
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../../wechat-education-system-backend/src/main/webapp/pages/dist/index.html'),
-    assetsRoot: path.resolve(__dirname, '../../wechat-education-system-backend/src/main/webapp/pages/dist'),
+    index: path.resolve(__dirname, '../../wechat-education-system/src/main/webapp/pages/dist/index.html'),
+    assetsRoot: path.resolve(__dirname, '../../wechat-education-system/src/main/webapp/pages/dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
     productionSourceMap: true,
@@ -23,7 +23,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:80',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

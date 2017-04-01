@@ -1,7 +1,7 @@
 <template>
-    <el-col :span="14" :offset="2">
+    <el-col :span="23" :offset="1">
         <el-tabs class="mt-15" v-model="pageConfig.activeName" type="card">
-            <el-tab-pane label="班级修改" name="first">
+            <el-tab-pane label="编辑班级资料" name="first">
                 <el-form label-width="100px">
                     <el-form-item label="班级科目" :span="5">
                         <el-input v-model="classes.subject"></el-input>
@@ -18,18 +18,6 @@
                     <el-form-item label="详细介绍"> 
                         <el-input type="textarea" v-model="classes.context"></el-input>
                     </el-form-item> 
-                    <el-form-item prop="activity.title" label="活动标题" v-if="!!this.$route.params.id">
-                        <el-input v-model="activity.title"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="activity.author" label="活动作者" v-if="!!this.$route.params.id">
-                        <el-input v-model="activity.author"></el-input>
-                    </el-form-item>
-                    <el-form-item v-if="!!this.$route.params.id" label="班级活动记录">
-                        <div id="editor"></div>
-                    </el-form-item>
-                    <el-dialog v-model="img.dialogVisible" size="tiny">
-                        <img width="100%" :src="img.dialogImageUrl" alt="">
-                    </el-dialog>
                     <el-form-item>
                         <el-button type="primary" v-on:click="submit">提交</el-button>
                     </el-form-item>
@@ -67,6 +55,27 @@
                         @current-change="nextPage">
                     </el-pagination>
                 </div>
+            </el-tab-pane>
+            <el-tab-pane label="新增班级资料" name="third">
+                <el-form :inline="true" label-width="100px" :label-position="left">
+                    <el-form-item prop="activity.title" label="活动标题">
+                        <el-input v-model="activity.title"></el-input>
+                    </el-form-item>
+                    <el-form-item prop="activity.author" label="活动作者">
+                        <el-input v-model="activity.author"></el-input>
+                    </el-form-item>
+                </el-form>
+                <el-form label-width="100px" :label-position="left">
+                    <el-form-item label="班级活动记录">
+                        <div id="editor"></div>
+                    </el-form-item>
+                    <el-dialog v-model="img.dialogVisible" size="tiny">
+                        <img width="100%" :src="img.dialogImageUrl" alt="">
+                    </el-dialog>
+                    <el-form-item>
+                        <el-button type="primary" v-on:click="submit">提交</el-button>
+                    </el-form-item>
+                </el-form>
             </el-tab-pane>
         </el-tabs>
 
@@ -140,7 +149,7 @@
                 editor.config.uploadImgFns.onload = function(result, xhr){
                     result = JSON.parse(result);
                     // this.activity.imgList.push(result.data.picUrl);
-                     editor.command(null, 'insertHtml', '<img :src="'+ Util.urlPrefix +'/resources/' + result.data.picUrl +'" style="max-width:100%;"/>');
+                     editor.command(null, 'insertHtml', '<img src="'+ Util.urlPrefix +'/resources/' + result.data.picUrl +'" style="max-width:100%;"/>');
                 }
 
                 editor.create();

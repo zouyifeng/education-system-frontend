@@ -15,7 +15,7 @@
             <template scope="props">
                 <el-form label-position="left" inline class="demo-table-expand">
                 <el-form-item label="正文">
-                    <span>{{ props.row.context }}</span>
+                    <span v-html="props.row.context"></span>
                 </el-form-item>
                 </el-form>
             </template>

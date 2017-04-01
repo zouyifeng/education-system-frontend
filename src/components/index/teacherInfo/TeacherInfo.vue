@@ -1,20 +1,21 @@
 <template>
-    <el-row>
-        <el-col :span="6" v-for="item in teacherList.list">
-            <div class="card">
-                <el-card>
-                    <img :src="'api/picture/'+item.face" class="image">
-                    <div style="padding-top: 10px;">
-                        <span>{{item.name}}</span>
-                        <div class="bottom clearfix">
-                        <span class="time">{{ item.introduction }}</span>
-                        <el-button type="text" class="button">查看更多</el-button>
+    <div class="container">
+        <el-row>
+            <el-col :span="6" v-for="item in teacherList.list">
+                <div class="card">
+                    <el-card>
+                        <img :src="urlPrefix + '/resources/' + item.face" class="image">
+                        <div style="padding-top: 10px;">
+                            <span>{{item.name}}</span>
+                            <div class="bottom clearfix">
+                            <span class="time">{{ item.introduction }}</span>
+                            </div>
                         </div>
-                    </div>
-                </el-card>
-            </div>
-        </el-col>
-    </el-row>
+                    </el-card>
+                </div>
+            </el-col>
+        </el-row>
+    </div>
 </template>
 <style>                 
     .time {
@@ -48,8 +49,15 @@
 </style>
 <script>
     import { mapGetters } from 'vuex'
+    import * as Util from '../../../store/util'
+    console.log(Util.urlPrefix)
 
     export default {
+        data() {
+            return {
+                urlPrefix: Util.urlPrefix
+            }
+        },
         computed: mapGetters({
             teacherList: 'getTeacherList'
         }),

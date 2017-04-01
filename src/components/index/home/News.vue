@@ -3,15 +3,14 @@
     <div slot="header" class="clearfix">
         <span style="line-height: 36px;">{{title}}</span>
     </div>
-        <el-table :data="data.list" stripe style="width: 100%">
-            <el-table-column prop="title" label="标题" width="180"></el-table-column>
-            <el-table-column prop="date" label="时间" width="180"></el-table-column>
-            <el-table-column>
-                <template scope="scope">
-                    <router-link :to="{ name :'classActivityDetail', params: { id: scope.row.id }}">详情</router-link>            
-                </template>
-            </el-table-column>
-        </el-table>
+        <ul>
+            <li v-for="(item, index) in data.list">
+                <p>
+                    {{item.title}} - {{item.date}} 
+                    <router-link :to="{ name :'classActivityDetail', params: { id: item.id }}">详情</router-link>                                
+                </p>
+            </li>
+        </ul>
     </el-card>
 </template>
 <script>

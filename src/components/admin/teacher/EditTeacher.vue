@@ -1,5 +1,5 @@
 <template>
-    <el-col :span="22">
+    <el-col :span="23">
         <el-form label-width="80px">
             <el-form-item label="姓名">
                 <el-input v-model="teacher.name"></el-input>

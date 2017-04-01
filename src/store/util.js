@@ -1,8 +1,8 @@
 import vue from 'vue'
 
-export const urlPrefix = 'http://localhost:80';
+// export const urlPrefix = 'http://localhost:8090/api';
 
-// const _urlPrefix = 'http://localhost:8081';
+const urlPrefix = 'http://zouyifeng.tunnel.qydev.com';
 
 export const get = ({ url }) => {
     return vue.http.get( urlPrefix + url );

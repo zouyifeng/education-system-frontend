@@ -1,5 +1,5 @@
 <template>  
-    <el-col :span="22" :offset="1">
+    <el-col :span="23" :offset="1">
         <el-form :inline="true" :model="classes" class="demo-form-inline mt-15">
             <el-form-item label="班级名称">
                 <el-input v-model="classes.subject" placeholder="班级名称" ></el-input>
@@ -18,12 +18,10 @@
             <el-table-column type="expand">
                 <template scope="props">
                     <el-form label-position="left" inline class="demo-table-expand">
-                        <el-form-item label="教师：">
-                            <span v-for="(item, index) in props.row.students"> {{index}}-{{item.name}}</span>
-                        </el-form-item>
-                        <el-form-item label="学生：">
-                            <span v-for="(item, index) in props.row.students"> {{index}}-{{item.name}}</span>
-                        </el-form-item>
+                        <el-tag type="primary">教师</el-tag>
+                        <span v-for="(item, index) in props.row.teachers">&nbsp;{{item.name}}&nbsp;</span><br><br>
+                        <el-tag type="warning">学生</el-tag>
+                        <span v-for="(item, index) in props.row.students">&nbsp;{{item.name}}&nbsp;</span>
                     </el-form>
                 </template>
             </el-table-column>
