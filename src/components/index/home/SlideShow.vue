@@ -1,7 +1,7 @@
 <template>
     <el-carousel :interval="5000" arrow="always">
         <el-carousel-item v-for="item in imgList">
-        <img :src="urlPrefix + '/resources/' + item.path" alt="">
+        <img :src="item.path" alt="">
         </el-carousel-item>
     </el-carousel>
 </template>

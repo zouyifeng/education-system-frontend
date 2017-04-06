@@ -1,22 +1,11 @@
 // 首页
 import Home from './components/index/home/Home'
-
-// 作文详情
 import ClassActivityDetail from './components/index/home/NewsDetail'
-
-// 师资力量
 import TeacherInfo from './components/index/teacherInfo/TeacherInfo'
-
-// 班级风采
-import ClassInfo from './components/index/classInfo/ClassInfo'
-import LiteratureInfo from './components/index/classInfo/LiteratureInfo'
-import SportInfo from './components/index/classInfo/SportInfo'
-import ActivityInfo from './components/index/classInfo/ActivityInfo'
-
-// 联系我们
+import FileDownload from './components/index/fileDownload/FileDownload'
 import Contact from './components/index/contact/Contact'
 
-// admin 
+// 管理后台
 import Admin from './components/admin/Admin'
 import News from './components/admin/news/News'
 import EditNews from './components/admin/news/EditNews'
@@ -28,26 +17,16 @@ import Classes from './components/admin/classes/Classes'
 import EditClasses from './components/admin/classes/EditClasses'
 import Message from './components/admin/message/Message'
 import ClassActivity from './components/admin/classes/ClassActivity'
+import Manager from './components/admin/manager/Manager'
+import File from './components/admin/file/File'
 
  
 export const routes = [{
     path : '/index/home',
     component : Home
   },{
-    path: '/index/classInfo',
-    component: ClassInfo,
-    children: [
-      {
-        path: 'sport',
-        component: SportInfo
-      },{
-        path: 'Literature',
-        component: LiteratureInfo
-      },{
-        path: 'activity',
-        component: ActivityInfo
-      }
-    ]
+    path: '/index/FileDownload',
+    component: FileDownload
   },{
     path: '/index/teacherInfo',
     component: TeacherInfo
@@ -103,6 +82,14 @@ export const routes = [{
         name: 'message',
         path: 'message',
         component: Message
+      },{
+        name: 'manager',
+        path: 'manager',
+        component: Manager
+      },{
+        name: 'file',
+        path: 'file',
+        component: File
       }
     ]
   }

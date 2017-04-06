@@ -7,5 +7,8 @@ export default {
     },
     getNewsDetail(state) {
         return state.newsDetail;
+    },
+    getLoginStatus(state) {
+        return state.loginStatus;
     }
 }

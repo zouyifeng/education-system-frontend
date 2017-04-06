@@ -1,6 +1,9 @@
 // 更新账户
 export const FETCH_ACCOUNT = 'FETCH_ACCOUNT';
 
+//登陆状态
+export const CHANGE_LOGIN_STATUS = 'CHANGE_LOGIN_STATUS';
+
 // 新闻列表
 export const FETCH_NEWS_LIST = 'FETCH_NEWS_LIST';
 

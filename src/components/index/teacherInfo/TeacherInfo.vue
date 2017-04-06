@@ -4,7 +4,7 @@
             <el-col :span="6" v-for="item in teacherList.list">
                 <div class="card">
                     <el-card>
-                        <img :src="urlPrefix + '/resources/' + item.face" class="image">
+                        <img :src="item.face" class="image">
                         <div style="padding-top: 10px;">
                             <span>{{item.name}}</span>
                             <div class="bottom clearfix">
@@ -25,11 +25,6 @@
 
     .card {
         margin: 15px;
-    }
-
-    .button {
-        padding: 0;
-        float: right;
     }
 
     .image {

@@ -1,5 +1,5 @@
 <template>
-    <el-col :span="22" :offset="1">
+    <el-col :span="23" :offset="1">
         <el-form :inline="true" :model="search" class="mt-15" style="width: 100%">
             <el-form-item label="留言状态">
                 <el-radio-group v-model="search.status">
@@ -70,7 +70,7 @@
         created() {
             this.fetchMessageList();
             this.$watch('search', function(){
-                const url = Util.urlPrefix + '/admin/message_list.action';
+                const url = '/admin/message_list.action';
                 Util.post({ url }, {data: this.search, pageInfo: this.data.pageInfo}).then((resp) => {
                     this.data = resp.data.data;
                 });
@@ -81,7 +81,7 @@
         methods: {
             deleteMessage(id) {
                 const data = {id: id},
-                      url = Util.urlPrefix + '/admin/message_delete.action';
+                      url = '/admin/message_delete.action';
                 Util.post({ url }, {data: data}).then((resp) => { 
                     this.$message({
                         message: '删除成功！'
@@ -90,13 +90,13 @@
                 });
             },
             fetchMessageList() {
-                const url = Util.urlPrefix + '/admin/message_list.action';
+                const url = '/admin/message_list.action';
                 Util.post({ url }, {pageInfo: this.data.pageInfo}).then((resp) => {
                     this.data = resp.data.data;
                 });
             },
             replyMessage()　{
-                const url = Util.urlPrefix + '/admin/message_edit.action';
+                const url = '/admin/message_edit.action';
                 var data = {
                     id: this.selectedMessage,
                     reply: this.reply

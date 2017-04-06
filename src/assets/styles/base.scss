@@ -1,0 +1,75 @@
+$gary: #D3DCE6;
+$warning: #F7BA2A;
+$danger: #FF4949;
+$success: #13CE66;
+$lightBlue: #58B7FF;
+$darkBule: #1D8CE0;
+
+
+a {
+    text-decoration: none;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.ml-15 {
+    margin-left: 15px;
+}
+
+.mr-15{
+    margin-right: 15px;
+}
+
+.warning-bg {
+    background-color: $warning;
+}
+
+.success-bg {
+    background-color: $success;
+}
+
+.primary-bg {
+    background-color: $lightBlue;
+}
+
+li {
+    list-style: none;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    border: 1px solid $gary;
+    width: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+    .box-title {
+        height: 30px;
+        line-height: 30px;
+        padding: 5px 15px;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .box-content {
+        padding: 30px 10px;
+    }
+}

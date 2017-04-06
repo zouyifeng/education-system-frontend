@@ -8,7 +8,7 @@ import store from './store'
 import ElementUI from 'element-ui' 
 import 'element-ui/lib/theme-default/index.css'
 
-import './assets/styles/base.css'
+import './assets/styles/base.scss'
 import App from './App'
 require('normalize.css')
 

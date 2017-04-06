@@ -19,5 +19,9 @@ export default {
     // 新闻列表
     [types.FETCH_NEWS_BY_PAGE](state, news){
         state.news = news;
+    },
+
+    [types.CHANGE_LOGIN_STATUS](state) {
+        state.loginStatus = !state.loginStatus;
     }
 };

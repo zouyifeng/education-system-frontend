@@ -11,7 +11,7 @@
                 <el-button type="primary" @click="search">查询</el-button>
             </el-form-item>
             <el-form-item>
-                <el-button @click="pageConfig.dialogFormVisible=true">新增</el-button>                   
+                <el-button type="primary" @click="pageConfig.dialogFormVisible=true">新增</el-button>                   
             </el-form-item>
         </el-form>
         <el-table :data="data.list" v-loading.body="data.list.length == 0" stripe style="width: 100%">
@@ -32,7 +32,7 @@
             <el-table-column label="操作">
                 <template scope="scope">
                     <el-button size="small" type="danger" @click="deleteClasses(scope.row.id)">删除</el-button>
-                    <router-link :to="{ name :'editClasses', params: { id: scope.row.id }}"><el-button size="small">编辑</el-button></router-link>                   
+                    <router-link :to="{ name :'editClasses', params: { id: scope.row.id }}"><el-button type="primary" size="small">管理班级</el-button></router-link>                   
                 </template>
             </el-table-column>
         </el-table>
@@ -57,7 +57,13 @@
                     <el-switch on-text="是" off-text="否" v-model="newClasses.todayOpen"></el-switch>
                 </el-form-item>
                 <el-form-item label="开班日期" v-if="!newClasses.todayOpen">                      
-                    <el-date-picker type="date" placeholder="选择日期" v-model="newClasses.date" style="width: 100%;" formate="yyyy-MM-dd"></el-date-picker>
+                    <el-date-picker 
+                        type="date" 
+                        placeholder="选择日期" 
+                        v-model="newClasses.date" 
+                        style="width: 100%;" 
+                        formate="yyyy-MM-dd">
+                    </el-date-picker>
                 </el-form-item> 
                 <el-form-item label="详细介绍"> 
                     <el-input type="textarea" v-model="newClasses.context"></el-input>
@@ -103,7 +109,6 @@
                     date: '',
                     context: ''
                 }
-
             }
         },
         computed: mapGetters({

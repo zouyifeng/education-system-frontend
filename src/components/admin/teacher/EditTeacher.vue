@@ -1,30 +1,68 @@
 <template>
     <el-col :span="23">
-        <el-form label-width="80px">
+        <el-form :moel="teacher" ref="teacher" :inline="true" label-width="80px">
             <el-form-item label="姓名">
                 <el-input v-model="teacher.name"></el-input>
             </el-form-item>
             <el-form-item label="邮箱">
                 <el-input v-model="teacher.email"></el-input>
             </el-form-item>
+        </el-form>
+        <el-form :inline="true" label-width="80px">
             <el-form-item label="电话"> 
                 <el-input v-model="teacher.telephone"></el-input>
             </el-form-item>
             <el-form-item label="研究方向"> 
-                <el-input v-model="teacher.direction"></el-input>
+                <el-input v-model="teacher.majorName"></el-input>
             </el-form-item> 
+        </el-form>
+        <el-form label-width="80px">
             <el-form-item label="选择报班">
-                <el-select v-model="teacher.classesId" placeholder="请选择班级">
-                    <el-option v-for="item in classList.list" v-bind:label="item.subject" v-bind:value="item.id">
-                        <span>{{item.subject}}</span>
-                    </el-option>
-                </el-select>
+                 <el-table
+                    :data="classList.list">
+                    <el-table-column
+                        prop="subject"
+                        label="班级">
+                    </el-table-column>
+                    <el-table-column
+                        prop="id"
+                        label="简介">
+                    </el-table-column>
+                    <el-table-column 
+                        label="操作"
+                        width="180px">
+                        <template scope="scope">
+                            <el-button size="small" type="danger" @click="assignClasses(scope.row)">报班</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <div class="pull-right block">
+                    <el-pagination
+                        small
+                        layout="total,prev, pager, next"
+                        :current-page="classList.pageInfo.pageNum"
+                        :page-size="6"
+                        :total="classList.pageInfo.total"
+                        @current-change="nextPage">
+                    </el-pagination>
+                </div>
+            </el-form-item>
+            <el-form-item label="已报班级">
+                <el-tag
+                    class="mr-15"
+                    v-for="item in teacher.classes"
+                    :closable="true"
+                    type="primary"
+                    @close="cancelAssginedClasses(item)">
+                    {{item.subject}}
+                </el-tag>
+                <span v-if="teacher.classes.length == 0">暂无</span>
             </el-form-item>
             <el-form-item label="详细介绍"> 
                 <el-input type="textarea" v-model="teacher.introduction"></el-input>
             </el-form-item> 
             <el-form-item label="照片上传">
-                <el-upload name="pic" v-if="imageUrl === ''" v-bind:action="urlPrefix + '/admin/member_pic_upload.action'" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-success="handleSuccessUpload">
+                <el-upload name="pic" v-if="imageUrl === ''" v-bind:action="urlPrefix + '/admin/member_pic_upload.action'" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-success="handleSuccessUpload">
                     <i class="el-icon-plus"></i>
                 </el-upload>
                 <div class="image-container">
@@ -35,7 +73,7 @@
                                 ref="popover2"
                                 placement="top"
                                 width="160"
-                                v-model="confirmDelete">
+                                v-model="pageConfig.confirmDelete">
                                 <p>确定删除{{teacher.name}}的头像吗？</p>
                                 <div style="text-align: right; margin: 0">
                                     <el-button size="mini" type="text" @click="pageConfig.confirmDelete = false">取消</el-button>
@@ -99,14 +137,14 @@
         data() {
             return {
                 teacher: {
-                    'name': '',
-                    'telephone': '',
-                    'email': '',
-                    'direction': '',
-                    'introduction':'',
-                    'face': '',
-                    'type': '2',
-                    'classesId': ''
+                    name: '',
+                    telephone: '',
+                    email: '',
+                    direction: '',
+                    introduction:'',
+                    face: '',
+                    classesId: '',
+                    classes: []
                 },
                 pageConfig:{
                     confirmDelete: false
@@ -114,18 +152,27 @@
                 imageUrl: '',
                 urlPrefix: Util.urlPrefix
             }
-        },
+        },        
         computed: mapGetters({
             classList: 'getAdminClassesList'
         }),
+        created() {
+            this.$store.dispatch('fetchAdminClassesList', {data: {}, pageInfo: {pageNum: 1}})
+            
+            const that = this;
+            this.$store.dispatch('fetchTeacherDetail', {data: {id: this.teacherId}}).then((resp)=>{
+                that.teacher = resp.data.data;
+                that.imageUrl = this.teacher.face;
+            });
+        },
         watch: {
             teacherId: function(newValue,oldValue){
-                console.log(newValue !== '')
                 if(newValue !== ''){
-                    var data = { id : newValue };
+                    var data = { id : newValue },
+                        that = this;
                     this.$store.dispatch('fetchTeacherDetail', {data: data}).then((resp)=>{
-                        this.teacher = resp.data.data;
-                        this.imageUrl = 'api/' + this.student.face;
+                        that.teacher = resp.data.data;
+                        that.imageUrl = this.teacher.face;
                     });
                 }
             }
@@ -141,26 +188,38 @@
                         message: resp.data.data.message,
                         offset: 100
                     });
+                    this.$refs['teacher'].resetFields();
+                    this.$store.dispatch('fetchAdminTeacherList', {pageInfo: {pageNum: 1}})
                 }, () => {
                     this.$notify.error({
                         title: actionTypeStr + '失败',
                         offset: 100
                     });
                 });
+                this.closeDialog();
+            },
+            nextPage(page) {
+                this.classList.pageInfo.pageNum = page;
+                this.$store.dispatch('fetchAdminClassesList',{ data: {}, pageInfo: this.classList.pageInfo })
+            },
+            assignClasses(item) {
+                this.teacher.classes.push(item);
+            },
+            cancelAssginedClasses(item) {
+                for(var i=0; i<this.teacher.classes.length; i++){
+                    if(item.id == this.teacher.classes[i].id){
+                        this.teacher.classes.splice(i, 1);
+                    }
+                }
             },
             closeDialog() {
-                this.$store.dispatch('changeEditDialogVisible');
-            },
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
+                this.$store.dispatch('closeEditDialogVisible');
             },
             handlePictureCardPreview(file) {
-                console.log(file)
                 this.img.dialogImageUrl = file.url;
                 this.img.dialogVisible = false;
             },
             handleSuccessUpload(resp, file, fileList){
-                // var picUrl = resp.data.picUrl;
                 this.teacher.face = resp.data.picUrl;
             }
         }

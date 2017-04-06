@@ -11,7 +11,7 @@
                 <el-button type="primary" @click="searchNews">查询</el-button>
             </el-form-item>
             <el-form-item>                
-                <router-link :to="{ name :'addNews'}"><el-button>新增</el-button></router-link>                   
+                <router-link :to="{ name :'addNews'}"><el-button type="primary">新增</el-button></router-link>                   
             </el-form-item>
         </el-form>
         <el-table :data="data.list" stripe style="width: 100%">
@@ -21,7 +21,7 @@
             <el-table-column prop="date" label="创建日期"></el-table-column>
             <el-table-column label="操作">
                 <template scope="scope">
-                    <router-link class="btn btn-default" :to="{ name :'editNews', params: { id: scope.row.id }}"><el-button size="small">编辑</el-button></router-link>                    
+                    <router-link class="btn btn-default" :to="{ name :'editNews', params: { id: scope.row.id }}"><el-button type="primary" size="small">编辑</el-button></router-link>                    
                     <el-button size="small" type="danger" @click="deleteNews(scope.row.id)">删除</el-button>
                 </template>
             </el-table-column>

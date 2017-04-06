@@ -3,7 +3,7 @@
         <el-form :inline="true" class="mt-15">
             <el-form-item label="新闻类型" label-width="80px">
                 <el-select v-model="news.type" placeholder="请选择新闻类型">
-                    <el-option label="交流成果" v-bind:value="0"></el-option>
+                    <el-option label="交流成果" v-bind:value="2"></el-option>
                     <el-option label="学习成果" v-bind:value="3"></el-option>
                     <el-option label="通知公告" v-bind:value="4"></el-option>
                 </el-select>
@@ -64,7 +64,7 @@
 
                 editor.config.uploadImgFns.onload = function(result, xhr){
                     result = JSON.parse(result);
-                     editor.command(null, 'insertHtml', '<img src="'+ Util.urlPrefix +'/resources/' + result.data.picUrl +'" style="max-width:100%;"/>');
+                     editor.command(null, 'insertHtml', '<img src="' + result.data.picUrl + '" style="max-width:100%;"/>');
                 }
 
                 editor.create();

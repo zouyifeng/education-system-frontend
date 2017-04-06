@@ -13,7 +13,7 @@
                         </router-link>
                         <router-link to="/admin/addNews">
                             <el-menu-item index="1-2">
-                                <i class="el-icon-more"></i>
+                                <i class="el-icon-star-on"></i>
                                 新增新闻
                             </el-menu-item>
                         </router-link>
@@ -33,7 +33,7 @@
                     </el-menu-item>
                 </router-link>
                 <el-submenu index="4">
-                    <template slot="title"><i class="el-icon-message"></i>班级管理</template>
+                    <template slot="title"><i class="el-icon-document"></i>班级管理</template>
                     <el-menu-item-group>
                         <router-link to="/admin/classes">
                             <el-menu-item index="4-1">
@@ -43,7 +43,7 @@
                         </router-link>
                         <router-link to="/admin/classActivity">
                             <el-menu-item index="4-2">
-                                <i class="el-icon-document"></i>
+                                <i class="el-icon-date"></i>
                                 班级活动
                             </el-menu-item>
                         </router-link>
@@ -53,6 +53,18 @@
                     <el-menu-item index="5">
                         <i class="el-icon-information"></i>
                         留言管理
+                    </el-menu-item>
+                </router-link>
+                <router-link to="/admin/manager">
+                    <el-menu-item index="6">
+                        <i class="el-icon-setting"></i>
+                        用户管理
+                    </el-menu-item>
+                </router-link>
+                <router-link to="/admin/file">
+                    <el-menu-item index="7">
+                        <i class="el-icon-upload"></i>
+                        文件上传
                     </el-menu-item>
                 </router-link>
             </el-menu>

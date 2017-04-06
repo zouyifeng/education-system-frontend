@@ -22,7 +22,8 @@ const state = {
     newsDetail: {
         news: {},
         years: []
-    }
+    },
+    loginStatus: false
 }
 
 export default {

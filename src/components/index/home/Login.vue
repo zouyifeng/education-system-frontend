@@ -1,24 +1,22 @@
 <template>
-    <div class="login"> 
-        <el-form :model="loginAccount" :rules="rule" ref="loginAccount" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="用户名" prop="username">
-                <el-input type="text" v-model="loginAccount.username" auto-complete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="password">
-                <el-input type="password" v-model="loginAccount.password" auto-complete="off"></el-input>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="login">登录</el-button>
-                <el-button @click="resetForm('loginAccount')">重置</el-button>
-            </el-form-item>
-        </el-form>
+    <div class="box"> 
+        <div class="box-title warning-bg"><i class="el-icon-edit mr-15"></i>登陆</div>
+        <div class="box-content">
+            <el-form :model="loginAccount" :rules="rule" ref="loginAccount" label-width="60px" class="block-center">
+                <el-form-item label="用户名" prop="username">
+                    <el-input type="text" v-model="loginAccount.username" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password">
+                    <el-input type="password" v-model="loginAccount.password" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="success" @click="login">登录</el-button>
+                    <el-button @click="resetForm('loginAccount')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
     </div>
 </template>
-<style>
-    .login{
-        border-left: 1px solid #ddd;
-    }
-</style>
 <script>
     import { mapGetters } from 'vuex'
 
@@ -74,6 +72,7 @@
                 handler: function(newValue, oldValue){
                     if(newValue.id != ''){
                         this.$router.push('../admin')
+                        this.$store.dispatch('changeLoginStatis');
                     }
                 },
                 deep: true

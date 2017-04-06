@@ -1,34 +1,31 @@
 <template>
     <div class="container">
         <div class="page-header">
-            <h1>{{news.title}} <small>{{news.author}} / {{news.date}}</small></h1>
+            <h2>{{news.title}} </h2>
+            <h4>&nbsp;&nbsp;&nbsp;{{news.author}} / {{news.date}}</h4>
         </div>
-        <p>{{news.context}}</p>
+        <p v-html="news.context">{{news.context}}</p>
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 
-    import { mapGetters } from 'vuex'
-
-    export default {
-        // computed: mapGetters({
-        //     news: 'getNewsDetail'
-        // }),
-        data() {
-            return {
-                news: {
-                    title: '',
-                    author: '',
-                    date: ''
-                }
+export default {
+    data() {
+        return {
+            news: {
+                title: '',
+                author: '',
+                date: ''
             }
-        },
-        created () {
-            var data = { id : this.$route.params.id };
-            var that = this;
-            this.$store.dispatch('getNewsDetail', {data: data}).then((resp)=>{
-                that.news = resp.data.data.news;
-            });
         }
+    },
+    created () {
+        var data = { id : this.$route.params.id };
+        var that = this;
+        this.$store.dispatch('getNewsDetail', {data: data}).then((resp)=>{
+            that.news = resp.data.data.news;
+        });
     }
-    </script>
+}
+</script>

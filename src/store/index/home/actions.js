@@ -3,6 +3,10 @@ import * as util from '../../util'
 import * as types from './mutation-types'
 
 export default {
+    changeLoginStatis({ commit }) {
+        commit(types.CHANGE_LOGIN_STATUS);
+    },
+
     fetchAccount({ commit }, account) {
         const url = '/admin/login.action';
         util.post({ url }, account).then((resp) => {
