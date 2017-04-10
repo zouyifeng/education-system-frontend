@@ -26,13 +26,15 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div class="pull-right block">
+        <div class="pull-right block mt-15">
             <el-pagination
-                layout="total,prev, pager, next"
+                layout="sizes, total,prev, pager, next"
                 :current-page="data.pageInfo.pageNum"
-                :page-size="6"
                 :total="data.pageInfo.total"
-                @current-change="nextPage">
+                :page-sizes="[10, 15, 20]"
+                :page-size="data.pageInfo.pageSize"
+                @current-change="data.pageInfo.pageNum=arguments[0];nextPage()"
+                @size-change="data.pageInfo.pageSize=arguments[0];nextPage()">
             </el-pagination>
         </div>
     </el-col>
@@ -53,22 +55,23 @@
             data: 'getAdminNews'
         }),
         created() {
-            this.$store.dispatch('fetchAdminNews', {data: {}, pageInfo: {pageNum: 1}});
+            this.$store.dispatch('fetchAdminNews', {pageInfo: this.data.pageInfo});
         },
         methods: {
             deleteNews(id) {
-                var data = {id: id};
+                var data = {id: id},
+                    that = this;
                 this.$store.dispatch('deleteNews', {data: data}).then((resp) => {
                     this.$notify.success({
                         title: '删除成功',
                         message: '你已经成功删除一条新闻 ！',
                         offset: 100
                     });
-                    this.$store.dispatch('fetchAdminNews', {data: {}, pageInfo: {pageNum: 1}});
+                    this.$store.dispatch('fetchAdminNews', {pageInfo:that.data.pageInfo});
                 },()=>{
                     this.$message({
                         message: '删除失败！',
-                        message: '删除新闻失败 ！',
+                        message: '删除新闻失败！',
                         offset: 100,                        
                         type: 'error'
                     });
@@ -87,9 +90,8 @@
                     console.log('Search news error!');                    
                 });
             },
-            nextPage(page) {
-                this.data.pageInfo.pageNum = page;  //不规范
-                this.$store.dispatch('fetchAdminNews', { data: {}, pageInfo: this.data.pageInfo })
+            nextPage() {
+                this.$store.dispatch('fetchAdminNews', {pageInfo: this.data.pageInfo })
             }
         }
     }

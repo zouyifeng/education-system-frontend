@@ -1,6 +1,15 @@
 export default {
-    getNews(state) {
-        return state.news;
+    getClassNews(state) {
+        return state.classNews;
+    },
+    getStudyNews(state) {
+        return state.studyNews;
+    },
+    getExchangeNews(state) {
+        return state.exchangeNews;
+    },
+    getInformNews(state) {
+        return state.informNews;
     },
     getCurrentAccount(state) {
         return state.loginAccount;

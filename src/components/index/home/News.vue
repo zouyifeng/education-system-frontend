@@ -41,6 +41,9 @@
 
     import { mapGetters } from 'vuex'
 
+    import * as Util from '../../../store/util'
+
+
     export default {
         props:['title', 'type'],
         data() {
@@ -50,24 +53,25 @@
                     '2': '教务科',
                     '3': '考务科',
                     '4': '学籍科'
+                },
+                data: {
+                    list: []
                 }
             }
         },
-        mounted() {
-            this.$store.dispatch('getNews',{data: {type: this.type}});
-        },
         created() {
-            console.log(this.title)
-        },
-        computed: mapGetters({
-            data: 'getNews'
-        }),
-        methods: {
-            nextPage(page) {
-                this.data.pageInfo.pageNum = page;  //不规范
-                this.$store.dispatch('getNewsByPage', { data: {type: this.type}})
-            }
+            const url = '/news_list.action',
+                that = this;
+            Util.post({ url }, {data: {type: this.type}}).then((resp) => {
+                that.data = resp.body.data;
+            })
         }
+        // mounted() {
+        //     this.$store.dispatch('getNews',{data: {type: this.type}});
+        // },
+        // computed: mapGetters({
+        //     data: that.type == 1 ? 'getClassNews' : 'getExchangeNews'
+        // })
     }
 
 </script>

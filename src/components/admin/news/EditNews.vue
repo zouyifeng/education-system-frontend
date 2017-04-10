@@ -43,7 +43,8 @@
                     'title': '',
                     'context': '',
                     'source': '',
-                    'type':''
+                    'type':'',
+                    'picUrl': []
                 }
             }
         },
@@ -55,15 +56,17 @@
                     $(editor).html(this.news.context);
                 });
             }
-
+            
+            const that = this;
             $(function(){
                 var editor = new wangeditor('editor');
-                editor.config.uploadImgUrl = Util.urlPrefix + '/admin/member_pic_upload.action';
+                editor.config.uploadImgUrl = Util.urlPrefix + '/admin/news_pic_upload.action';
 
                 editor.config.uploadImgFileName = 'pic';
 
                 editor.config.uploadImgFns.onload = function(result, xhr){
                     result = JSON.parse(result);
+                    that.news.picUrl.push({path: result.data.picUrl})
                      editor.command(null, 'insertHtml', '<img src="' + result.data.picUrl + '" style="max-width:100%;"/>');
                 }
 
@@ -74,12 +77,19 @@
             submit () {
                 this.news.context = $(editor).html();
 
+                const that = this;
                 this.$store.dispatch('editNews', {data: this.news}).then((resp) => {
                     // console.log(resp)
                     if(!this.$route.params.id){
                         this.$router.push({path : './news'});
                     }else{
                         this.$router.push({path : '../news'});
+                    }
+
+                    for(var i=0; i<that.news.picUrl.length;i++) {
+                        that.news.picUrl[i].newsId = resp.body.data.newsId;
+                        const url = '/admin/news_pic_add.action';
+                        Util.post({ url }, {data: that.news.picUrl[i]});
                     }
                 });
             }

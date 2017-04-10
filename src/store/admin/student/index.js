@@ -7,8 +7,8 @@ const state = {
     student: {
         list:[],
         pageInfo: {
-            pages: '',
-            pageNum: ''
+            pageSize: 10,
+            pageNum: 1
         }
     }
 }

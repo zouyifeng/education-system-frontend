@@ -5,6 +5,11 @@
         </el-carousel-item>
     </el-carousel>
 </template>
+<style lang="scss">
+    img {
+        width: 100%;
+    }
+</style>
 <script>
 
     import * as Util from '../../../store/util'

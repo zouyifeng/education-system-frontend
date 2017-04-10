@@ -43,7 +43,7 @@
                         :current-page="classList.pageInfo.pageNum"
                         :page-size="6"
                         :total="classList.pageInfo.total"
-                        @current-change="nextPage">
+                        @current-change="this.classList.pageInfo.pageNum=arguments[0];nextPage()">
                     </el-pagination>
                 </div>
             </el-form-item>
@@ -146,6 +146,7 @@
                     classesId: '',
                     classes: []
                 },
+                account: {},
                 pageConfig:{
                     confirmDelete: false
                 },
@@ -157,13 +158,15 @@
             classList: 'getAdminClassesList'
         }),
         created() {
-            this.$store.dispatch('fetchAdminClassesList', {data: {}, pageInfo: {pageNum: 1}})
+            this.$store.dispatch('fetchAdminClassesList', {pageInfo: {pageNum: 1}})
             
-            const that = this;
-            this.$store.dispatch('fetchTeacherDetail', {data: {id: this.teacherId}}).then((resp)=>{
-                that.teacher = resp.data.data;
-                that.imageUrl = this.teacher.face;
-            });
+            if(this.teacherId) {
+                const that = this;
+                this.$store.dispatch('fetchTeacherDetail', {data: {id: this.teacherId}}).then((resp)=>{
+                    that.teacher = resp.data.data;
+                    that.imageUrl = this.teacher.face;
+                });
+            }
         },
         watch: {
             teacherId: function(newValue,oldValue){
@@ -180,13 +183,18 @@
         methods: {
             submit () {
                 var actionType = this.teacher.id? 'editTeacher' : 'addTeacher',                 
-                    actionTypeStr = this.teacher.id ? '修改' : '新增'; 
+                    actionTypeStr = this.teacher.id ? '修改' : '新增',
+                    that = this; 
                 this.$store.dispatch(actionType, {data: this.teacher}).then((resp) => {
                     this.$router.push({path : '../admin/teacher'});
+                    if(resp.data.data.account) {
+                        that.account = resp.data.data.account;
+                    }
                     this.$notify.success({
                         title: actionTypeStr + '成功',
-                        message: resp.data.data.message,
-                        offset: 100
+                        message: !that.teacher.id ? '系统分配账号：' + that.account.username + '&nbsp; 密码： ' +  that.account.password : resp.data.data.message,
+                        offset: 100,
+                        duration: 0
                     });
                     this.$refs['teacher'].resetFields();
                     this.$store.dispatch('fetchAdminTeacherList', {pageInfo: {pageNum: 1}})
@@ -198,11 +206,12 @@
                 });
                 this.closeDialog();
             },
-            nextPage(page) {
-                this.classList.pageInfo.pageNum = page;
+            nextPage() {
+                
                 this.$store.dispatch('fetchAdminClassesList',{ data: {}, pageInfo: this.classList.pageInfo })
             },
             assignClasses(item) {
+                console.log(this.teacher)
                 this.teacher.classes.push(item);
             },
             cancelAssginedClasses(item) {

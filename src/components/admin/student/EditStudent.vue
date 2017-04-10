@@ -92,7 +92,7 @@
             <el-form-item>
                 <el-button type="primary" v-on:click="closeDialog();submit()">提交</el-button>
                 <el-button @click="closeDialog()">取 消</el-button>                
-            </el-form-item>                
+            </el-form-item>          
         </el-form>
     </el-col>
 </template>
@@ -150,6 +150,7 @@
                     parentName: '',
                     classes: []
                 },
+                account: {},
                 pageConfig:{
                     confirmDelete: false
                 },
@@ -184,13 +185,18 @@
         methods: {
             submit () {
                 var actionType = this.student.id ? 'editStudent' : 'addStudent',
-                    actionTypeStr = this.student.id ? '修改' : '新增'; 
+                    actionTypeStr = this.student.id ? '修改' : '新增',
+                    that = this; 
                 this.$store.dispatch(actionType, {data: this.student}).then((resp) => {
                     this.$router.push({path : '../admin/student'});
+                    if(resp.data.data.account) {
+                        that.account = resp.data.data.account;
+                    }
                     this.$notify.success({
                         title: actionTypeStr + '成功',
-                        message: resp.data.data.message,
-                        offset: 100
+                        message: !that.student.id ? '系统分配账号：' + that.account.username + '&nbsp; 密码： ' +  that.account.password : resp.data.data.message,  
+                        offset: 100,
+                        duration: 0
                     });
                     this.$store.dispatch('fetchAdminStudentList', {pageInfo: {pageNum: 1}})
                 }, () => {

@@ -4,6 +4,7 @@
         <el-table :data="adminList" stripe style="width: 100%">
             <el-table-column type="index" label="序号"  width="200px"></el-table-column>
             <el-table-column prop="username" label="用户名"></el-table-column>
+            <el-table-column prop="type" label="用戶類型" inline-template><div>{{typeMap[row.type]}}</div></el-table-column>
             <el-table-column label="操作">
                 <template scope="scope">
                     <el-button size="small" type="primary" @click="updatedAdmin = scope.row; pageConfig.dialogFormVisible1 = true;">修改账号</el-button>         
@@ -33,6 +34,11 @@
                 <el-form-item label="密码" label-width="80px">
                     <el-input type="password" v-model="newAdmin.password"></el-input>
                 </el-form-item>
+                <el-form-item label="类型选择">
+                    <el-radio class="radio" v-model="newAdmin.type" label="1">学生</el-radio>
+                    <el-radio class="radio" v-model="newAdmin.type" label="2">教师</el-radio>
+                    <el-radio class="radio" v-model="newAdmin.type" label="3">管理员</el-radio>
+                </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="pageConfig.dialogFormVisible2 = false">取 消</el-button>
@@ -49,7 +55,13 @@
             return {
                 newAdmin: {
                     username: '',
-                    password: ''
+                    password: '',
+                    type: null
+                },
+                typeMap: {
+                    1: '学生',
+                    2: '教师',
+                    3: '管理员'
                 },
                 pageConfig: {
                     dialogFormVisible1: false,

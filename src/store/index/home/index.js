@@ -8,7 +8,40 @@ const state = {
         username: '',
         password: ''
     },
-    news: {
+    classNews: {
+        list: [],
+        years:[],
+        pageInfo:{
+            pageNum:'',
+            pageSize:'',
+            pages:'',
+            size:'',
+            total:''
+        }
+    },
+    informNews: {
+        list: [],
+        years:[],
+        pageInfo:{
+            pageNum:'',
+            pageSize:'',
+            pages:'',
+            size:'',
+            total:''
+        }
+    },
+    exchangeNews: {
+        list: [],
+        years:[],
+        pageInfo:{
+            pageNum:'',
+            pageSize:'',
+            pages:'',
+            size:'',
+            total:''
+        }
+    },
+    studyNews: {
         list: [],
         years:[],
         pageInfo:{

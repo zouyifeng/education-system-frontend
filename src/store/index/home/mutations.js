@@ -7,8 +7,23 @@ export default {
     },
 
     // 新闻列表
-    [types.FETCH_NEWS_LIST](state, news) {
-        state.news = news;
+    [types.FETCH_CLASS_NEWS_LIST](state, news) {
+        state.classNews = news;
+    },
+    
+    // 新闻列表
+    [types.FETCH_INFORM_NEWS_LIST](state, news) {
+        state.informNews = news;
+    },
+
+    // 新闻列表
+    [types.FETCH_EXCHANGE_NEWS_LIST](state, news) {
+        state.exchangeNews = news;
+    },
+
+    // 新闻列表
+    [types.FETCH_STUDY_NEWS_LIST](state, news) {
+        state.studyNews = news;
     },
 
     // 新闻详情

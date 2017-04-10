@@ -134,7 +134,7 @@
                 
                 const url = '/admin/add_files.action',
                     that = this;
-                Util.post( { url } , { data: that.uploadFile } ).then((resp) => { 
+                Util.post( { url } , { data: {filesList : that.uploadedFileList} } ).then((resp) => { 
                     this.$notify.success({
                         title: '上传成功',
                         message: resp.data.data.message,
@@ -153,9 +153,9 @@
             uploadSuccess(response) {
                 response.data.type = this.uploadFile.type;
                 // console.log(response)
-                // this.uploadedFileList.push(response.data);
-                // console.log(this.uploadedFileList)
-                this.uploadFile = response.data;
+                this.uploadedFileList.push(response.data);
+                console.log(this.uploadedFileList)
+                // this.uploadFile = response.data;
             },
             removeFile(file) {
                 for(var i=0; i<this.uploadedFileList; i++) {

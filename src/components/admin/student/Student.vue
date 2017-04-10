@@ -30,11 +30,13 @@
         </el-table>
         <div class="pull-right mt-15">
             <el-pagination
-                layout="total,prev, pager, next"
+                layout="sizes, total,prev, pager, next"
                 :current-page="data.pageInfo.pageNum"
-                :page-size="6"
+                :page-size="data.pageInfo.pageSize"
+                :page-sizes="[10, 15, 20]"              
                 :total="data.pageInfo.total"
-                @current-change="data.pageInfo.pageNum=arguments[0];nextPage(1)">
+                @size-change="data.pageInfo.pageSize=arguments[0];nextPage()"
+                @current-change="data.pageInfo.pageNum=arguments[0];nextPage()">
             </el-pagination>
         </div>
         <el-dialog title="编辑学生" v-model="dialogFormVisible" size="small" @close="$store.dispatch('closeEditDialogVisible');">
@@ -51,7 +53,7 @@
             return{
                 search: {  
                     name: '',
-                    direction: ''
+                    school: ''
                 },
                 selectedId: ''
             }
@@ -61,7 +63,8 @@
             dialogFormVisible : 'getEditDialogVisible'
         }),
         created() {
-            this.$store.dispatch('fetchAdminStudentList', {pageInfo: {pageNum: 1}})
+            console.log(this.data)
+            this.$store.dispatch('fetchAdminStudentList', {pageInfo: this.data.pageInfo})
         },
         methods: {
             deleteStudent(id) {
@@ -82,7 +85,7 @@
                 })
             },
             searchStudent() {
-                this.$store.dispatch('searchStudent', {data: this.search});
+                this.$store.dispatch('searchStudent', {data: this.search, pageInfo: {pageNum: 1, pageSize: this.data.pageInfo.pageSize}});
             },
             openDialog(id){
                 this.selectedId = id || '';

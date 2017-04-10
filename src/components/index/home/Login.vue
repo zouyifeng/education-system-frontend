@@ -2,12 +2,17 @@
     <div class="box"> 
         <div class="box-title warning-bg"><i class="el-icon-edit mr-15"></i>登陆</div>
         <div class="box-content">
-            <el-form :model="loginAccount" :rules="rule" ref="loginAccount" label-width="60px" class="block-center">
+            <el-form :model="loginAccount" :rules="rule" ref="loginAccount" label-width="54px" class="block-center">
                 <el-form-item label="用户名" prop="username">
                     <el-input type="text" v-model="loginAccount.username" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
                     <el-input type="password" v-model="loginAccount.password" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="类型">
+                    <el-radio class="radio" v-model="loginAccount.type" label="1">学生</el-radio>
+                    <el-radio class="radio" v-model="loginAccount.type" label="2">教师</el-radio>
+                    <el-radio class="radio" v-model="loginAccount.type" label="3">管理员</el-radio>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="success" @click="login">登录</el-button>
@@ -44,7 +49,8 @@
             return { 
                 loginAccount: {
                     username: '',
-                    password: ''
+                    password: '',
+                    type: ''
                 },
                 rule: {
                     password: [

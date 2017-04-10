@@ -175,7 +175,8 @@
                     title: '',
                     author: '',
                     source: '班级',
-                    imgList: []
+                    imgList: [],
+                    type: 1
                 },
                 lessons: [],
                 lesson: {
@@ -233,7 +234,7 @@
 
                 editor.config.uploadImgFns.onload = function(result, xhr){
                     result = JSON.parse(result);
-                    // this.activity.imgList.push(result.data.picUrl);
+                    that.activity.imgList.push({path: result.data.picUrl});
                      editor.command(null, 'insertHtml', '<img src="'+ result.data.picUrl +'" style="max-width:100%;"/>');
                 }
 
@@ -247,7 +248,8 @@
         methods: {
             submit () {
                 var actionType = this.classes.id ? 'editClasses' : 'addClasses',
-                    actionTypeStr = this.classes.id ? '修改' : '新增';
+                    actionTypeStr = this.classes.id ? '修改' : '新增',
+                    that = this;
                 this.$store.dispatch(actionType, {data: this.classes}).then((resp) => {
                     this.$router.push({path : './classes'});
                     this.$notify.success({
@@ -263,6 +265,15 @@
                     this.$store.dispatch('editNews', {data: this.activity}).then((resp) => {
                         // console.log(resp)
                         this.$router.push({path : './classes'});
+                        console.log(resp.body.data.newsId)
+                        console.log(that.activity.imgList)
+                        for(var i=0; i<that.activity.imgList.length; i++ ){
+                            that.activity.imgList[i].newsId = resp.body.data.newsId;
+                            const url =  '/admin/news_pic_add.action';
+                            Util.post( { url } ,{data: that.activity.imgList[i]}).then((resp)=>{
+
+                            })
+                        } 
                     });
                 }
             },

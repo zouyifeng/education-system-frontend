@@ -17,8 +17,8 @@
         </el-col>
       </el-row>
       <div class="footer">
-          <p class="footer-contact">趣学教育 版权所有</p>
-          <p class="footer-contact">地址：广东省广州市天河区五山路483号 趣学教育 邮编：510642 电话：020-85280071 传真：020-85281885 Email:kyc@quxue.edu.cn</p>
+          <p class="footer-contact">爱学习教育 版权所有</p>
+          <p class="footer-contact">地址：广东省广州市天河区五山路483号 爱学习教育 邮编：510642 电话：020-85280071 传真：020-85281885 Email:kyc@quxue.edu.cn</p>
       </div>
   </div>
 </template>
@@ -34,9 +34,9 @@
     data(){
       return {
         new1: '交流活动',
-        type1: 1,
+        type1: 2,
         new2: '班级活动',
-        type2: 2
+        type2: 1
       }
     },
     components: {

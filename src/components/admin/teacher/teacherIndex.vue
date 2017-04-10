@@ -1,0 +1,147 @@
+<template>
+<el-col :span="20" :offset="1" class="mt-15">
+    <el-tabs v-model="pageConfig.activeName">
+        <el-tab-pane label="教师信息" name="first">
+            <el-form :moel="teacher" ref="teacher" :inline="true" label-width="80px">
+                <el-form-item label="姓名">
+                    <el-input v-model="teacher.name"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱">
+                    <el-input v-model="teacher.email"></el-input>
+                </el-form-item>
+            </el-form>
+            <el-form :inline="true" label-width="80px">
+                <el-form-item label="电话"> 
+                    <el-input v-model="teacher.telephone"></el-input>
+                </el-form-item>
+                <el-form-item label="研究方向"> 
+                    <el-input v-model="teacher.majorName"></el-input>
+                </el-form-item> 
+            </el-form>
+            <el-form label-width="80px">
+                <el-form-item label="已报班级">
+                    <el-tag
+                        class="mr-15"
+                        v-for="item in teacher.classes"
+                        type="primary">
+                        {{item.subject}}
+                    </el-tag>
+                    <span v-if="teacher.classes.length == 0">暂无</span>
+                </el-form-item>
+                <el-form-item label="详细介绍"> 
+                    <el-input type="textarea" v-model="teacher.introduction"></el-input>
+                </el-form-item> 
+                <el-form-item label="照片上传">
+                    <el-upload name="pic" v-if="imageUrl === ''" v-bind:action="urlPrefix + '/admin/member_pic_upload.action'" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-success="handleSuccessUpload">
+                        <i class="el-icon-plus"></i>
+                    </el-upload>
+                    <div class="image-container" style="width: 240px;">
+                        <el-card :body-style="{ margin: '0 auto'}" v-if="imageUrl !== ''">
+                            <img :src="imageUrl" class="image">
+                            <div class="bottom clearfix">
+                                <el-popover
+                                    ref="popover2"
+                                    placement="top"
+                                    width="160"
+                                    v-model="pageConfig.confirmDelete">
+                                    <p>确定删除{{teacher.name}}的头像吗？</p>
+                                    <div style="text-align: right; margin: 0">
+                                        <el-button size="mini" type="text" @click="pageConfig.confirmDelete = false">取消</el-button>
+                                        <el-button type="primary" size="mini" @click="pageConfig.confirmDelete = false; imageUrl = ''">确定</el-button>
+                                    </div>
+                                </el-popover>
+                                <el-button class="button" v-popover:popover2>删除</el-button>
+                            </div>
+                        </el-card>
+                    </div>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" v-on:click="submit()">修改个人信息</el-button>           
+                </el-form-item>
+            </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="课程表" name="second">
+            <el-form>
+            <el-form-item label="课程表选择">
+                <el-select v-model="pageConfig.selectedScheduleId" placeholder="请选择班级">
+                    <el-option
+                        v-for="item in teacher.classes"
+                        :label="item.subject"
+                        :value="item.id">
+                    </el-option>
+                </el-select>
+                <a v-bind:href="'#/management/admin/teacherIndex/schedule/'+pageConfig.selectedScheduleId"><el-button type="primary" size="normal" class="ml-15">確定</el-button></a>                   
+            </el-form-item>
+            <router-view></router-view>
+            </el-form>
+        </el-tab-pane>
+    </el-tabs>
+</el-col>
+</template>
+<style> 
+    .image-container {
+        width: 240px;
+    }
+</style>
+<script>
+    import { mapGetters } from 'vuex'
+    import * as Util from '../../../store/util'
+
+    export default {
+        data() {
+            return {
+                teacher: {
+                    name: '',
+                    telephone: '',
+                    email: '',
+                    subject: '',
+                    direction: '',
+                    introduction:'',
+                    face: '',
+                    classesId: '',
+                    classes: []
+                },
+                pageConfig:{
+                    confirmDelete: false,
+                    activeName: 'first',
+                    selectedScheduleId: ''
+                },
+                imageUrl: '',
+                urlPrefix: Util.urlPrefix
+            }
+        },        
+        computed : mapGetters({
+            currentAccount :  'getCurrentAccount'
+        }),
+        created() {
+           this.fetchTeacherDetail();
+        },
+        methods: {
+            submit () {
+                const that = this;
+                this.$store.dispatch('editTeacher', {data: this.teacher}).then((resp) => {
+                    this.$notify.success({
+                        title: '修改成功',
+                        message: resp.data.data.message,
+                        offset: 100
+                    });
+                    that.fetchTeacherDetail();
+                });
+            },
+            handlePictureCardPreview(file) {
+                this.img.dialogImageUrl = file.url;
+                this.img.dialogVisible = false;
+            },
+            handleSuccessUpload(resp, file, fileList){
+                this.teacher.face = resp.data.picUrl;
+            },
+            fetchTeacherDetail() {
+                 const that = this;
+                this.$store.dispatch('fetchTeacherDetail', {data: {id: this.currentAccount.userId}}).then((resp)=>{
+                    that.teacher = resp.data.data;
+                    that.imageUrl = this.teacher.face;
+                });
+            }
+        }
+    }
+</script>

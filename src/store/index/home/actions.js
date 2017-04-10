@@ -16,7 +16,18 @@ export default {
     getNews({ commit }, data) {
         const url = '/news_list.action';
         util.post({ url }, data).then((resp) => {
-            commit(types.FETCH_NEWS_LIST, resp.body.data);
+            if(data.type == 1) {
+                commit(types.FETCH_CLASS_NEWS_LIST, resp.body.data);
+            }
+            if(data.type == 2) {
+                commit(types.FETCH_EXCHANGE_NEWS_LIST, resp.body.data);                
+            }
+            if(data.type == 3) {
+                commit(types.FETCH_STUDY_NEWS_LIST, resp.body.data);                
+            }
+            if(data.type == 4) {
+                commit(types.FETCH_INFORM_NEWS_LIST, resp.body.data);                
+            }
         })
     },
     getNewsDetail({ commit }, id) {

@@ -8,8 +8,8 @@ const state = {
         years: [],
         list: [],
         pageInfo: {
-            pages: '',
-            pageNum: ''
+            pageNum: 1,
+            pageSize: 10
         }
     }
 }

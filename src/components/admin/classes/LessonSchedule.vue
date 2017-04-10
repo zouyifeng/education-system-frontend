@@ -83,18 +83,20 @@
                 schedule: []
             }
         },
-        created() {
-            const url = '/admin/lesson_list.action';
-            Util.post( { url } , {data: { 
-                classesId: this.$route.params.id,
-                startTime: this.getWeek(new Date()).start,
-                endTime: this.getWeek(new Date()).end
-            }} ).then((resp) => { 
-
-                this.creatSchedule(resp.data.data);
-            })
+        created () {
+            this.fetchLesson();
         },
         methods: {
+            fetchLesson() {
+                const url = '/admin/lesson_list.action';
+                Util.post( { url } , {data: { 
+                    classesId: this.$route.params.id,
+                    startTime: this.getWeek(new Date()).start,
+                    endTime: this.getWeek(new Date()).end
+                }} ).then((resp) => { 
+                    this.creatSchedule(resp.data.data);
+                })
+            },
             getWeek(date) {
                 var start = date.setDate(date.getDate() - date.getDay());
                 var end = date.setDate(date.getDate() + 7);
@@ -112,22 +114,22 @@
                 lessonList.forEach(function(item, index){
                     var current = new Date(item.startTime),
                         beginTime = current.getHours();
-                        console.log(beginTime)
+                        console.log(current.getDay())
                     switch(beginTime) {
                         case 8: 
-                            that.schedule[current.getDay()-1][0] = item;
+                            that.schedule[current.getDay()][0] = item;
                             break;
                         case 10:
-                            that.schedule[current.getDay()-1][1] = item;
+                            that.schedule[current.getDay()][1] = item;
                             break;
                         case 12:
-                            that.schedule[current.getDay()-1][2] = item;
+                            that.schedule[current.getDay()][2] = item;
                             break;                            
                         case 14:
-                            that.schedule[current.getDay()-1][3] = item;
+                            that.schedule[current.getDay()][3] = item;
                             break;                            
                         case 16:
-                            that.schedule[current.getDay()-1][4] = item;
+                            that.schedule[current.getDay()][4] = item;
                             break;                            
                     }
                 })

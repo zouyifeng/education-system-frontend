@@ -5,7 +5,16 @@ export const FETCH_ACCOUNT = 'FETCH_ACCOUNT';
 export const CHANGE_LOGIN_STATUS = 'CHANGE_LOGIN_STATUS';
 
 // 新闻列表
-export const FETCH_NEWS_LIST = 'FETCH_NEWS_LIST';
+export const FETCH_CLASS_NEWS_LIST = 'FETCH_CLASS_NEWS_LIST';
+
+// 新闻列表
+export const FETCH_EXCHANGE_NEWS_LIST = 'FETCH_EXCHANGE_NEWS_LIST';
+
+// 新闻列表
+export const FETCH_INFORM_NEWS_LIST = 'FETCH_INFORM_NEWS_LIST';
+
+// 新闻列表
+export const FETCH_STUDY_NEWS_LIST = 'FETCH_STUDY_NEWS_LIST';
 
 // 新闻详情
 export const FETCH_NEWS_DETAIL = 'FETCH_NEWS_DETAIL';

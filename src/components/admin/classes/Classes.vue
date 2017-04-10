@@ -36,7 +36,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div class="pull-right block">
+        <div class="pull-right block mt-15">
             <el-pagination
                 layout="total,prev, pager, next"
                 :current-page="data.pageInfo.pageNum"

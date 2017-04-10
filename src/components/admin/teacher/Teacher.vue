@@ -5,7 +5,7 @@
                 <el-input v-model="search.name" placeholder="姓名"></el-input>
             </el-form-item>
             <el-form-item label="专业">
-                <el-input v-model="search.direction" placeholder="专业"></el-input>
+                <el-input v-model="search.majorName" placeholder="专业"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="searchTeacher">查询</el-button>
@@ -27,13 +27,15 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div class="pull-right block">
+        <div class="pull-right block mt-15">
             <el-pagination
-                layout="total,prev, pager, next"
+                layout="sizes, total,prev, pager, next"
                 :current-page="data.pageInfo.pageNum"
-                :page-size="6"
-                :total="data.pageInfo.total"
-                @current-change="nextPage">
+                :total="data.pageInfo.total"  
+                :page-sizes="[10, 15, 20]"              
+                :page-size="data.pageInfo.pageSize"
+                @current-change="data.pageInfo.pageNum=arguments[0];nextPage()"
+                @size-change="data.pageInfo.pageSize=arguments[0];nextPage()">
             </el-pagination>
         </div>
         <el-dialog title="编辑教师" v-model="dialogFormVisible" @close="$store.dispatch('closeEditDialogVisible');">
@@ -50,7 +52,7 @@
             return{
                 search: {  
                     name: '',
-                    direction: ''
+                    majorName: ''
                 } ,
                 pageConfig: {
                     dialogVisible: false,
@@ -64,7 +66,8 @@
             dialogFormVisible : 'getEditDialogVisible'
         }),
         created() {
-            this.$store.dispatch('fetchAdminTeacherList', {pageInfo: {pageNum: 1}})
+            // console.log(this.data)
+            this.$store.dispatch('fetchAdminTeacherList', { pageInfo: this.data.pageInfo})
         },
         methods: {
             deleteTeacher(id) {
@@ -84,14 +87,13 @@
                 })
             },
             searchTeacher() {
-                this.$store.dispatch('searchTeacher', {data: this.search});
+                this.$store.dispatch('searchTeacher', {data: this.search, pageInfo: {pageNum: 1, pageSize: this.data.pageInfo.pageSize}});
             },
             openDialog(id) {
                 this.selectedId = id || '';
                 this.$store.dispatch('openEditDialogVisible');
             },
-            nextPage(page) {
-                this.data.pageInfo.pageNum = page;
+            nextPage() {
                 this.$store.dispatch('fetchAdminTeacherList',{ pageInfo: this.data.pageInfo })
             }
         },
