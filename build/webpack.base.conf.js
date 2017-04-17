@@ -12,7 +12,8 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.js',
+    h5_app: './src/h5_main.js'
   },
   output: {
     path: config.build.assetsRoot,

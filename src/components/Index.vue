@@ -4,7 +4,7 @@
             <el-row>
                 <el-col :span="17">
                     <el-menu-item index="0">
-                        <h3 class="nav-title"><i class="el-icon-star-off"></i> 爱学习教育</h3>
+                        <h3 class="nav-title"><i class="el-icon-star-off"></i> 乐学教育</h3>
                     </el-menu-item>
                 </el-col>
                 <el-col :span="7" v-if="!loginStatus">    

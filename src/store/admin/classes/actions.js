@@ -33,5 +33,11 @@ export default {
     fetchClassesDetail({ commit }, classes){
         const url = '/admin/classes_editUI.action';
         return util.post({ url }, classes);
-    }
+    },
+    fetchClassesLesson({ commit }, data) {
+        const url =  '/lesson_list.action';
+        return util.post( { url } , data).then((resp)=> {
+            commit(types.FETCH_CLASSES_SCHEDULE, resp.data.data);
+        });
+    },
 };

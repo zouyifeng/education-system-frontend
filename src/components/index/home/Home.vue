@@ -17,8 +17,8 @@
         </el-col>
       </el-row>
       <div class="footer">
-          <p class="footer-contact">爱学习教育 版权所有</p>
-          <p class="footer-contact">地址：广东省广州市天河区五山路483号 爱学习教育 邮编：510642 电话：020-85280071 传真：020-85281885 Email:kyc@quxue.edu.cn</p>
+          <p class="footer-contact">乐学教育 版权所有</p>
+          <p class="footer-contact">地址：广东省广州市天河区五山路483号 乐学教育 邮编：510642 电话：020-85280071 传真：020-85281885 Email:kyc@quxue.edu.cn</p>
       </div>
   </div>
 </template>

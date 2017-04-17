@@ -13,7 +13,7 @@
                         <el-form-item label="当天开班">
                             <el-switch on-text="是" off-text="否" v-model="pageConfig.todayOpen" disabled="!!classes.id"></el-switch>
                         </el-form-item>
-                        <el-form-item label="开班日期" v-if="!pageConfig.todayOpen" >                      
+                        <el-form-item label="" v-if="!pageConfig.todayOpen" >                      
                             <el-date-picker type="date" placeholder="选择日期" v-model="classes.date" style="width: 100%;"></el-date-picker>
                         </el-form-item>
                         <el-form-item label="详细介绍"> 
@@ -33,13 +33,13 @@
                     :data="activityList.list"
                     style="width: 100%">
                     <el-table-column type="expand">
-                    <template scope="props">
-                        <el-form inline class="demo-table-expand">
-                        <el-form-item label="正文">
-                            <span v-html="props.row.context"></span>
-                        </el-form-item>
-                        </el-form>
-                    </template>
+                        <template scope="props">
+                            <el-form inline class="demo-table-expand">
+                                <el-form-item label="正文">
+                                    <span v-html="props.row.context"></span>
+                                </el-form-item>
+                            </el-form>
+                        </template>
                     </el-table-column>
                     <el-table-column type="index" label="序号" width="80px"></el-table-column>
                     <el-table-column prop="title" label="标题"></el-table-column>
@@ -82,7 +82,7 @@
                     </el-form-item>
                 </el-form>
             </el-tab-pane>
-            <el-tab-pane label="课程管理">
+            <el-tab-pane label="课程管理" name="fifth">
                 <el-col :span="16" >
                     <el-form ref="form" :model="lesson" label-width="80px">
                         <el-form-item label="课程名称">
@@ -138,7 +138,7 @@
                     </el-form>
                 </el-col>
             </el-tab-pane>
-            <el-tab-pane label="课程表">
+            <el-tab-pane label="课程表" name="sixth">
                 <lessonschedule></lessonschedule>
             </el-tab-pane>
         </el-tabs>
@@ -265,8 +265,6 @@
                     this.$store.dispatch('editNews', {data: this.activity}).then((resp) => {
                         // console.log(resp)
                         this.$router.push({path : './classes'});
-                        console.log(resp.body.data.newsId)
-                        console.log(that.activity.imgList)
                         for(var i=0; i<that.activity.imgList.length; i++ ){
                             that.activity.imgList[i].newsId = resp.body.data.newsId;
                             const url =  '/admin/news_pic_add.action';
@@ -303,6 +301,7 @@
                     theDate = this.parseDate(this.getTheDay(theDate, 1));
                 }
                 const url = '/admin/add_lesson.action' ;
+                const self = this;
                 Util.post( { url } , {data: { lesson: this.lessons}} ).then((resp) => { 
                     // this.fetchMessageList();
                     // this.message.question = '';
@@ -311,7 +310,21 @@
                         message: '你已经成功新增课时 ！',
                         offset: 100
                     });
+                    this.pageConfig.activeName = 'sixth';
+                    this.$store.dispatch('fetchClassesLesson',{data: { 
+                        classesId: self.$route.params.id,
+                        startTime: self.getWeek(new Date()).start,
+                        endTime: self.getWeek(new Date()).end
+                    }})
                 })
+            },
+            getWeek(date) {
+                var start = date.setDate(date.getDate() - date.getDay());
+                var end = date.setDate(date.getDate() + 7);
+                return {
+                    start: start,
+                    end: end
+                }
             },
             getTheDay(now, addDayCount) {
                 if(now instanceof Date){

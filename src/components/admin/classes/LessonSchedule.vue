@@ -8,7 +8,9 @@
                 <li v-for="(item, index) in timeRange" v-text="item.text"></li>
             </ul>
             <ul class="week-item" v-for="(day, index) in schedule">
-                <li v-for="(item, index) in day" v-text="item && item.name" v-bind:class="{ active : !!item&&item.name}"></li>
+                <li v-for="(item, index) in day" v-bind:class="{ active : !!item&&item.name}">
+                    {{item && item.name}}<i v-if="!!item&&item.name" class="el-icon-close close-btn" v-on:click="deleteLesson(item.id)"></i>
+                </li>
             </ul>
         </div>
     </el-col>
@@ -47,8 +49,22 @@
     }
 
     .schedule .week-item li {
-        display: block;
+        position: relative;
         width: 100%;
+        display: block;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 2px;
+        right: 1px;
+        color: #fff;
+        transform: scale(0.7);
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        color:aqua;
     }
 
     .active {
@@ -58,7 +74,9 @@
 </style>
 <script>
 
-    import * as Util from '../../../store/util'
+    import * as Util from '../../../store/util';
+
+    import { mapGetters } from 'vuex';
 
     export default {
         data() {
@@ -83,19 +101,38 @@
                 schedule: []
             }
         },
+
         created () {
             this.fetchLesson();
         },
+        watch: {
+            scheduleData: function() {
+                console.log('zz')
+                this.creatSchedule(this.scheduleData);
+            }
+        },
+        computed: mapGetters({
+            scheduleData: 'getClassesSchedule'
+        }),
         methods: {
             fetchLesson() {
-                const url = '/admin/lesson_list.action';
-                Util.post( { url } , {data: { 
+                const url = '/lesson_list.action';
+                // Util.post( { url } , {data: { 
+                //     classesId: this.$route.params.id,
+                //     startTime: this.getWeek(new Date()).start,
+                //     endTime: this.getWeek(new Date()).end
+                // }} ).then((resp) => { 
+                //     this.creatSchedule(resp.data.data);
+                // })
+
+                this.$store.dispatch('fetchClassesLesson',{data: { 
                     classesId: this.$route.params.id,
                     startTime: this.getWeek(new Date()).start,
                     endTime: this.getWeek(new Date()).end
-                }} ).then((resp) => { 
-                    this.creatSchedule(resp.data.data);
-                })
+                }} )
+
+                // this.creatSchedule(this.schedule);
+                
             },
             getWeek(date) {
                 var start = date.setDate(date.getDate() - date.getDay());
@@ -106,6 +143,7 @@
                 }
             },
             creatSchedule(lessonList) {
+                this.schedule = [];
                 for(var i=0; i<7; i++){
                     var t = new Array(5);
                     this.schedule.push(t);
@@ -114,7 +152,6 @@
                 lessonList.forEach(function(item, index){
                     var current = new Date(item.startTime),
                         beginTime = current.getHours();
-                        console.log(current.getDay())
                     switch(beginTime) {
                         case 8: 
                             that.schedule[current.getDay()][0] = item;
@@ -133,7 +170,15 @@
                             break;                            
                     }
                 })
-                console.log(that.schedule)
+            },
+            deleteLesson(id) {
+                const url = '/admin/delete_lesson.action',
+                    that = this;
+                Util.post( { url } , {data: { 
+                    id: id
+                }} ).then((resp) => { 
+                    that.fetchLesson();
+                })
             }
         }
     }

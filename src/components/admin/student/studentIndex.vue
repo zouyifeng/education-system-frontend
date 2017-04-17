@@ -1,7 +1,7 @@
 <template>
 <el-col :span="20" :offset="1" class="mt-15">
     <el-tabs v-model="pageConfig.activeName">
-        <el-tab-pane label="教师信息" name="first">
+        <el-tab-pane label="学生信息" name="first">
             <el-form :inline="true" label-width="70px">
                 <el-form-item label="姓名">
                     <el-input v-model="student.name"></el-input>
@@ -26,9 +26,7 @@
                     <el-tag
                         class="mr-15"
                         v-for="item in student.classes"
-                        :closable="true"
                         type="primary"
-                        @close="cancelAssginedClasses(item)"
                         >
                         {{item.subject}}
                     </el-tag>
@@ -108,7 +106,8 @@
                 },
                 pageConfig:{
                     confirmDelete: false,
-                    activeName: 'first'
+                    activeName: 'first',
+                    selectedScheduleId: ''
                 },
                 imageUrl: '',                
                 urlPrefix: Util.urlPrefix

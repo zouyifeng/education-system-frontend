@@ -5,6 +5,7 @@ module.exports = {
   build: {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../../wechat-education-system/src/main/webapp/pages/dist/index.html'),
+    play: path.resolve(__dirname, '../../wechat-education-system/src/main/webapp/pages/dist/h5.html'),
     assetsRoot: path.resolve(__dirname, '../../wechat-education-system/src/main/webapp/pages/dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',

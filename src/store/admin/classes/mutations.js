@@ -7,5 +7,8 @@ export default {
     },
     [types.SEARCH_CLASSES](state, classesList){
         state.classes = classesList;
+    },
+    [types.FETCH_CLASSES_SCHEDULE](state, schedule){
+        state.schedule = schedule;
     }
 };

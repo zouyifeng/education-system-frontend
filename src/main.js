@@ -12,7 +12,6 @@ import './assets/styles/base.scss'
 import App from './App'
 require('normalize.css')
 
-
 Vue.config.devtools = true;
 
 Vue.use(VueRouter)

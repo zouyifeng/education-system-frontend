@@ -111,8 +111,8 @@
 											"containerExtending": false,
 											"left": 0,
 											"top": 0,
-											"width": 1161,
-											"height": 916,
+											"width": 1073,
+											"height": 617,
 											"autoResize": false,
 											"nameLabel": {
 												"$ref": "AAAAAAFbWD8cTLtVHaI="
@@ -2916,6 +2916,7 @@
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,

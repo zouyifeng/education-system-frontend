@@ -52,7 +52,7 @@
                 <router-link to="/management/admin/message" v-if="currentAccount.type == 3">
                     <el-menu-item index="5">
                         <i class="el-icon-information"></i>
-                        留言管理
+                        留言及预报名管理
                     </el-menu-item>
                 </router-link>
                 <router-link to="/management/admin/manager" v-if="currentAccount.type == 3">
@@ -69,14 +69,20 @@
                 </router-link>
                 <router-link to="/management/admin/studentIndex" v-if="currentAccount.type == 1">
                     <el-menu-item index="8">
-                        <i class="el-icon-upload"></i>
+                        <i class="el-icon-information"></i>
                         学生主页
                     </el-menu-item>
                 </router-link>
                 <router-link to="/management/admin/teacherIndex" v-if="currentAccount.type == 2">
-                    <el-menu-item index="8">
+                    <el-menu-item index="10">
                         <i class="el-icon-upload"></i>
                         教师主页
+                    </el-menu-item>
+                </router-link>
+                <router-link to="/management/admin/assignClass" v-if="currentAccount.type !== 3">
+                    <el-menu-item index="11">
+                        <i class="el-icon-document"></i>
+                        我要报班
                     </el-menu-item>
                 </router-link>
             </el-menu>

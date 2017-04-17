@@ -114,7 +114,7 @@
             currentAccount :  'getCurrentAccount'
         }),
         created() {
-           this.fetchTeacherDetail();
+           this.fetchAdminTeacherDetail();
         },
         methods: {
             submit () {
@@ -125,7 +125,7 @@
                         message: resp.data.data.message,
                         offset: 100
                     });
-                    that.fetchTeacherDetail();
+                    that.fetchAdminTeacherDetail();
                 });
             },
             handlePictureCardPreview(file) {
@@ -135,9 +135,9 @@
             handleSuccessUpload(resp, file, fileList){
                 this.teacher.face = resp.data.picUrl;
             },
-            fetchTeacherDetail() {
+            fetchAdminTeacherDetail() {
                  const that = this;
-                this.$store.dispatch('fetchTeacherDetail', {data: {id: this.currentAccount.userId}}).then((resp)=>{
+                this.$store.dispatch('fetchAdminTeacherDetail', {data: {id: this.currentAccount.userId}}).then((resp)=>{
                     that.teacher = resp.data.data;
                     that.imageUrl = this.teacher.face;
                 });

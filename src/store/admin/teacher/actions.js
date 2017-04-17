@@ -30,8 +30,8 @@ export default {
             commit(types.SEARCH_TEACHER, resp.body.data);
         });
     },
-    fetchTeacherDetail({ commit }, teacher){
-        const url = '/admin/teacher_editUI.action';
+    fetchAdminTeacherDetail({ commit }, teacher){
+        const url = '/teacher_editUI.action';
         return util.post({ url }, teacher);
     }
 };

@@ -16,7 +16,7 @@ import TeacherIndex from './components/admin/teacher/TeacherIndex'
 import EditTeacher from './components/admin/teacher/EditTeacher'
 import Student from './components/admin/student/Student'
 import EditStudent from './components/admin/student/EditStudent'
-import StudentIndex from './components/admin/student/studentIndex'
+import StudentIndex from './components/admin/student/StudentIndex'
 import Classes from './components/admin/classes/Classes'
 import EditClasses from './components/admin/classes/EditClasses'
 import Message from './components/admin/message/Message'
@@ -26,10 +26,14 @@ import File from './components/admin/file/File'
 
 import Schedule from './components/admin/classes/LessonSchedule'
 
+import AssignClass from './components/admin/student/AssignClass.vue'
+
 // 微信端
 import H5NewsDetail from './components/h5/NewsDetail'
 import H5QA from './components/h5/QA'
 import H5Translate from './components/h5/Translate'
+import H5StudentIndex from './components/h5/H5StudentIndex'
+import H5TeacherIndex from './components/h5/H5TeacherIndex'
 
  
 export const routes = [{
@@ -122,6 +126,10 @@ export const routes = [{
               path: 'schedule/:id',
               component: Schedule
             }]
+          },{
+            name: 'assignClass',
+            path: 'assignClass',
+            component: AssignClass
           }
         ]
       }
@@ -135,6 +143,9 @@ export const routes = [{
   },{
     path: '/h5Translate',
     component: H5Translate
+  },{
+    path: '/h5StudentIndex',
+    component: H5StudentIndex
   }
 ];
 

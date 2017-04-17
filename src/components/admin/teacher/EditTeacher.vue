@@ -162,7 +162,7 @@
             
             if(this.teacherId) {
                 const that = this;
-                this.$store.dispatch('fetchTeacherDetail', {data: {id: this.teacherId}}).then((resp)=>{
+                this.$store.dispatch('fetchAdminTeacherDetail', {data: {id: this.teacherId}}).then((resp)=>{
                     that.teacher = resp.data.data;
                     that.imageUrl = this.teacher.face;
                 });
@@ -173,7 +173,7 @@
                 if(newValue !== ''){
                     var data = { id : newValue },
                         that = this;
-                    this.$store.dispatch('fetchTeacherDetail', {data: data}).then((resp)=>{
+                    this.$store.dispatch('fetchAdminTeacherDetail', {data: data}).then((resp)=>{
                         that.teacher = resp.data.data;
                         that.imageUrl = this.teacher.face;
                     });

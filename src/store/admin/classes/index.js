@@ -10,7 +10,8 @@ const state = {
             pageSize: 10,
             pageNum: 1
         }
-    }
+    },
+    schedule: []
 }
 
 export default {

@@ -31,7 +31,7 @@ export default {
         });
     },
     fetchStudentDetail({ commit }, student){
-        const url = '/admin/student_editUI.action';
+        const url = '/student_editUI.action';
         return util.post({ url }, student);
     }
 };
