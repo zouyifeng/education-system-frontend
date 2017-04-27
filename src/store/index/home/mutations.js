@@ -37,6 +37,12 @@ export default {
     },
 
     [types.CHANGE_LOGIN_STATUS](state) {
-        state.loginStatus = !state.loginStatus;
+        console.log(sessionStorage.loginStatus === undefined)
+        if(sessionStorage.loginStatus === 'false' || sessionStorage.loginStatus === undefined) {
+            sessionStorage.loginStatus = true;
+        } else if(sessionStorage.loginStatus === 'true') {
+            sessionStorage.loginStatus = false;            
+        }
+        state.loginStatus = sessionStorage.loginStatus === 'true' ? true : false;
     }
 };

@@ -57,7 +57,7 @@
                 handler: function(newValue, oldValue){
                     if(newValue && newValue.id != ''){
                         this.$router.push('../admin')
-                        this.$store.dispatch('changeLoginStatis');
+                        this.$store.dispatch('changeLoginStatus');
                     } else {
                         this.$message.error('输入的密码、账号或类型不正确！');                        
                     }

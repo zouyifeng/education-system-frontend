@@ -5,10 +5,10 @@
                 <div class="card">
                     <el-card>
                         <img :src="item.face" class="image">
-                        <div style="padding-top: 10px;">
+                        <div class="mt-15">
                             <span>{{item.name}}</span>
                             <div class="bottom clearfix">
-                            <span class="time">{{ item.introduction }}</span>
+                            <div class="intro">{{ item.introduction }}</div>
                             </div>
                         </div>
                     </el-card>
@@ -18,13 +18,15 @@
     </div>
 </template>
 <style>                 
-    .time {
+    .intro {
         font-size: 13px;
+        line-height: 1.4;
         color: #999;
+        min-height: 38px;
     }
 
     .card {
-        margin: 15px;
+        margin: 10px;
     }
 
     .image {

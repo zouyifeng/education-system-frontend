@@ -12,7 +12,8 @@ export const get = ({ url }) => {
     var getPromise = Vue.http.get(urlPrefix + url);
     getPromise.then((resp) => {
         if (resp.body.data && resp.body.data.msg == '登陆超时') {
-            Message.error('请重新登陆！');
+            Message.error('您已退出登录！');
+            // Vue.$store.dispatch('changeLoginStatus');
             location.hash = '/management/index/home'
         }
     })
@@ -23,7 +24,8 @@ export const post = ({ url }, data) => {
     var postPromise = Vue.http.post(urlPrefix + url, data);
     postPromise.then((resp) => {
         if (resp.body.data && resp.body.data.msg == '登陆超时') {
-            Message.error('请重新登陆！');
+            Message.error('您已退出登录！');
+            // Vue.$store.dispatch('changeLoginStatus');            
             location.hash = '/management/index/home'
         }
     })

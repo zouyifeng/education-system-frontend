@@ -18,6 +18,7 @@ export default {
         return state.newsDetail;
     },
     getLoginStatus(state) {
+        console.log(state.loginStatus)
         return state.loginStatus;
     }
 }

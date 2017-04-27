@@ -89,8 +89,8 @@
         created() {
             const url = '/file_list.action',
                   that = this;
-            for(var i=1; i<=4; i++) {
-                var data = {
+            for(let i=1; i<=4; i++) {
+                const data = {
                     type: i
                 }
                 Util.post({ url }, {data: data}).then((resp)=>{

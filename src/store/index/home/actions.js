@@ -3,7 +3,7 @@ import * as util from '../../util'
 import * as types from './mutation-types'
 
 export default {
-    changeLoginStatis({ commit }) {
+    changeLoginStatus({ commit }) {
         commit(types.CHANGE_LOGIN_STATUS);
     },
 
@@ -16,17 +16,19 @@ export default {
     getNews({ commit }, data) {
         const url = '/news_list.action';
         util.post({ url }, data).then((resp) => {
-            if(data.type == 1) {
-                commit(types.FETCH_CLASS_NEWS_LIST, resp.body.data);
-            }
-            if(data.type == 2) {
-                commit(types.FETCH_EXCHANGE_NEWS_LIST, resp.body.data);                
-            }
-            if(data.type == 3) {
-                commit(types.FETCH_STUDY_NEWS_LIST, resp.body.data);                
-            }
-            if(data.type == 4) {
-                commit(types.FETCH_INFORM_NEWS_LIST, resp.body.data);                
+            switch(data.type) {
+                case 1 : 
+                    commit(types.FETCH_CLASS_NEWS_LIST, resp.body.data);
+                    break;
+                case 2 :
+                    commit(types.FETCH_EXCHANGE_NEWS_LIST, resp.body.data);                
+                    break;
+                case 3 : 
+                    commit(types.FETCH_STUDY_NEWS_LIST, resp.body.data);                
+                    break;
+                case 4 :
+                    commit(types.FETCH_INFORM_NEWS_LIST, resp.body.data);                
+                    break;
             }
         })
     },

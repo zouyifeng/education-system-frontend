@@ -18,7 +18,7 @@
                 <el-input v-model="news.source"></el-input>
             </el-form-item>
         </el-form>
-        <el-form :label-position="left" label-width="80px">
+        <el-form label-width="80px">
             <el-form-item label="新闻纪录">
                 <div id="editor"></div>
             </el-form-item>

@@ -56,7 +56,7 @@ const state = {
         news: {},
         years: []
     },
-    loginStatus: false
+    loginStatus: sessionStorage.loginStatus === 'true' ? true : false
 }
 
 export default {

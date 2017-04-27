@@ -17,7 +17,7 @@
                     <el-menu-item index="0">
                         <h3 class="nav-title">{{account.username}}{{typeMap[account.type]}}, 欢迎你</h3>   
                     </el-menu-item>
-                    <router-link to="/management/index/home"><el-menu-item index="5"  @click="logout();$store.dispatch('changeLoginStatis');">登出</el-menu-item></router-link>                    
+                    <router-link to="/management/index/home"><el-menu-item index="5"  @click="logout();$store.dispatch('changeLoginStatus');">登出</el-menu-item></router-link>                    
                 </el-col>
             </el-row>
         </el-menu>
@@ -26,7 +26,7 @@
 </template>
 <style lang="scss">
   .container{
-    width: 70%;
+    width: 74%;
     margin: 30px auto;
     color: #615454;
   }
