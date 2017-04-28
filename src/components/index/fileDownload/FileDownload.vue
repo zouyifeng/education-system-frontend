@@ -57,7 +57,7 @@
     }
     .green-bg {
         background: green;
-    }
+    } 
     .yellow-bg {
         background: yellow;
     }
