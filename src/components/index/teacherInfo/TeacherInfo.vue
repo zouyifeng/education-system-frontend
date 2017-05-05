@@ -4,7 +4,9 @@
             <el-col :span="6" v-for="item in teacherList.list">
                 <div class="card">
                     <el-card>
-                        <img :src="item.face" class="image">
+                        <div class="image-box">
+                            <img :src="item.face" class="image">
+                        </div>
                         <div class="mt-15">
                             <span>{{item.name}}</span>
                             <div class="bottom clearfix">
@@ -32,6 +34,12 @@
     .image {
         width: 100%;
         display: block;
+    }
+
+    .image-box {
+        height: 180px;
+        width:auto;
+        overflow: hidden;
     }
 
     .clearfix:before,

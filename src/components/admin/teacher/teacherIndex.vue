@@ -123,7 +123,8 @@
                     this.$notify.success({
                         title: '修改成功',
                         message: resp.data.data.message,
-                        offset: 100
+                        offset: 100,
+                        duration: 1000
                     });
                     that.fetchAdminTeacherDetail();
                 });

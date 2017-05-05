@@ -179,6 +179,18 @@
                         that.student = resp.body.data;
                         that.imageUrl = this.student.face;
                     });
+                } else {
+                    this.student = {
+                        name: '',
+                        telephone: '',
+                        email: '',
+                        school: '',
+                        introduction:'',
+                        face: '',
+                        parentName: '',
+                        classes: []
+                    };
+                    this.imageUrl = '';
                 }
             }
         },

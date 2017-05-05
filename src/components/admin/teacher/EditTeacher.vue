@@ -166,10 +166,11 @@
                     that.teacher = resp.data.data;
                     that.imageUrl = this.teacher.face;
                 });
-            }
+            } 
         },
         watch: {
             teacherId: function(newValue,oldValue){
+            console.log(newValue == '')
                 if(newValue !== ''){
                     var data = { id : newValue },
                         that = this;
@@ -177,7 +178,19 @@
                         that.teacher = resp.data.data;
                         that.imageUrl = this.teacher.face;
                     });
-                }
+                } else {
+                    this.teacher = {
+                        name: '',
+                        telephone: '',
+                        email: '',
+                        direction: '',
+                        introduction:'',
+                        face: '',
+                        classesId: '',
+                        classes: []
+                    };
+                    this.imageUrl = '';
+                } 
             }
         },
         methods: {
@@ -211,7 +224,6 @@
                 this.$store.dispatch('fetchAdminClassesList',{ data: {}, pageInfo: this.classList.pageInfo })
             },
             assignClasses(item) {
-                console.log(this.teacher)
                 this.teacher.classes.push(item);
             },
             cancelAssginedClasses(item) {

@@ -11,7 +11,7 @@
                         <div class="download-area">
                             <div class="download-area">
                             <a class="download-btn" v-for="item in fileList[0]" v-bind:href="item.path" download="download">
-                                <el-tag type="success">{{item.name}}</el-tag>
+                                <el-tag type="warning">{{item.name}}</el-tag>
                             </a>    
                         </div>                    
                         </div>
@@ -21,7 +21,7 @@
                         <div class="download-area">
                             <div class="download-area">
                             <a class="download-btn" v-for="item in fileList[1]" v-bind:href="item.path" download="download">
-                                <el-tag type="success">{{item.name}}</el-tag>
+                                <el-tag type="normal">{{item.name}}</el-tag>
                             </a>    
                         </div>                     
                         </div>
