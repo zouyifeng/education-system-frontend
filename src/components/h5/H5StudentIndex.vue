@@ -22,7 +22,7 @@
                 <li class="info-item">
                     <div class="info-key">我的班级</div>
                     <div class="info-value">
-                        <el-tag type="success" v-for="item in student.classes">{{item.subject}}}</el-tag>
+                        <el-tag type="success" v-for="item in student.classes">{{item.subject}}</el-tag>
                     </div>
                 </li>
             </ul>

@@ -71,17 +71,14 @@
                             type: resp.data.msg,
                             offset: 100                  
                         });
-                        this.closeDialog();
                     });
+                this.$store.dispatch('closeEditDialogVisible');                
             },
             handleSelectionChange(teachers) {
                 this.selectedTeacher = teachers;
             },
             nextPage(){
                 this.$store.dispatch('fetchAdminTeacherList',{pageInfo: this.data.pageInfo })
-            },
-            closeDialog() {
-                this.$store.dispatch('closeEditDialogVisible');
             }
         }
     }

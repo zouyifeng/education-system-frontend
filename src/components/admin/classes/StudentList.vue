@@ -72,6 +72,7 @@
                             offset: 100                  
                         });
                     });
+                this.$store.dispatch('closeEditDialogVisible');            
             },
             handleSelectionChange(students) {
                 this.selectedStudent = students;

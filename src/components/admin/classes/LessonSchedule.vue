@@ -107,7 +107,6 @@
         },
         watch: {
             scheduleData: function() {
-                console.log('zz')
                 this.creatSchedule(this.scheduleData);
             }
         },
@@ -117,13 +116,6 @@
         methods: {
             fetchLesson() {
                 const url = '/lesson_list.action';
-                // Util.post( { url } , {data: { 
-                //     classesId: this.$route.params.id,
-                //     startTime: this.getWeek(new Date()).start,
-                //     endTime: this.getWeek(new Date()).end
-                // }} ).then((resp) => { 
-                //     this.creatSchedule(resp.data.data);
-                // })
 
                 this.$store.dispatch('fetchClassesLesson',{data: { 
                     classesId: this.$route.params.id,
@@ -150,7 +142,7 @@
                 }
                 var that = this;
                 lessonList.forEach(function(item, index){
-                    var current = new Date(item.startTime),
+                    var current = new Date(item.startTime.replace(/-/g, '/')),
                         beginTime = current.getHours();
                     switch(beginTime) {
                         case 8: 

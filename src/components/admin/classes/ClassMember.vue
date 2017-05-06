@@ -2,7 +2,7 @@
     <el-col :span="23" :offset="1">
         <el-form :inline="true" style="width: 100%">
             <el-form-item>
-                <el-button type="primary" @click="openDialog">增加学生</el-button>
+                <el-button type="primary" @click="openDialog(1);">增加学生</el-button>
             </el-form-item>
         </el-form>
         <el-table :data="existedStudent" stripe style="width: 100%" class="mb-15">
@@ -17,12 +17,15 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-dialog title="学生列表" v-model="dialogFormVisible" size="small" @close="$store.dispatch('closeEditDialogVisible')">
+        <el-dialog title="学生列表" v-model="studentListVisible" size="small" @close="$store.dispatch('closeEditDialogVisible');teacherListVisible = false;fetchExistedStudentList();">
             <studentlist></studentlist>
+        </el-dialog>
+        <el-dialog title="教师列表" v-model="teacherListVisible" size="small" @close="$store.dispatch('closeEditDialogVisible');studentListVisible = false;fetchExistedTeacherList()">
+            <teacherlist></teacherlist>
         </el-dialog>
         <el-form :inline="true" style="width: 100%">
             <el-form-item>
-                <el-button type="success" @click="openDialog">增加教师</el-button>
+                <el-button type="success" @click="openDialog(2);">增加教师</el-button>
             </el-form-item>
         </el-form>
         <el-table :data="existedTeacher" stripe style="width: 100%">
@@ -51,7 +54,9 @@
         data() { 
             return {
                 existedStudent: [],
-                existedTeacher: []
+                existedTeacher: [],
+                teacherListVisible: false,
+                studentListVisible: false
             }
         },
         components: {
@@ -66,8 +71,18 @@
             this.fetchExistedTeacherList();
         },
         methods: {
-            openDialog() {
-                this.$store.dispatch('openEditDialogVisible');
+            openDialog(flag) {
+                console.log(flag)
+                switch(flag) {
+                    case 1:
+                        this.studentListVisible = true;
+                        break;  
+                    case 2: 
+                        this.teacherListVisible = true;
+                        break;
+                    default:
+                        this.$store.dispatch('openEditDialogVisible');
+                }
             },
             deleteStudent(id) {
                 var that = this;
@@ -101,7 +116,6 @@
                 const url = '/admin/classes_student.action';
                 Util.post({ url }, {data: { type: 1, classesId: this.$route.params.id } })
                     .then((resp) => { 
-                        console.log(resp.body.data)
                         this.existedStudent = resp.body.data;
                     });
             },
@@ -112,10 +126,7 @@
                         this.existedTeacher = resp.body.data;
                     });
             },
-            openDialog(id){
-                this.selectedId = id || '';
-                this.$store.dispatch('openEditDialogVisible');
-            },
+
             nextPage(type){
                 if(type == 1) {
                     const url = '/admin/classes_student.action' ;
