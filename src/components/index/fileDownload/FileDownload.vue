@@ -7,7 +7,7 @@
                 </div>
                 <ul>
                     <li class="download-item">
-                        <div class="download-subject">学籍科：</div>
+                        <div class="download-subject">学务科：</div>
                         <div class="download-area">
                             <div class="download-area">
                             <a class="download-btn" v-for="item in fileList[0]" v-bind:href="item.path" download="download">

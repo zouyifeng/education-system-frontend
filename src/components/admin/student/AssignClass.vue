@@ -58,7 +58,9 @@
                     dialogFormVisible: false,
                     confirmDeleteVisible: false
                 },
-                person: {},
+                person: {
+                    classes: []
+                },
                 newClass:[]
             }
         },
@@ -72,7 +74,7 @@
         },
         methods: {
             assignClasses(item) {
-                this.person.classes = [item];
+                this.person.classes.push(item);
                 var actionTypeStr = this.currentAccount.type == 1 ? 'editStudent' : 'editTeacher';
 
                 this.$store.dispatch(actionTypeStr, {data: this.person}).then((resp) => {
