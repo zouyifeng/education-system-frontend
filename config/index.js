@@ -22,6 +22,7 @@ module.exports = {
     port: 8090,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    autoOpenBrowser: true,
     proxyTable: {
       '/api': {
         target: 'http://localhost:8080',
