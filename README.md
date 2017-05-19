@@ -1,6 +1,6 @@
 # education-system-frontend
 
-> 系统为简易教务系统，这里是前端模块，基于vue，打包工具webpack。后台模块在[这里](https://github.com/zouyifeng/education-system-backend)
+> 系统为简易的基于微信教务系统，这里是前端模块，基于vue，打包工具webpack。后台模块在[这里](https://github.com/zouyifeng/education-system-backend)
 
 ## 启动
 
