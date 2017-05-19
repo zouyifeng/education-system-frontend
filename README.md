@@ -1,6 +1,6 @@
 # education-system-frontend
 
-> 该系统为简易教务系统，这里是前端模块。后台模块在[这里](https://github.com/zouyifeng/education-system-backend)
+> 系统为简易教务系统，这里是前端模块，基于vue，打包工具webpack。后台模块在[这里](https://github.com/zouyifeng/education-system-backend)
 
 ## 启动
 
@@ -13,6 +13,6 @@ npm run dev
 
 # build for production with minification
 npm run build
-
+```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
