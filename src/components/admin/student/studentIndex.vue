@@ -140,7 +140,7 @@
             },
             fetchStudentDetail() {
                  const that = this;
-                this.$store.dispatch('fetchStudentDetail', {data: {id: this.currentAccount.userId}}).then((resp)=>{
+                this.$store.dispatch('fetchStudentDetail', {data: {id: this.currentAccount.id}}).then((resp)=>{
                     that.student = resp.data.data;
                     that.imageUrl = this.student.face;
                 });

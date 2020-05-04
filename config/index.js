@@ -4,10 +4,10 @@ var path = require('path')
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../../wechat-education-system/src/main/webapp/pages/dist/index.html'),
-    play: path.resolve(__dirname, '../../wechat-education-system/src/main/webapp/pages/dist/h5.html'),
-    assetsRoot: path.resolve(__dirname, '../../wechat-education-system/src/main/webapp/pages/dist'),
-    assetsSubDirectory: 'static',
+    index: path.resolve(__dirname, '../dist/index.html'),
+    play: path.resolve(__dirname, '../dist/h5.html'),
+    assetsRoot: path.resolve(__dirname, '../dist/'),
+    assetsSubDirectory: '',
     assetsPublicPath: './',
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
@@ -15,17 +15,17 @@ module.exports = {
     // Before setting to `true`, make sure to:
     // npm install --save-dev compression-webpack-plugin
     productionGzip: false,
-    productionGzipExtensions: ['js', 'css']
+    // productionGzipExtensions: ['js', 'css']
   },
   dev: {
     env: require('./dev.env'),
-    port: 8090,
+    port: 8080,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     autoOpenBrowser: true,
     proxyTable: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:8090',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

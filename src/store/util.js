@@ -2,7 +2,8 @@ import Vue from 'vue'
 
 import { Message } from 'element-ui';
 
-export const urlPrefix = 'http://localhost:8090/api';
+export const urlPrefix = '/api';
+// export const urlPrefix = '/wechat-education-system';
 
 // const urlPrefix = 'http://zouyifeng.tunnel.qydev.com';
 
